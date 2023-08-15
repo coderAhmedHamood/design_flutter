@@ -11,7 +11,7 @@ class AttendanceScreen extends StatelessWidget {
 
 
   final List<StudentAttendance> studentAttendance = [
-    StudentAttendance(day: '7/26', subjects: ['', '', '', '', '']),
+    StudentAttendance(day: 'no', subjects: ['', '', '', '', '']),
     StudentAttendance(
         day: 'السبت', subjects: ['حاضر', 'حاضر', 'حاضر', 'غائب', 'حاضر']),
     StudentAttendance(
@@ -23,7 +23,7 @@ class AttendanceScreen extends StatelessWidget {
     StudentAttendance(
         day: 'الأربعاء', subjects: ['حاضر', 'غائب', 'حاضر', 'حاضر', 'حاضر']),
    
-   StudentAttendance(day: '8/3', subjects: ['', '', '', '', '']),
+   StudentAttendance(day: 'no', subjects: ['', '', '', '', '']),
     StudentAttendance(
         day: 'السبت', subjects: ['حاضر', 'حاضر', 'حاضر', 'غائب', 'حاضر']),
     StudentAttendance(
@@ -34,24 +34,24 @@ class AttendanceScreen extends StatelessWidget {
         day: 'الثلاثاء', subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'غائب']),
     StudentAttendance(
         day: 'الأربعاء', subjects: ['حاضر', 'غائب', 'حاضر', 'حاضر', 'حاضر']),
-    StudentAttendance(day: '9/11', subjects: ['', '', '', '', '']),
+    StudentAttendance(day: 'no', subjects: ['', '', '', '', '']),
      StudentAttendance(
         day: 'السبت', subjects: ['حاضر', 'حاضر', 'حاضر', 'غائب', 'حاضر']),
     StudentAttendance(
         day: 'الأحد', subjects: ['حاضر', 'مستأذن', 'حاضر', 'حاضر', 'حاضر']),
     StudentAttendance(
         day: 'الاثنين', subjects: ['حاضر', 'حاضر', 'مستأذن', 'حاضر', 'مستأذن']),
-    StudentAttendance(
-        day: 'الثلاثاء', subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'غائب']),
-    StudentAttendance(
-        day: 'الأربعاء', subjects: ['حاضر', 'غائب', 'حاضر', 'حاضر', 'حاضر']),
-    StudentAttendance(day: '9/19', subjects: ['', '', '', '', '']),
-     StudentAttendance(
-        day: 'السبت', subjects: ['حاضر', 'حاضر', 'غائب', 'حاضر', 'مستأذن']),
-    StudentAttendance(
-        day: 'الأحد', subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'غائب']),
-    StudentAttendance(
-        day: 'الاثنين', subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'حاضر']),
+  //   StudentAttendance(
+  //       day: 'الثلاثاء', subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'غائب']),
+  //   StudentAttendance(
+  //       day: 'الأربعاء', subjects: ['حاضر', 'غائب', 'حاضر', 'حاضر', 'حاضر']),
+  //   StudentAttendance(day: '9/19', subjects: ['', '', '', '', '']),
+  //    StudentAttendance(
+  //       day: 'السبت', subjects: ['حاضر', 'حاضر', 'غائب', 'حاضر', 'مستأذن']),
+  //   StudentAttendance(
+  //       day: 'الأحد', subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'غائب']),
+  //   StudentAttendance(
+  //       day: 'الاثنين', subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'حاضر']),
   ];
 // final List<StudentAttendance> studentAttendance = [
 //   StudentAttendance(day: '7/26', subjects: ['', '']),
@@ -92,10 +92,25 @@ class AttendanceScreen extends StatelessWidget {
 
 List<String> columnNames = ['ي/ت', 'القرآن', 'التربية الاسلامية', 'اللغة العربية', 'الرياضيات', 'العلوم'];
 
+
+
+
 Widget WidgetTable() {
   return Padding(
     padding: const EdgeInsets.all(10.0),
-    child: Table(
+    child:Column(
+      children: [
+        WidgetCreateTable(),
+        // Text(attendance.day,style: TextStyle(fontSize: 40),),
+        WidgetRowTable(),
+      ],
+    ),
+  );
+}
+
+ 
+Widget WidgetCreateTable(){
+  return  Table(
       border: TableBorder.all(),
       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
       children: [
@@ -105,28 +120,75 @@ Widget WidgetTable() {
             return TableCell(child: WidgetCell(columnNames[index]));
           }),
         ),
-        ...studentAttendance.map((attendance) {
-          return TableRow(
-            children: [
-              TableCell(child: WidgetCell(attendance.day)),
-              ...attendance.subjects.map((subject) {
-                return TableCell(child: _buildAttendanceStatus(subject));
-              }).toList(),
-            ],
-          );
-        }).toList(),
+        // ...studentAttendance.map((attendance) {
+        //   return TableRow(
+        //     children: [
+        //       TableCell(child: WidgetCell(attendance.day)),
+        //       ...attendance.subjects.map((subject) {
+        //         return TableCell(child: _buildAttendanceStatus(subject));
+        //       }).toList(),
+        //     ],
+        //   );
+        // }).toList(),
       ],
-    ),
-  );
+    );
 }
 
- 
-  Widget WidgetCell(String cellName) {
-    return Container(
-      padding: EdgeInsets.all(8),
-      child: Center(child: Text(cellName)),
-    );
-  }
+Widget WidgetRowTable(){
+  return  Table(
+  border: TableBorder.all(),
+  defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+  children: [
+    ...studentAttendance.map((attendance) {
+//       if(attendance.day=='no') {
+// return TableRow(
+//           children: [
+//           Expanded(child:Text("bahz"))
+//           ],
+//         ); 
+        
+//              }
+      if (attendance.day.isNotEmpty && attendance.subjects.isNotEmpty) {
+        return TableRow(
+          children: [
+            TableCell(child: WidgetCell(attendance.day)),
+            ...attendance.subjects.map((subject) {
+              return TableCell(child: _buildAttendanceStatus(subject));
+            }).toList(),
+          ],
+        );
+      } else if (attendance.day.isNotEmpty) {
+        return TableRow(
+          children: [
+            TableCell(
+              child: Row(
+                children: [
+                  WidgetCell(attendance.day),
+                  ...attendance.subjects.map((subject) {
+                    return Expanded(child: WidgetCell(subject));
+                  }).toList(),
+                ],
+              ),
+            ),
+          ],
+        );
+      } else if (attendance.subjects.isNotEmpty) {
+        return TableRow(
+          children: [
+            ...attendance.subjects.map((subject) {
+              return TableCell(child: WidgetCell(subject));
+            }).toList(),
+          ],
+        );
+      } else {
+        return TableRow(children: []);
+      }
+    }).toList(),
+  ],
+);
+
+}
+
 
   Widget _buildAttendanceStatus(String status) {
     return Container(
@@ -149,6 +211,15 @@ Widget WidgetTable() {
       ),
     );
   }
+  
+  
+  Widget WidgetCell(String cellName) {
+    return Container(
+      padding: EdgeInsets.all(8),
+      child: Center(child: Text(cellName)),
+    );
+  }
+
 
   Widget WidgetTitle() {
     return Padding(
