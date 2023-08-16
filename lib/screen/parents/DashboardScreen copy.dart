@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../behaviour_students.dart';
-import '../degree_students.dart';
-import '../homework_students.dart';
-import '../present_students.dart';
+import '../students/behaviour_students.dart';
+import '../students/degree_students.dart';
+import '../students/homework_students.dart';
+import '../students/present_students.dart';
 import 'AssignmentsScreen.dart';
 import 'AttendanceScreen.dart';
 import 'BehaviorScreen.dart';
