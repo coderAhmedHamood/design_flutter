@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
- import 'package:get/get.dart';
- 
+import 'package:get/get.dart';
 
-import '../../screen1/home_screen.dart';
+import '../../screen1/home/home_screen.dart';
+
 import '../parents/DashboardScreen.dart';
 import 'behaviour_students.dart';
 import 'degree_students.dart';
 import 'homework_students.dart';
- 
+
 class ListPresentStudent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -21,8 +21,6 @@ class ListPresentStudent extends StatelessWidget {
                 // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
                 children: [
-             
-             
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -60,7 +58,6 @@ class ListPresentStudent extends StatelessWidget {
                       ],
                     ),
                   ),
-        
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -98,8 +95,7 @@ class ListPresentStudent extends StatelessWidget {
                       ],
                     ),
                   ),
-        
-             Padding(
+                  Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -136,7 +132,6 @@ class ListPresentStudent extends StatelessWidget {
                       ],
                     ),
                   ),
-        
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -148,15 +143,13 @@ class ListPresentStudent extends StatelessWidget {
                           height: 50,
                           color: Colors.green,
                           child: Center(
-                            child:ElevatedButton(
-                                  onPressed: () {
-                                  
-                                    // Get.to(PreparingStudents());
-                                    Get.toNamed("/present_student");
-                                  },
-                                  child:
-                                      Text("List Preparing the Students"),
-                                ),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                // Get.to(PreparingStudents());
+                                Get.toNamed("/present_student");
+                              },
+                              child: Text("List Preparing the Students"),
+                            ),
                           ),
                         ),
                         Container(
@@ -210,7 +203,7 @@ class ListPresentStudent extends StatelessWidget {
                       ],
                     ),
                   ),
-                     Padding(
+                  Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -245,7 +238,6 @@ class ListPresentStudent extends StatelessWidget {
                       ],
                     ),
                   ),
-              
                 ]),
           ),
         ),

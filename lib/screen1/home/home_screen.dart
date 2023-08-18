@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_design/screen1/login_screen.dart';
 
+import '../branch/MainScreen.dart';
+import '../branch/post_carosal.dart';
+import 'branch.dart';
 import 'facebook.dart';
 
  
@@ -37,7 +40,7 @@ class HomePageDesign extends StatelessWidget {
 ),
 buildDashboardItem(
   icon: Icons.thumb_up, // Change the icon to thumb_up
-  title: 'الملف الشخصي',
+  title: 'فيسبوك مالتي',
   subtitle: '',
   color: Colors.orange,
   onTap: () {
@@ -47,30 +50,31 @@ buildDashboardItem(
     );
   },
 ),
-// buildDashboardItem(
-//   icon: Icons.school, // Change the icon to school
-//   title: 'stude',
-//   subtitle: '',
-//   color: Colors.purple,
-//   onTap: () {
-//     Navigator.push(
-//       context,
-//       MaterialPageRoute(builder: (context) => StudView()),
-//     );
-//   },
-// ),
-// buildDashboardItem(
-//   icon: Icons.assignment, // Change the icon to assignment
-//   title: 'الواجبات',
-//   subtitle: 'عرض تفاصيل الواجبات',
-//   color: Colors.teal,
-//   onTap: () {
-//     Navigator.push(
-//       context,
-//       MaterialPageRoute(builder: (context) => AssignmentsScreen()),
-//     );
-//   },
-// ),
+buildDashboardItem(
+  icon: Icons.school, // Change the icon to school
+  title: 'اختيار الفرع',
+  subtitle: '',
+  color: Colors.purple,
+  onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => BranchPage()),
+    );
+  },
+),
+buildDashboardItem(
+  icon: Icons.assignment, // Change the icon to assignment
+  title: 'MainScreen',
+  subtitle: '',
+  color: Colors.teal,
+  onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => PostCarosal()),
+      // MaterialPageRoute(builder: (context) => MainScreen()),
+    );
+  },
+),
 
 // buildDashboardItem(
 //   icon: Icons.notifications, // Change the icon to notifications
