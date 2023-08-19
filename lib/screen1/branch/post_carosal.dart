@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-
 class Post {
   final String title;
   final String location;
-  final int likes;
+  late final int likes;
+  late final bool isLikes;
   final int comments;
   final String imageUrl;
 
@@ -11,17 +11,18 @@ class Post {
     required this.title,
     required this.location,
     required this.likes,
+    required this.isLikes,
     required this.comments,
     required this.imageUrl,
   });
 }
 
-class PostCarosal extends StatelessWidget {
   final List<Post> posts = [
     Post(
       title: 'الفرع الرئيسي',
       location: 'تعز شارع التحرير',
       likes: 10,
+      isLikes:true,
       comments: 5,
       imageUrl: 'assets/school/school1.jpg',
       // imageUrl: 'assets/school/school1.jpg',
@@ -30,6 +31,7 @@ class PostCarosal extends StatelessWidget {
       title: 'فرع الاربعين',
       location: 'تعز بير باشا',
       likes: 20,
+      isLikes:true,
       comments: 8,
       imageUrl: 'assets/school/school2.jpg',
     ),
@@ -37,6 +39,7 @@ class PostCarosal extends StatelessWidget {
       title: 'فرع ذمار ',
       location: 'جوار محطة الجرموزي ',
       likes: 20,
+      isLikes:false,
       comments: 8,
       imageUrl: 'assets/school/school3.jpg',
     ),
@@ -44,19 +47,32 @@ class PostCarosal extends StatelessWidget {
       title: 'فرع البنين ',
       location: 'ذمار جولة كمران',
       likes: 20,
+      isLikes:true,
       comments: 8,
       imageUrl: 'assets/school/school1.jpg',
     ),
     // Add more posts as needed
   ];
 
+
+class PostCarosal extends StatefulWidget {
+  @override
+  _PostCarosalState createState() => _PostCarosalState();
+}
+
+class _PostCarosalState extends State<StatefulWidget> {
+   
+ 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: posts.length,
-      itemBuilder: (context, index) {
-        return buildPost(context, index);
-      },
+    return Container(
+      color: Color.fromARGB(255, 209, 207, 207),
+      child: ListView.builder(
+        itemCount: posts.length,
+        itemBuilder: (context, index) {
+          return buildPost(context, index);
+        },
+      ),
     );
   }
 
@@ -93,7 +109,7 @@ class PostCarosal extends StatelessWidget {
                 bottomLeft: Radius.circular(15),
                 bottomRight: Radius.circular(15),
               ),
-              color: Colors.white.withOpacity(.7),
+              color: Colors.white.withOpacity(.5),
             ),
             height: 120,
             child: Padding(
@@ -101,7 +117,7 @@ class PostCarosal extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 // mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children:<Widget> [
                   Text(
                     post.title,
                     style: TextStyle(
@@ -110,9 +126,7 @@ class PostCarosal extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
+          
                   Text(
                     post.location,
                     style: TextStyle(
@@ -121,39 +135,22 @@ class PostCarosal extends StatelessWidget {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '❤ ${post.likes}',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.comment,
-                            color: Colors.blue,
-                          ),
-                          Text(
-                            ' ${post.comments}',
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500,
+            
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              '❤ ${post.likes}',
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
+                          ],
+                        ),
+                  
+                ], 
               ),
             ),
           ),
@@ -161,107 +158,6 @@ class PostCarosal extends StatelessWidget {
       ),
     );
   }
-
-  // Widget buildPost(BuildContext context, int index) {
-  //   Post post = posts[index];
-  //   return Container(
-  //     margin: EdgeInsets.all(25),
-  //     height: 300, // تحديد ارتفاع العنصر حسب الحاجة
-  //     decoration: BoxDecoration(
-  //       borderRadius: BorderRadius.circular(15),
-  //       boxShadow: [
-  //         BoxShadow(
-  //           offset: Offset(2, 2),
-  //           color: Colors.black,
-  //           blurRadius: 5,
-  //         ),
-  //       ],
-  //     ),
-  //     child: Column(
-  //       children: [
-  //         Expanded(
-  //           child: ClipRRect(
-  //             borderRadius: BorderRadius.circular(15),
-  //             child: Image(
-  //               image: AssetImage(post.imageUrl),
-  //               fit: BoxFit.cover,
-  //             ),
-  //           ),
-  //         ),
-  //         Container(
-  //           decoration: BoxDecoration(
-  //             borderRadius: BorderRadius.only(
-  //               bottomLeft: Radius.circular(15),
-  //               bottomRight: Radius.circular(15),
-  //             ),
-  //             color: Colors.white.withOpacity(.7),
-  //           ),
-  //           height: 120,
-
-  //           child: Padding(
-  //             padding: const EdgeInsets.all(8.0),
-  //             child: Column(
-  //               crossAxisAlignment: CrossAxisAlignment.start,
-  //               children: [
-  //                 Text(
-  //                   post.title,
-  //                   style: TextStyle(
-  //                     fontSize: 23,
-  //                     color: Colors.black,
-  //                     fontWeight: FontWeight.w600,
-  //                   ),
-  //                 ),
-  //                 SizedBox(
-  //                   height: 10,
-  //                 ),
-  //                 Text(
-  //                   post.location,
-  //                   style: TextStyle(
-  //                     fontSize: 21,
-  //                     color: Colors.black,
-  //                     fontWeight: FontWeight.w500,
-  //                   ),
-  //                 ),
-  //                 SizedBox(
-  //                   height: 10,
-  //                 ),
-  //                 Row(
-  //                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                   children: [
-  //                     Text(
-  //                       '❤ ${post.likes}',
-  //                       style: TextStyle(
-  //                         fontSize: 20,
-  //                         color: Colors.black,
-  //                         fontWeight: FontWeight.w500,
-  //                       ),
-  //                     ),
-  //                     Row(
-  //                       children: [
-  //                         Icon(
-  //                           Icons.comment,
-  //                           color: Colors.blue,
-  //                         ),
-  //                         Text(
-  //                           ' ${post.comments}',
-  //                           style: TextStyle(
-  //                             fontSize: 20,
-  //                             color: Colors.black,
-  //                             fontWeight: FontWeight.w500,
-  //                           ),
-  //                         ),
-  //                       ],
-  //                     ),
-  //                   ],
-  //                 ),
-  //               ],
-  //             ),
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
 }
 
 //// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unnecessary_new

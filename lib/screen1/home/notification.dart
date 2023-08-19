@@ -151,11 +151,7 @@ class NotificationsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl, // تغيير اتجاه النصوص والعناصر
-      child: Scaffold(
-        // appBar: AppBar(
-        //   title: Text("الاشعارات"),
-        // ),
-        body: Column(
+      child:  Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
            Directionality(
@@ -293,7 +289,7 @@ class NotificationsScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
+      
     );
   }
 }

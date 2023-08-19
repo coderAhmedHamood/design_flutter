@@ -1,27 +1,24 @@
 import 'package:flutter/material.dart';
+
 import 'AssignmentsScreen.dart';
 import 'AttendanceScreen.dart';
 import 'BehaviorScreen.dart';
 import 'MonthlyTestsScreen.dart';
+import 'permission_request.dart';
+ 
 
 class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'الواجهة الرئيسية',
-          style: TextStyle(fontFamily: 'Arabic'),
-        ),
-        backgroundColor: Colors.blue,
-      ),
-      backgroundColor: Colors.white,
+      
+   
       body: GridView.count(
         crossAxisCount: 2,
         padding: EdgeInsets.all(16),
         children: [
           buildDashboardItem(
-            icon: Icons.calendar_today,
+            icon: Icons.event, // Change the icon to event
             title: 'الحضور',
             subtitle: 'عرض سجلات الحضور',
             color: Colors.green,
@@ -33,7 +30,7 @@ class DashboardScreen extends StatelessWidget {
             },
           ),
           buildDashboardItem(
-            icon: Icons.assignment_turned_in,
+            icon: Icons.thumb_up, // Change the icon to thumb_up
             title: 'السلوك والانضباط',
             subtitle: 'عرض سجلات السلوك والانضباط',
             color: Colors.orange,
@@ -45,7 +42,7 @@ class DashboardScreen extends StatelessWidget {
             },
           ),
           buildDashboardItem(
-            icon: Icons.school,
+            icon: Icons.school, // Change the icon to school
             title: 'الاختبارات الشهرية',
             subtitle: 'عرض نتائج الاختبارات الشهرية',
             color: Colors.purple,
@@ -57,7 +54,7 @@ class DashboardScreen extends StatelessWidget {
             },
           ),
           buildDashboardItem(
-            icon: Icons.assignment,
+            icon: Icons.assignment, // Change the icon to assignment
             title: 'الواجبات',
             subtitle: 'عرض تفاصيل الواجبات',
             color: Colors.teal,
@@ -68,6 +65,20 @@ class DashboardScreen extends StatelessWidget {
               );
             },
           ),
+    
+    buildDashboardItem(
+  icon: Icons.request_page, // تعيين الأيقونة المناسبة
+  title: 'طلب الاستئذان',
+  subtitle: 'طلب استئذان للطلاب',
+  color: Colors.blue, // اختر لونًا مناسبًا
+  onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => PermissionRequestScreen()),
+    );
+  },
+),
+    
         ],
       ),
     );

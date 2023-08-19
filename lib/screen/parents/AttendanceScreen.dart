@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 
+class StudentAttendanceClassTwo {
+  final String date;
+  final List<StudentAttendance> studentAttendance;
+
+  StudentAttendanceClassTwo(
+      {required this.date, required this.studentAttendance});
+}
+
 class StudentAttendance {
   final String day;
   final List<String> subjects;
@@ -8,63 +16,112 @@ class StudentAttendance {
 }
 
 class AttendanceScreen extends StatelessWidget {
+  final List<StudentAttendanceClassTwo> studentAttendanceClassTwo = [
+    StudentAttendanceClassTwo(
+      date: '2024/7/26',
+      studentAttendance: [
+        StudentAttendance(
+            day: 'السبت', subjects: ['حاضر', 'حاضر', 'حاضر', 'غائب', 'حاضر']),
+        StudentAttendance(
+            day: 'الأحد', subjects: ['حاضر', 'مستأذن', 'حاضر', 'حاضر', 'حاضر']),
+        StudentAttendance(
+            day: 'الاثنين',
+            subjects: ['حاضر', 'حاضر', 'مستأذن', 'حاضر', 'مستأذن']),
+        StudentAttendance(
+            day: 'الثلاثاء',
+            subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'غائب']),
+        StudentAttendance(
+            day: 'الأربعاء',
+            subjects: ['حاضر', 'غائب', 'حاضر', 'حاضر', 'حاضر']),
+      ],
+    ),
+    StudentAttendanceClassTwo(
+      date: '2024/8/3',
+      studentAttendance: [
+        StudentAttendance(
+            day: 'السبت', subjects: ['حاضر', 'حاضر', 'حاضر', 'غائب', 'حاضر']),
+        StudentAttendance(
+            day: 'الأحد', subjects: ['حاضر', 'مستأذن', 'حاضر', 'حاضر', 'حاضر']),
+        StudentAttendance(
+            day: 'الاثنين',
+            subjects: ['حاضر', 'حاضر', 'مستأذن', 'حاضر', 'مستأذن']),
+        StudentAttendance(
+            day: 'الثلاثاء',
+            subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'غائب']),
+        StudentAttendance(
+            day: 'الأربعاء',
+            subjects: ['حاضر', 'غائب', 'حاضر', 'حاضر', 'حاضر']),
+      ],
+    ),
 
+    StudentAttendanceClassTwo(
+      date: '2024/8/19',
+      studentAttendance: [
+        StudentAttendance(
+            day: 'السبت', subjects: ['حاضر', 'حاضر', 'غائب', 'حاضر', 'مستأذن']),
+        StudentAttendance(
+            day: 'الأحد', subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'غائب']),
+        StudentAttendance(
+            day: 'الاثنين', subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'حاضر']),
+      ],
+    ),
+    StudentAttendanceClassTwo(
+      date: '2024/8/11',
+      studentAttendance: [
+        StudentAttendance(
+            day: 'السبت', subjects: ['حاضر', 'حاضر', 'حاضر', 'غائب', 'حاضر']),
+        StudentAttendance(
+            day: 'الأحد', subjects: ['حاضر', 'مستأذن', 'حاضر', 'حاضر', 'حاضر']),
+        StudentAttendance(
+            day: 'الاثنين',
+            subjects: ['حاضر', 'حاضر', 'مستأذن', 'حاضر', 'مستأذن']),
+        StudentAttendance(
+            day: 'الثلاثاء',
+            subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'غائب']),
+        StudentAttendance(
+            day: 'الأربعاء',
+            subjects: ['حاضر', 'غائب', 'حاضر', 'حاضر', 'حاضر']),
+      ],
+    ),
 
-  final List<StudentAttendance> studentAttendance = [
-    StudentAttendance(day: 'no', subjects: ['', '', '', '', '']),
-    StudentAttendance(
-        day: 'السبت', subjects: ['حاضر', 'حاضر', 'حاضر', 'غائب', 'حاضر']),
-    StudentAttendance(
-        day: 'الأحد', subjects: ['حاضر', 'مستأذن', 'حاضر', 'حاضر', 'حاضر']),
-    StudentAttendance(
-        day: 'الاثنين', subjects: ['حاضر', 'حاضر', 'مستأذن', 'حاضر', 'مستأذن']),
-    StudentAttendance(
-        day: 'الثلاثاء', subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'غائب']),
-    StudentAttendance(
-        day: 'الأربعاء', subjects: ['حاضر', 'غائب', 'حاضر', 'حاضر', 'حاضر']),
-   
-   StudentAttendance(day: 'no', subjects: ['', '', '', '', '']),
-    StudentAttendance(
-        day: 'السبت', subjects: ['حاضر', 'حاضر', 'حاضر', 'غائب', 'حاضر']),
-    StudentAttendance(
-        day: 'الأحد', subjects: ['حاضر', 'مستأذن', 'حاضر', 'حاضر', 'حاضر']),
-    StudentAttendance(
-        day: 'الاثنين', subjects: ['حاضر', 'حاضر', 'مستأذن', 'حاضر', 'مستأذن']),
-    StudentAttendance(
-        day: 'الثلاثاء', subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'غائب']),
-    StudentAttendance(
-        day: 'الأربعاء', subjects: ['حاضر', 'غائب', 'حاضر', 'حاضر', 'حاضر']),
-    StudentAttendance(day: 'no', subjects: ['', '', '', '', '']),
-     StudentAttendance(
-        day: 'السبت', subjects: ['حاضر', 'حاضر', 'حاضر', 'غائب', 'حاضر']),
-    StudentAttendance(
-        day: 'الأحد', subjects: ['حاضر', 'مستأذن', 'حاضر', 'حاضر', 'حاضر']),
-    StudentAttendance(
-        day: 'الاثنين', subjects: ['حاضر', 'حاضر', 'مستأذن', 'حاضر', 'مستأذن']),
-  //   StudentAttendance(
-  //       day: 'الثلاثاء', subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'غائب']),
-  //   StudentAttendance(
-  //       day: 'الأربعاء', subjects: ['حاضر', 'غائب', 'حاضر', 'حاضر', 'حاضر']),
-  //   StudentAttendance(day: '9/19', subjects: ['', '', '', '', '']),
-  //    StudentAttendance(
-  //       day: 'السبت', subjects: ['حاضر', 'حاضر', 'غائب', 'حاضر', 'مستأذن']),
-  //   StudentAttendance(
-  //       day: 'الأحد', subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'غائب']),
-  //   StudentAttendance(
-  //       day: 'الاثنين', subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'حاضر']),
+    // StudentAttendanceClassTwo(
+    //   date: '2024/7/26',
+    //   studentAttendance: [
+    //     StudentAttendance(day: 'السبت', subjects: ['حاضر', 'حاضر']),
+    //     StudentAttendance(day: 'الأحد', subjects: ['حاضر', 'حاضر']),
+    //     StudentAttendance(day: 'الاثنين',subjects: [ 'مستأذن', 'حاضر']),
+    //     StudentAttendance(day: 'الثلاثاء',subjects: ['حاضر',   'غائب']),
+    //     StudentAttendance(day: 'الأربعاء',subjects: ['حاضر', 'غائب']),
+    //   ],
+    // ),
+    // StudentAttendanceClassTwo(
+    //   date: '2024/8/3',
+    //   studentAttendance: [
+    //     StudentAttendance(day: 'السبت', subjects: ['حاضر', 'حاضر']),
+    //     StudentAttendance(day: 'الأحد', subjects: ['حاضر', 'حاضر']),
+    //     StudentAttendance(day: 'الاثنين',subjects: [ 'مستأذن', 'حاضر']),
+    //     StudentAttendance(day: 'الثلاثاء',subjects: ['حاضر',   'غائب']),
+    //     StudentAttendance(day: 'الأربعاء',subjects: ['حاضر', 'غائب']),
+    //   ],
+    // ),
+    //     StudentAttendanceClassTwo(
+    //   date: '2024/8/3',
+    //   studentAttendance: [
+    //     StudentAttendance(day: 'السبت', subjects: ['حاضر', 'حاضر']),
+    //     StudentAttendance(day: 'الأحد', subjects: ['حاضر', 'حاضر']),
+    //     StudentAttendance(day: 'الأربعاء',subjects: ['حاضر', 'غائب']),
+    //   ],
+    // ),
   ];
-// final List<StudentAttendance> studentAttendance = [
-//   StudentAttendance(day: '7/26', subjects: ['', '']),
-//   StudentAttendance(day: 'السبت', subjects: ['حاضر', 'غائب']),
-//   StudentAttendance(day: 'الأحد', subjects: ['حاضر', 'حاضر']),
-//   StudentAttendance(day: 'الاثنين', subjects: ['حاضر', 'مستأذن']),
-//   StudentAttendance(day: 'الثلاثاء', subjects: ['حاضر', 'حاضر']),
-//   StudentAttendance(day: 'الأربعاء', subjects: ['حاضر', 'حاضر']),
-//   StudentAttendance(day: '7/26', subjects: ['', '']),
-//   StudentAttendance(day: 'السبت', subjects: ['مستأذن', 'حاضر']),
-//   StudentAttendance(day: 'الأحد', subjects: ['حاضر', 'غائب']),
-//   StudentAttendance(day: 'الاثنين', subjects: ['حاضر', 'حاضر']),
-// ];
+  // List<String> columnNames = ['يوم', 'القرآن', 'التربية الاسلامية'];
+  List<String> columnNames = [
+    'يوم',
+    'القرآن',
+    'التربية الاسلامية',
+    'اللغة العربية',
+    'الرياضيات',
+    'العلوم'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +137,7 @@ class AttendanceScreen extends StatelessWidget {
               SizedBox(height: 5),
               WidgetTitle(),
               SizedBox(height: 10),
-              WidgetTable(),
+              WidgetDataTable(),
             ],
           ),
         ),
@@ -88,138 +145,110 @@ class AttendanceScreen extends StatelessWidget {
     );
   }
 
-// List<String> columnNames = ['ي/ت', 'القرآن', 'التربية الاسلامية'];
+  Widget WidgetDataTable() {
+    List<StudentAttendanceClassTwo> filteredData =
+        studentAttendanceClassTwo.toList();
 
-List<String> columnNames = ['ي/ت', 'القرآن', 'التربية الاسلامية', 'اللغة العربية', 'الرياضيات', 'العلوم'];
-
-
-
-
-Widget WidgetTable() {
-  return Padding(
-    padding: const EdgeInsets.all(10.0),
-    child:Column(
-      children: [
-        WidgetCreateTable(),
-        // Text(attendance.day,style: TextStyle(fontSize: 40),),
-        WidgetRowTable(),
-      ],
-    ),
-  );
-}
-
- 
-Widget WidgetCreateTable(){
-  return  Table(
-      border: TableBorder.all(),
-      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-      children: [
-        TableRow(
-          decoration: BoxDecoration(color: Colors.grey[300]),
-          children: List.generate(columnNames.length, (index) {
-            return TableCell(child: WidgetCell(columnNames[index]));
-          }),
-        ),
-        // ...studentAttendance.map((attendance) {
-        //   return TableRow(
-        //     children: [
-        //       TableCell(child: WidgetCell(attendance.day)),
-        //       ...attendance.subjects.map((subject) {
-        //         return TableCell(child: _buildAttendanceStatus(subject));
-        //       }).toList(),
-        //     ],
-        //   );
-        // }).toList(),
-      ],
-    );
-}
-
-Widget WidgetRowTable(){
-  return  Table(
-  border: TableBorder.all(),
-  defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-  children: [
-    ...studentAttendance.map((attendance) {
-//       if(attendance.day=='no') {
-// return TableRow(
-//           children: [
-//           Expanded(child:Text("bahz"))
-//           ],
-//         ); 
-        
-//              }
-      if (attendance.day.isNotEmpty && attendance.subjects.isNotEmpty) {
-        return TableRow(
-          children: [
-            TableCell(child: WidgetCell(attendance.day)),
-            ...attendance.subjects.map((subject) {
-              return TableCell(child: _buildAttendanceStatus(subject));
-            }).toList(),
-          ],
-        );
-      } else if (attendance.day.isNotEmpty) {
-        return TableRow(
-          children: [
-            TableCell(
-              child: Row(
-                children: [
-                  WidgetCell(attendance.day),
-                  ...attendance.subjects.map((subject) {
-                    return Expanded(child: WidgetCell(subject));
-                  }).toList(),
-                ],
-              ),
-            ),
-          ],
-        );
-      } else if (attendance.subjects.isNotEmpty) {
-        return TableRow(
-          children: [
-            ...attendance.subjects.map((subject) {
-              return TableCell(child: WidgetCell(subject));
-            }).toList(),
-          ],
-        );
-      } else {
-        return TableRow(children: []);
-      }
-    }).toList(),
-  ],
-);
-
-}
-
-
-  Widget _buildAttendanceStatus(String status) {
     return Container(
-      padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: status == 'حاضر'
-            ? Colors.green
-            : status == 'مستأذن'
-                ? Colors.blue
-                : status == 'غائب'
-                    ? Colors.red
-                    : Colors.white,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Center(
-        child: Text(
-          status,
-          style: TextStyle(color: Colors.white),
-        ),
+      child: Column(
+        children: [
+          WidgetCreateTable(),
+          for (var data in filteredData)
+            Column(
+              children: [
+                Text(
+                  data.date,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    // fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.underline,
+                  ),
+                  
+                ),
+                WidgetTable(data.studentAttendance),
+              ],
+            ),
+          // Continue displaying additional data or widgets here
+        ],
       ),
     );
   }
-  
-  
-  Widget WidgetCell(String cellName) {
+
+  Widget WidgetCreateTable() {
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Table(
+        border: TableBorder.all(),
+        defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+        children: [
+          TableRow(
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+            ),
+            children: List.generate(columnNames.length, (index) {
+              return TableCell(child: _WidgetCell(columnNames[index]));
+            }),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget WidgetTable(List<StudentAttendance> studentAttendanceList) {
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Table(
+        border: TableBorder.all(),
+        defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+        children: [
+          for (var attendance in studentAttendanceList)
+            TableRow(
+              children: [
+                TableCell(child: _WidgetCell(attendance.day)),
+                ...attendance.subjects.map((subject) {
+                  return TableCell(child: _buildAttendanceStatus(subject));
+                }).toList(),
+              ],
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _WidgetCell(String cellName) {
     return Container(
+      color: const Color.fromARGB(255, 235, 234, 234),
       padding: EdgeInsets.all(8),
       child: Center(child: Text(cellName)),
     );
   }
 
+  Widget _buildAttendanceStatus(String status) {
+    return Container(
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Center(
+        child: Text(
+          status,
+          style: TextStyle(
+            color: status == 'حاضر'
+                ? Colors.green
+                : status == 'مستأذن'
+                    ? Colors.blue
+                    : status == 'غائب'
+                        ? Colors.red
+                        : Colors.white,
+            fontWeight: FontWeight.bold,
+            // fontSize: 20,
+          ),
+        ),
+      ),
+    );
+  }
 
   Widget WidgetTitle() {
     return Padding(
