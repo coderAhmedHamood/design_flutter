@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constants/my_colors.dart';
+
 class Post {
   int id;
   String username;
@@ -34,17 +36,17 @@ List<Post> posts = [
   ),
   Post(
     id: 2,
-    username: 'اسم المستخدم 2',
+    username: 'ابو العرب',
     time: '2024/3/4',
     postText:
         'Work with tabs Flutter documentationhttps:docs.flutter.dev › Cookbook › DesignYou',
-    postImage: 'assets/school/school3.jpg',
+    postImage: 'assets/school/ahmed.jpg',
     likes: 15,
     islikes: false,
   ),
   Post(
     id: 3,
-    username: 'اسم المستخدم 2',
+    username: 'ابو العرب',
     time: '2024/3/4',
     postText:
         'Work with tabs Flutter documentationhttps:docs.flutter.dev › Cookbook › DesignYou',
@@ -88,21 +90,21 @@ class _HomeScreenState extends State<StatefulWidget> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Container(
-         color: const Color.fromARGB(255, 135, 135, 135),
+        color: const Color.fromARGB(255, 135, 135, 135),
         // color: Color.fromARGB(255, 197, 187, 187),
         child: ListView.builder(
           itemCount: posts.length,
           itemBuilder: (context, index) {
             Post post = posts[index];
-      
+
             return Card(
               // color: Color,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ListTile(
-                    leading:
-                        CircleAvatar(backgroundImage: AssetImage(post.postImage)),
+                    leading: CircleAvatar(
+                        backgroundImage: AssetImage("assets/ahmed.jpg")),
                     title: Text(
                       post.username,
                       style: TextStyle(
@@ -134,23 +136,22 @@ class _HomeScreenState extends State<StatefulWidget> {
                       width: double.infinity,
                     ),
                   SizedBox(height: 8),
-                     Container(
-                          height: 2,
-                          width: double.infinity,
-                          child: Divider(
-                            color: Colors.black,
-                            thickness: 0.2,
-                            indent: 16,
-                            endIndent: 16,
-                          ),
-                        ),
-              
+                  Container(
+                    height: 2,
+                    width: double.infinity,
+                    child: Divider(
+                      color: Colors.black,
+                      thickness: 0.2,
+                      indent: 16,
+                      endIndent: 16,
+                    ),
+                  ),
+
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        
                         Row(
                           children: [
                             IconButton(
@@ -186,7 +187,10 @@ class _HomeScreenState extends State<StatefulWidget> {
                           onPressed: () {
                             // إجراء التعليق
                           },
-                          icon: Icon(Icons.comment),
+                          icon: Icon(
+                            Icons.comment,
+                            color: MyColors.blue,
+                          ),
                         ),
                         VerticalDivider(
                           thickness: 1,
@@ -196,7 +200,10 @@ class _HomeScreenState extends State<StatefulWidget> {
                           onPressed: () {
                             // إجراء المشاركة
                           },
-                          icon: Icon(Icons.share),
+                          icon: Icon(
+                            Icons.share,
+                            color: MyColors.blue,
+                          ),
                         ),
                       ],
                     ),

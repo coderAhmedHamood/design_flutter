@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../branch/post_carosal.dart';
 import '../branch/tabbar/tabbar.dart';
 import 'HomeScreen.dart';
+import 'custom_drawer.dart';
 import 'notification.dart';
 
 class FacebookTabBarView extends StatefulWidget {
@@ -45,10 +46,12 @@ class _FacebookTabBarViewState extends State<FacebookTabBarView>
             PostCarosal(),
             DashboardScreen(),
             NotificationsScreen(),
-            NotificationsScreen(),
+            MenuPage(),
             
           ],
         ),
+        
+        // drawer: CustomDrawer(),
       ),
     );
   }
