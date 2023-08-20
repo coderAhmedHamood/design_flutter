@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/my_colors.dart';
+import '../../constants/my_colors.dart';
 class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
   final TabController? tabController;
 

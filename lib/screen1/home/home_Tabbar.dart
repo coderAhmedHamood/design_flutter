@@ -2,20 +2,20 @@
 import 'package:flutter/material.dart';
  
  import '../../screen/parents/DashboardScreen.dart';
-import '../branch/post_carosal.dart';
-import '../branch/tabbar/tabbar.dart';
+import '../branch/view_branch.dart';
+import '../../screen/tabbar/tabbar.dart';
 import 'HomeScreen.dart';
 import 'custom_drawer.dart';
 import 'notification.dart';
 
-class FacebookTabBarView extends StatefulWidget {
-  const FacebookTabBarView({Key? key}) : super(key: key);
+class TabBarViewScreen extends StatefulWidget {
+  const TabBarViewScreen({Key? key}) : super(key: key);
 
   @override
-  _FacebookTabBarViewState createState() => _FacebookTabBarViewState();
+  _TabBarViewScreenState createState() => _TabBarViewScreenState();
 }
 
-class _FacebookTabBarViewState extends State<FacebookTabBarView>
+class _TabBarViewScreenState extends State<TabBarViewScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 

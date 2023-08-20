@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'package:flutter/material.dart';
 
 class BehaviourStudentsClass {
@@ -15,21 +15,12 @@ class BehaviourStudentsClass {
   });
 }
 
-
-
-
-
-class BehaviourStudents extends StatefulWidget {
+class BehaviourStudentsScreen extends StatefulWidget {
   @override
-  State<BehaviourStudents> createState() => _BehaviourStudentsState();
+  State<BehaviourStudentsScreen> createState() => _BehaviourStudentsState();
 }
 
-class _BehaviourStudentsState extends State<BehaviourStudents> {
-
-
-
-
-
+class _BehaviourStudentsState extends State<BehaviourStudentsScreen> {
   List<BehaviourStudentsClass> students = [
     BehaviourStudentsClass(
       name: 'عبداللة بن سعيد',
@@ -87,11 +78,12 @@ class _BehaviourStudentsState extends State<BehaviourStudents> {
     ),
   ];
   bool behaviour = false;
-
   void showGradeInputDialog(
       BuildContext context, String studentName, int index) {
     String notificationTitle = '';
     String notificationContent = '';
+    int selectedGrade = 1; // القيمة المختارة الافتراضية
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -113,28 +105,39 @@ class _BehaviourStudentsState extends State<BehaviourStudents> {
                 ],
               ),
               SizedBox(height: 4),
-              TextField(
+              RadioListTile(
+                title: Text('Grade 1'), // درجة 1
+                value: 1,
+                groupValue: selectedGrade,
                 onChanged: (value) {
-                  notificationTitle = value;
+                  //  selectedGrade = ;
+                  setState(() {
+                    print(value);
+                  });
                 },
-                decoration: InputDecoration(
-                  labelText: 'عنوان الإشعار',
-                  alignLabelWithHint: true,
-                ),
-                textAlign: TextAlign.end,
-                textDirection: TextDirection.ltr,
               ),
-              TextField(
+              RadioListTile(
+                title: Text('Grade 2'), // درجة 2
+                value: 2,
+                groupValue: selectedGrade,
                 onChanged: (value) {
-                  notificationContent = value;
+                  setState(() {
+                    if (value != null) {
+                      // Check if value is not null
+                      selectedGrade = value;
+                    }
+                  });
                 },
-                maxLines: null,
-                decoration: InputDecoration(
-                  alignLabelWithHint: false,
-                  labelText: 'محتوى الإشعار',
-                ),
-                textAlign: TextAlign.end,
-                textDirection: TextDirection.ltr,
+              ),
+              RadioListTile(
+                title: Text('Grade 3'), // درجة 3
+                value: 3,
+                groupValue: selectedGrade,
+                onChanged: (value) {
+                  setState(() {
+                    print(value);
+                  });
+                },
               ),
             ],
           ),
@@ -151,7 +154,7 @@ class _BehaviourStudentsState extends State<BehaviourStudents> {
                         Navigator.of(context).pop(); // إغلاق الـ dialog
                       },
                       child: Text(
-                        'إلغاء',
+                        'Cancel', // إلغاء
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.white,
@@ -166,13 +169,12 @@ class _BehaviourStudentsState extends State<BehaviourStudents> {
                     child: TextButton(
                       onPressed: () {
                         print("accept");
-                        print(notificationTitle);
-                        print(notificationContent);
-                        // قم بإرسال العنوان والمحتوى إلى الأماكن التي ترغب فيها
+                        print('Grade: $selectedGrade');
+                        // قم بإرسال الدرجة إلى الأماكن التي ترغب فيها
                         Navigator.of(context).pop(); // إغلاق الـ dialog
                       },
                       child: Text(
-                        'إرسال',
+                        'Submit', // إرسال
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.white,
@@ -200,14 +202,14 @@ class _BehaviourStudentsState extends State<BehaviourStudents> {
             style: TextStyle(color: Colors.white),
           ),
         ),
-       leading: IconButton(
-              iconSize: 40,
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                // context.pop(),
-                 Navigator.of(context).pop();
-              },
-            ),
+        leading: IconButton(
+          iconSize: 40,
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            // context.pop(),
+            Navigator.of(context).pop();
+          },
+        ),
       ),
       body: Column(
         children: [

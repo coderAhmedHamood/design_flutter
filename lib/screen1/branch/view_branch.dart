@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-class Post {
+class BranchClass {
   final String title;
   final String location;
   late final int likes;
@@ -7,7 +7,7 @@ class Post {
   final int comments;
   final String imageUrl;
 
-  Post({
+  BranchClass({
     required this.title,
     required this.location,
     required this.likes,
@@ -17,8 +17,8 @@ class Post {
   });
 }
 
-  final List<Post> posts = [
-    Post(
+  final List<BranchClass> posts = [
+  BranchClass(
       title: 'الفرع الرئيسي',
       location: 'تعز شارع التحرير',
       likes: 10,
@@ -27,7 +27,7 @@ class Post {
       imageUrl: 'assets/school/school1.jpg',
       // imageUrl: 'assets/school/school1.jpg',
     ),
-    Post(
+ BranchClass(
       title: 'فرع الاربعين',
       location: 'تعز بير باشا',
       likes: 20,
@@ -35,7 +35,7 @@ class Post {
       comments: 8,
       imageUrl: 'assets/school/school2.jpg',
     ),
-    Post(
+  BranchClass(
       title: 'فرع ذمار ',
       location: 'جوار محطة الجرموزي ',
       likes: 20,
@@ -43,7 +43,7 @@ class Post {
       comments: 8,
       imageUrl: 'assets/school/school3.jpg',
     ),
-    Post(
+ BranchClass(
       title: 'فرع البنين ',
       location: 'ذمار جولة كمران',
       likes: 20,
@@ -77,7 +77,7 @@ class _PostCarosalState extends State<StatefulWidget> {
   }
 
   Widget buildPost(BuildContext context, int index) {
-    Post post = posts[index];
+    BranchClass post = posts[index];
     return Container(
       margin: EdgeInsets.all(25),
       height: 300,

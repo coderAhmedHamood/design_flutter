@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 
- import 'hamash/ShowDialog.dart';
+import 'ShowDialog.dart';
 
 class Product extends StatefulWidget {
   @override

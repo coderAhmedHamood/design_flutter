@@ -15,7 +15,7 @@ class StudentAttendance {
   StudentAttendance({required this.day, required this.subjects});
 }
 
-class AssignmentsScreen extends StatelessWidget {
+class AssignmentsStudentViewScreen extends StatelessWidget {
   final List<StudentAttendanceClassTwo> studentAttendanceClassTwo = [
     StudentAttendanceClassTwo(
       date: '2024/7/26',

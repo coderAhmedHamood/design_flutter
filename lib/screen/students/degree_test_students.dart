@@ -13,12 +13,12 @@ class DegreeTestStudentsClass {
   });
 }
 
-class DegreeTestStudents extends StatefulWidget {
+class DegreeTestStudentsScreen extends StatefulWidget {
   @override
-  State<DegreeTestStudents> createState() => _DegreeTestStudentsState();
+  State<DegreeTestStudentsScreen> createState() => _DegreeTestStudentsState();
 }
 
-class _DegreeTestStudentsState extends State<DegreeTestStudents> {
+class _DegreeTestStudentsState extends State<DegreeTestStudentsScreen> {
   List<DegreeTestStudentsClass> students = [
     DegreeTestStudentsClass(name: 'عبداللة بن سعيد', degree: 0.0, id: 19),
     DegreeTestStudentsClass(name: 'محمد العيساوي', degree: 0.0, id: 1),

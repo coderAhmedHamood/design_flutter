@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../screen/parents/permission_request.dart';
-
+ 
 class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -68,12 +67,12 @@ class MenuPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 40),
-          Container(
+            Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    "الإختصارات",
+                    "العمليات",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 25,
@@ -82,8 +81,7 @@ class MenuPage extends StatelessWidget {
                 ],
               ),
             ),
-       
-            Padding(
+           Padding(
               padding:
                   const EdgeInsets.only(left: 10, right: 10, top: 4, bottom: 4),
               child: Row(
@@ -243,7 +241,190 @@ class MenuPage extends StatelessWidget {
                 ],
               ),
             ),
+         
+      
+          Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    "الإختصارات",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+      //  CustomPage(),
+         
+            // Padding(
+            //   padding:
+            //       const EdgeInsets.only(left: 10, right: 10, top: 4, bottom: 4),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       Expanded(
+            //         flex: 1,
+            //         child: Container(
+            //           height: 90,
+            //           decoration: BoxDecoration(
+            //             color: Colors.white,
+            //             borderRadius: BorderRadius.circular(15),
+            //             boxShadow: [
+            //               BoxShadow(
+            //                 color: Colors.black.withOpacity(0.2),
+            //                 blurRadius: 5,
+            //                 offset: Offset(0, 3),
+            //               ),
+            //             ],
+            //           ),
+            //           child: Padding(
+            //             padding: const EdgeInsets.all(8.0),
+            //             child: Column(
+            //               crossAxisAlignment: CrossAxisAlignment.start,
+            //               children: [
+            //                 Icon(
+            //                   Icons.assessment_outlined,
+            //                   size: 30,
+            //                   color: Color.fromARGB(255, 237, 101, 242),
+            //                 ),
+            //                 SizedBox(height: 5),
+            //                 Text(
+            //                   "عن المصلحة المشتركة",
+            //                   style: TextStyle(fontSize: 17),
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //       SizedBox(width: 10),
+            //       Expanded(
+            //         flex: 1,
+            //         child: Container(
+            //           height: 90,
+            //           decoration: BoxDecoration(
+            //             color: Colors.white,
+            //             borderRadius: BorderRadius.circular(15),
+            //             boxShadow: [
+            //               BoxShadow(
+            //                 color: Colors.black.withOpacity(0.2),
+            //                 blurRadius: 5,
+            //                 offset: Offset(0, 3),
+            //               ),
+            //             ],
+            //           ),
+            //           child: Padding(
+            //             padding: const EdgeInsets.all(8.0),
+            //             child: Column(
+            //               crossAxisAlignment: CrossAxisAlignment.start,
+            //               children: [
+            //                 Icon(
+            //                   Icons.person,
+            //                   size: 30,
+            //                   color: Color.fromARGB(255, 155, 16, 160),
+            //                 ),
+            //                 SizedBox(height: 5),
+            //                 Text(
+            //                   "go to data",
+            //                   style: TextStyle(fontSize: 17),
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // Padding(
+            //   padding:
+            //       const EdgeInsets.only(left: 10, right: 10, top: 4, bottom: 4),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       Expanded(
+            //         flex: 1,
+            //         child: Container(
+            //           height: 90,
+            //           decoration: BoxDecoration(
+            //             color: Colors.white,
+            //             borderRadius: BorderRadius.circular(15),
+            //             boxShadow: [
+            //               BoxShadow(
+            //                 color: Colors.black.withOpacity(0.2),
+            //                 blurRadius: 5,
+            //                 offset: Offset(0, 3),
+            //               ),
+            //             ],
+            //           ),
+            //           child: Padding(
+            //             padding: const EdgeInsets.all(8.0),
+            //             child: Column(
+            //               crossAxisAlignment: CrossAxisAlignment.start,
+            //               children: [
+            //                 Icon(
+            //                   Icons.assessment_outlined,
+            //                   size: 30,
+            //                   color: Color.fromARGB(255, 236, 156, 57),
+            //                 ),
+            //                 SizedBox(height: 5),
+            //                 Text(
+            //                   "عن المصلحة المشتركة",
+            //                   style: TextStyle(fontSize: 17),
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //       SizedBox(width: 10),
+            //       Expanded(
+            //         flex: 1,
+            //         child: Container(
+            //           height: 90,
+            //           decoration: BoxDecoration(
+            //             color: Colors.white,
+            //             borderRadius: BorderRadius.circular(15),
+            //             boxShadow: [
+            //               BoxShadow(
+            //                 color: Colors.black.withOpacity(0.2),
+            //                 blurRadius: 5,
+            //                 offset: Offset(0, 3),
+            //               ),
+            //             ],
+            //           ),
+            //           child: Padding(
+            //             padding: const EdgeInsets.all(8.0),
+            //             child: Column(
+            //               crossAxisAlignment: CrossAxisAlignment.start,
+            //               children: [
+            //                 Icon(
+            //                   Icons.person,
+            //                   size: 30,
+            //                   color: Color.fromARGB(255, 76, 246, 195),
+            //                 ),
+            //                 SizedBox(height: 5),
+            //                 Text(
+            //                   "go to data",
+            //                   style: TextStyle(fontSize: 17),
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+         
+         
+         
             SizedBox(height: 30),
+         
+         
                 Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -386,3 +567,193 @@ class MenuPage extends StatelessWidget {
     );
   }
 }
+
+
+ 
+class CustomPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+    
+      body: Column(
+        children: [
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  "العمليات",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                  ),
+                ),
+              ],
+            ),
+          ),
+       
+   Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10, top: 4, bottom: 4),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    height: 90,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.assessment_outlined,
+                            size: 30,
+                            color: Color.fromARGB(255, 237, 101, 242),
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            "عن المصلحة المشتركة",
+                            style: TextStyle(fontSize: 17),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 10),
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    height: 90,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.person,
+                            size: 30,
+                            color: Color.fromARGB(255, 155, 16, 160),
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            "go to data",
+                            style: TextStyle(fontSize: 17),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+           Padding(
+              padding:
+                  const EdgeInsets.only(left: 10, right: 10, top: 4, bottom: 4),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      height: 90,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 5,
+                            offset: Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Icon(
+                              Icons.assessment_outlined,
+                              size: 30,
+                              color: Color.fromARGB(255, 236, 156, 57),
+                            ),
+                            SizedBox(height: 5),
+                            Text(
+                              "عن المصلحة المشتركة",
+                              style: TextStyle(fontSize: 17),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      height: 90,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 5,
+                            offset: Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Icon(
+                              Icons.person,
+                              size: 30,
+                              color: Color.fromARGB(255, 76, 246, 195),
+                            ),
+                            SizedBox(height: 5),
+                            Text(
+                              "go to data",
+                              style: TextStyle(fontSize: 17),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+        
+        ]
+      ),
+    );
+  }
+  }

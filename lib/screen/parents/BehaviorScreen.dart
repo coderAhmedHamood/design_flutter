@@ -75,12 +75,12 @@ final List<NotificationItem> notifications = [
   // يمكنك إضافة المزيد من الإشعارات هنا
 ];
 
-class BehaviorScreen extends StatefulWidget {
+class BehaviorStudentViewScreen extends StatefulWidget {
   @override
-  _BehaviorScreenState createState() => _BehaviorScreenState();
+  _BehaviorStudentScreenState createState() => _BehaviorStudentScreenState();
 }
 
-class _BehaviorScreenState extends State<BehaviorScreen> {
+class _BehaviorStudentScreenState extends State<BehaviorStudentViewScreen> {
   bool isNotificationClicked = false;
 
   @override

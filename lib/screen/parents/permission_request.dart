@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_design/constants/my_colors.dart';
 import 'package:flutter_dropdown/flutter_dropdown.dart';
 
-class PermissionRequestScreen extends StatefulWidget {
+class PermissionRequestStudentViewScreen extends StatefulWidget {
   @override
   _PermissionRequestScreenState createState() =>
       _PermissionRequestScreenState();
 }
 
-class _PermissionRequestScreenState extends State<PermissionRequestScreen> {
+class _PermissionRequestScreenState extends State<PermissionRequestStudentViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(

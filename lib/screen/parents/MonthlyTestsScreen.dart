@@ -15,7 +15,7 @@ class StudentAttendance {
   StudentAttendance({required this.day, required this.subjects});
 }
 
-class MonthlyTestsScreen extends StatelessWidget {
+class MonthlyTestsStudentViewScreen extends StatelessWidget {
   final List<StudentAttendanceClassTwo> studentAttendanceClassTwo = [
     StudentAttendanceClassTwo(
       date: 'الترم الاول',

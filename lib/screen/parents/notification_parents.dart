@@ -11,8 +11,7 @@ class CustomNotification {
   CustomNotification({
     required this.icon,
     required this.iconBackgroundColor,
-    required this.title,
-    required this.message,
+    required this.title,  required this.message,
     required this.date,
   });
 }

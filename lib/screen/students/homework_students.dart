@@ -13,12 +13,12 @@ class DegreeHomwWorkStudentsClass {
   });
 }
 
-class HomeWorkStudents extends StatefulWidget {
+class HomeWorkStudentsScreen extends StatefulWidget {
   @override
-  State<HomeWorkStudents> createState() => _HomeWorkStudentsState();
+  State<HomeWorkStudentsScreen> createState() => _HomeWorkStudentsState();
 }
 
-class _HomeWorkStudentsState extends State<HomeWorkStudents> {
+class _HomeWorkStudentsState extends State<HomeWorkStudentsScreen> {
   List<DegreeHomwWorkStudentsClass> students = [
     DegreeHomwWorkStudentsClass(name: 'عبداللة بن سعيد', degree: 0.0, id: 19),
     DegreeHomwWorkStudentsClass(name: 'محمد العيساوي', degree: 0.0, id: 1),

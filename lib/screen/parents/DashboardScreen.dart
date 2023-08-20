@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 
 import 'AssignmentsScreen.dart';
+ 
 import 'AttendanceScreen.dart';
 import 'BehaviorScreen.dart';
 import 'MonthlyTestsScreen.dart';
 import 'permission_request.dart';
- 
 
 class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
-   
       body: GridView.count(
         crossAxisCount: 2,
         padding: EdgeInsets.all(16),
         children: [
+
           buildDashboardItem(
             icon: Icons.event, // Change the icon to event
             title: 'الحضور',
@@ -25,7 +24,7 @@ class DashboardScreen extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => AttendanceScreen()),
+                MaterialPageRoute(builder: (context) => AttendanceStudentViewScreen()),
               );
             },
           ),
@@ -37,7 +36,7 @@ class DashboardScreen extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => BehaviorScreen()),
+                MaterialPageRoute(builder: (context) => BehaviorStudentViewScreen()),
               );
             },
           ),
@@ -49,7 +48,7 @@ class DashboardScreen extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MonthlyTestsScreen()),
+                MaterialPageRoute(builder: (context) => MonthlyTestsStudentViewScreen()),
               );
             },
           ),
@@ -61,24 +60,25 @@ class DashboardScreen extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => AssignmentsScreen()),
+                MaterialPageRoute(builder: (context) => AssignmentsStudentViewScreen()),
               );
             },
           ),
-    
-    buildDashboardItem(
-  icon: Icons.request_page, // تعيين الأيقونة المناسبة
-  title: 'طلب الاستئذان',
-  subtitle: 'طلب استئذان للطلاب',
-  color: Colors.blue, // اختر لونًا مناسبًا
-  onTap: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => PermissionRequestScreen()),
-    );
-  },
-),
-    
+          buildDashboardItem(
+            icon: Icons.request_page, // تعيين الأيقونة المناسبة
+            title: 'طلب الاستئذان',
+            subtitle: 'طلب استئذان لطالب',
+            color: Colors.blue, // اختر لونًا مناسبًا
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => PermissionRequestStudentViewScreen()),
+              );
+            },
+          ),
+        
+        
         ],
       ),
     );

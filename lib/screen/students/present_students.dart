@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+ 
 
-class PreparingTheStudentsClass {
+class PreparingStudentsClass {
   String name;
   bool isPresent;
   bool isSick;
   int id;
 
-  PreparingTheStudentsClass({
+  PreparingStudentsClass({
     required this.name,
     required this.isPresent,
     required this.isSick,
@@ -14,30 +15,30 @@ class PreparingTheStudentsClass {
   });
 }
 
-class PreparingStudents extends StatefulWidget {
+class PreparingStudentsScreen extends StatefulWidget {
   @override
-  State<PreparingStudents> createState() => _PreparingStudentsState();
+  State<PreparingStudentsScreen> createState() => _PreparingStudentsState();
 }
 
-class _PreparingStudentsState extends State<PreparingStudents> {
-  List<PreparingTheStudentsClass> students = [
-    PreparingTheStudentsClass(
+class _PreparingStudentsState extends State<PreparingStudentsScreen> {
+  List<PreparingStudentsClass> students = [
+    PreparingStudentsClass(
         name: 'عبداللة بن سعيد', isPresent: false, isSick: false, id: 19),
-    PreparingTheStudentsClass(
+    PreparingStudentsClass(
         name: 'محمد العيساوي', isPresent: false, isSick: false, id: 1),
-    PreparingTheStudentsClass(
+    PreparingStudentsClass(
         name: 'مريم علي', isPresent: false, isSick: false, id: 2),
-    PreparingTheStudentsClass(
+    PreparingStudentsClass(
         name: 'زينب فارع', isPresent: false, isSick: false, id: 3),
-    PreparingTheStudentsClass(
+    PreparingStudentsClass(
         name: 'علي المقطري', isPresent: false, isSick: false, id: 4),
-    PreparingTheStudentsClass(
+    PreparingStudentsClass(
         name: 'فواد علي سالم', isPresent: false, isSick: false, id: 5),
-    PreparingTheStudentsClass(
+    PreparingStudentsClass(
         name: 'مريم القاسمي', isPresent: false, isSick: false, id: 6),
-    PreparingTheStudentsClass(
+    PreparingStudentsClass(
         name: 'عبدالله زين', isPresent: false, isSick: false, id: 8),
-    PreparingTheStudentsClass(
+    PreparingStudentsClass(
         name: 'سيف الحداد', isPresent: false, isSick: false, id: 9),
   ];
 
@@ -45,7 +46,7 @@ class _PreparingStudentsState extends State<PreparingStudents> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+        return Scaffold(
           // backgroundColor: Colors,
           appBar: AppBar(
             title: Center(
