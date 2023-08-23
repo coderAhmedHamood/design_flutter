@@ -1,13 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
- 
- import '../../screen/parents/DashboardScreen.dart';
+import '../../features/posts/presentation/home/HomeScreen.dart';
+import '../../features/posts/presentation/home/menu_drawer.dart';
+import '../../features/posts/presentation/home/notification.dart';
 import '../branch/view_branch.dart';
-import '../../screen/tabbar/tabbar.dart';
-import 'HomeScreen.dart';
-import 'custom_drawer.dart';
-import 'notification.dart';
 
+import '../sudent_parent/dashboard_parents_screen.dart';
+import 'tabbar.dart';
+ 
 class TabBarViewScreen extends StatefulWidget {
   const TabBarViewScreen({Key? key}) : super(key: key);
 
@@ -18,7 +18,6 @@ class TabBarViewScreen extends StatefulWidget {
 class _TabBarViewScreenState extends State<TabBarViewScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-
 
   @override
   void initState() {
@@ -38,7 +37,7 @@ class _TabBarViewScreenState extends State<TabBarViewScreen>
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: CustomTabBar(tabController: _tabController),
-       
+
         body: TabBarView(
           controller: _tabController,
           children: [
@@ -47,17 +46,11 @@ class _TabBarViewScreenState extends State<TabBarViewScreen>
             DashboardScreen(),
             NotificationsScreen(),
             MenuPage(),
-            
           ],
         ),
-        
+
         // drawer: CustomDrawer(),
       ),
     );
   }
-
 }
-
- 
- 
- 

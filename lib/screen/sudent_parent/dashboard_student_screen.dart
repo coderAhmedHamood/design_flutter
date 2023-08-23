@@ -1,84 +1,74 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_design/screen/sudent_parent/students/behaviour_students.dart';
+import 'package:flutter_design/screen/sudent_parent/students/degree_test_students.dart';
+import 'package:flutter_design/screen/sudent_parent/students/homework_students.dart';
 
-import 'AssignmentsScreen.dart';
- 
-import 'AttendanceScreen.dart';
-import 'BehaviorScreen.dart';
-import 'MonthlyTestsScreen.dart';
-import 'permission_request.dart';
+import 'students/present_students.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardStudentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'الواجهة الرئيسية',
+          style: TextStyle(fontFamily: 'Arabic'),
+        ),
+        backgroundColor: Colors.blue,
+      ),
+      backgroundColor: Colors.white,
       body: GridView.count(
         crossAxisCount: 2,
         padding: EdgeInsets.all(16),
         children: [
-
           buildDashboardItem(
-            icon: Icons.event, // Change the icon to event
-            title: 'الحضور',
-            subtitle: 'عرض سجلات الحضور',
-            color: Colors.green,
+            icon: Icons.event, // Change the icon to assignment
+            title: 'التحضير ',
+            subtitle: 'رفع درجات تحضير الطلاب',
+            color: Color.fromARGB(255, 97, 86, 252),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => AttendanceStudentViewScreen()),
+                MaterialPageRoute(builder: (context) => PreparingStudentsScreen()),
               );
             },
           ),
           buildDashboardItem(
             icon: Icons.thumb_up, // Change the icon to thumb_up
-            title: 'السلوك والانضباط',
-            subtitle: 'عرض سجلات السلوك والانضباط',
-            color: Colors.orange,
+            title: 'السلوك',
+            subtitle: 'رفع درجات سلوك الطلاب',
+            color: Color.fromARGB(255, 205, 95, 27),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => BehaviorStudentViewScreen()),
+                MaterialPageRoute(builder: (context) => BehaviourStudentsScreen()),
               );
             },
           ),
           buildDashboardItem(
             icon: Icons.school, // Change the icon to school
-            title: 'الاختبارات الشهرية',
-            subtitle: 'عرض نتائج الاختبارات الشهرية',
-            color: Colors.purple,
+            title: 'الاختبارات',
+            subtitle: 'رفع درجات اختبارات الطلاب',
+            color: Color.fromARGB(255, 249, 50, 162),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MonthlyTestsStudentViewScreen()),
+                MaterialPageRoute(builder: (context) => DegreeTestStudentsScreen()),
               );
             },
           ),
           buildDashboardItem(
             icon: Icons.assignment, // Change the icon to assignment
             title: 'الواجبات',
-            subtitle: 'عرض تفاصيل الواجبات',
-            color: Colors.teal,
+            subtitle: 'رفع درجات واجبات الطلاب',
+            color: Color.fromARGB(255, 17, 189, 241),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => AssignmentsStudentViewScreen()),
+                MaterialPageRoute(builder: (context) => HomeWorkStudentsScreen()),
               );
             },
           ),
-          buildDashboardItem(
-            icon: Icons.request_page, // تعيين الأيقونة المناسبة
-            title: 'طلب الاستئذان',
-            subtitle: 'طلب استئذان لطالب',
-            color: Colors.blue, // اختر لونًا مناسبًا
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => PermissionRequestStudentViewScreen()),
-              );
-            },
-          ),
-        
-        
         ],
       ),
     );

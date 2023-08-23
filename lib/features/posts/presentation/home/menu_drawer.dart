@@ -72,7 +72,7 @@ class MenuPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    "العمليات",
+                    "الإختصارات",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 25,
@@ -243,185 +243,6 @@ class MenuPage extends StatelessWidget {
             ),
          
       
-          Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    "الإختصارات",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-      //  CustomPage(),
-         
-            // Padding(
-            //   padding:
-            //       const EdgeInsets.only(left: 10, right: 10, top: 4, bottom: 4),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //     children: [
-            //       Expanded(
-            //         flex: 1,
-            //         child: Container(
-            //           height: 90,
-            //           decoration: BoxDecoration(
-            //             color: Colors.white,
-            //             borderRadius: BorderRadius.circular(15),
-            //             boxShadow: [
-            //               BoxShadow(
-            //                 color: Colors.black.withOpacity(0.2),
-            //                 blurRadius: 5,
-            //                 offset: Offset(0, 3),
-            //               ),
-            //             ],
-            //           ),
-            //           child: Padding(
-            //             padding: const EdgeInsets.all(8.0),
-            //             child: Column(
-            //               crossAxisAlignment: CrossAxisAlignment.start,
-            //               children: [
-            //                 Icon(
-            //                   Icons.assessment_outlined,
-            //                   size: 30,
-            //                   color: Color.fromARGB(255, 237, 101, 242),
-            //                 ),
-            //                 SizedBox(height: 5),
-            //                 Text(
-            //                   "عن المصلحة المشتركة",
-            //                   style: TextStyle(fontSize: 17),
-            //                 ),
-            //               ],
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //       SizedBox(width: 10),
-            //       Expanded(
-            //         flex: 1,
-            //         child: Container(
-            //           height: 90,
-            //           decoration: BoxDecoration(
-            //             color: Colors.white,
-            //             borderRadius: BorderRadius.circular(15),
-            //             boxShadow: [
-            //               BoxShadow(
-            //                 color: Colors.black.withOpacity(0.2),
-            //                 blurRadius: 5,
-            //                 offset: Offset(0, 3),
-            //               ),
-            //             ],
-            //           ),
-            //           child: Padding(
-            //             padding: const EdgeInsets.all(8.0),
-            //             child: Column(
-            //               crossAxisAlignment: CrossAxisAlignment.start,
-            //               children: [
-            //                 Icon(
-            //                   Icons.person,
-            //                   size: 30,
-            //                   color: Color.fromARGB(255, 155, 16, 160),
-            //                 ),
-            //                 SizedBox(height: 5),
-            //                 Text(
-            //                   "go to data",
-            //                   style: TextStyle(fontSize: 17),
-            //                 ),
-            //               ],
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            // Padding(
-            //   padding:
-            //       const EdgeInsets.only(left: 10, right: 10, top: 4, bottom: 4),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //     children: [
-            //       Expanded(
-            //         flex: 1,
-            //         child: Container(
-            //           height: 90,
-            //           decoration: BoxDecoration(
-            //             color: Colors.white,
-            //             borderRadius: BorderRadius.circular(15),
-            //             boxShadow: [
-            //               BoxShadow(
-            //                 color: Colors.black.withOpacity(0.2),
-            //                 blurRadius: 5,
-            //                 offset: Offset(0, 3),
-            //               ),
-            //             ],
-            //           ),
-            //           child: Padding(
-            //             padding: const EdgeInsets.all(8.0),
-            //             child: Column(
-            //               crossAxisAlignment: CrossAxisAlignment.start,
-            //               children: [
-            //                 Icon(
-            //                   Icons.assessment_outlined,
-            //                   size: 30,
-            //                   color: Color.fromARGB(255, 236, 156, 57),
-            //                 ),
-            //                 SizedBox(height: 5),
-            //                 Text(
-            //                   "عن المصلحة المشتركة",
-            //                   style: TextStyle(fontSize: 17),
-            //                 ),
-            //               ],
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //       SizedBox(width: 10),
-            //       Expanded(
-            //         flex: 1,
-            //         child: Container(
-            //           height: 90,
-            //           decoration: BoxDecoration(
-            //             color: Colors.white,
-            //             borderRadius: BorderRadius.circular(15),
-            //             boxShadow: [
-            //               BoxShadow(
-            //                 color: Colors.black.withOpacity(0.2),
-            //                 blurRadius: 5,
-            //                 offset: Offset(0, 3),
-            //               ),
-            //             ],
-            //           ),
-            //           child: Padding(
-            //             padding: const EdgeInsets.all(8.0),
-            //             child: Column(
-            //               crossAxisAlignment: CrossAxisAlignment.start,
-            //               children: [
-            //                 Icon(
-            //                   Icons.person,
-            //                   size: 30,
-            //                   color: Color.fromARGB(255, 76, 246, 195),
-            //                 ),
-            //                 SizedBox(height: 5),
-            //                 Text(
-            //                   "go to data",
-            //                   style: TextStyle(fontSize: 17),
-            //                 ),
-            //               ],
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-         
-         
-         
             SizedBox(height: 30),
          
          
@@ -507,7 +328,7 @@ class MenuPage extends StatelessWidget {
               height: 60,
               decoration: BoxDecoration(
                 // color: Colors.white,
-                color: Colors.white, borderRadius: BorderRadius.circular(15),
+                 color: Colors.white, borderRadius: BorderRadius.circular(15),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.2),

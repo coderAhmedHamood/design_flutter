@@ -5,8 +5,10 @@ class MyColors {
   static const Color myGrey = Color(0xff343A40);
   static const Color myWhite = Color(0xffE1E8EB);
   static const Color blue = Color.fromARGB(218, 12, 0, 243);
+  static const Color facebook = Color.fromARGB(255, 86, 125, 254);
   static const Color appbarColor = Color.fromARGB(255, 105, 105, 105);
   static const Color green = Colors.green;
+  static const Color white = Colors.white;
   static const Color black = Colors.black;
   // static const Color green = Colors.green;
 }
