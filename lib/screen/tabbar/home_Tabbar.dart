@@ -1,13 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import '../../features/posts/presentation/home/HomeScreen.dart';
-import '../../features/posts/presentation/home/menu_drawer.dart';
-import '../../features/posts/presentation/home/notification.dart';
-import '../branch/view_branch.dart';
+import '../../home_main/presentation/ui/home/HomeScreen.dart';
+import '../../home_main/presentation/ui/home/menu_drawer.dart';
+ import '../../branch/presentation/ui/branch/view_branch.dart';
 
+
+import '../../notification/presentation/ui/notification/notification.dart';
 import '../sudent_parent/dashboard_parents_screen.dart';
 import 'tabbar.dart';
- 
+
 class TabBarViewScreen extends StatefulWidget {
   const TabBarViewScreen({Key? key}) : super(key: key);
 
@@ -42,7 +43,7 @@ class _TabBarViewScreenState extends State<TabBarViewScreen>
           controller: _tabController,
           children: [
             HomeScreen(),
-            PostCarosal(),
+            BranchScreen(),
             DashboardScreen(),
             NotificationsScreen(),
             MenuPage(),

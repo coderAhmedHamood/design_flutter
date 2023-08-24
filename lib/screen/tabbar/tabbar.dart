@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-
 import '../../constants/my_colors.dart';
-import '../../features/posts/presentation/bloc/posts/posts_bloc.dart';
+import '../../home_main/presentation/bloc/posts/posts_bloc.dart';
+import '../../notification/presentation/bloc/notification/Notifications_bloc.dart';
+import '../../notification/presentation/bloc/notification/Notifications_state.dart';
 import 'Notification_class.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,7 +11,6 @@ class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
 // NotificationHome;
 
   CustomTabBar({this.tabController});
-
 
   @override
   Size get preferredSize => const Size.fromHeight(110);
@@ -43,15 +43,17 @@ class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   Widget WidgetTabBar() {
-    return BlocBuilder<PostsBloc, PostsState>(
+    return BlocBuilder<NotificationsBloc, NotificationsState>(
       builder: (context, state) {
-    
+        if (state is GetValueNotificationBarState) {
+          BlocProvider.of<PostsBloc>(context).add(GetAllPostsEvent());
+        }
         return TabBar(
           controller: tabController,
           indicatorColor: MyColors.facebook,
           labelColor: MyColors.facebook,
           unselectedLabelColor: MyColors.appbarColor,
-          
+
           // unselectedLabelColor: MyColors.appbarColor,
           dividerColor: Colors.red,
           tabs: [
