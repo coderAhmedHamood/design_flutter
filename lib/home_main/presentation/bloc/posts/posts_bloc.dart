@@ -28,6 +28,9 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
         emit(LoadingPostsState());
 
         final failureOrPosts = await getAllPosts();
+        // failureOrPosts.fold((l) => ErrorPostsState(message: l.runtimeType.toString()),
+        // (r) => emit(LoadingPostsState()),
+        // );
         emit(_mapFailureOrPostsToState(failureOrPosts));
       } 
   

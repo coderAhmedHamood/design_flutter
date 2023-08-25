@@ -1,6 +1,7 @@
  
 
 import '../../../../base/error/exceptions.dart';
+import '../../../base/urls.dart';
 import '../models/branch_model.dart';
  import 'package:http/http.dart' as http;
 
@@ -40,7 +41,7 @@ abstract class BranchRemoteDataSource {
     // Add more posts as needed
   ];
 
-const BASE_URL = "https://monitor-health-services.shopingsoft.com/php/";
+const BASE_URL = "";
 
 class BranchRemoteDataSourceImpl implements BranchRemoteDataSource {
   final http.Client client;
@@ -51,7 +52,7 @@ class BranchRemoteDataSourceImpl implements BranchRemoteDataSource {
     print("getAllBranch");
     
     // final response = await client.get(
-    //   Uri.parse(BASE_URL + "city.php?city=GetCity"),
+    //   Uri.parse(URLs.URL_GetPosts),
     //   // headers: {"Content-Type": "application/json"},
     // );
 
