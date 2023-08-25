@@ -74,6 +74,7 @@ class AddDeleteUpdatePostBloc
       case OfflineFailure:
         return OFFLINE_FAILURE_MESSAGE;
       default:
+      print("Unexpected Error , Please try again later .");
         return "Unexpected Error , Please try again later .";
     }
   }

@@ -78,10 +78,10 @@ class PostRemoteDataSourceImpl implements PostRemoteDataSource {
   Future<List<PostModel>> getAllPosts() async {
     
     
-    // final response = await client.get(
-    //   Uri.parse(BASE_URL + "city.php?city=GetCity"),
-    //   // headers: {"Content-Type": "application/json"},
-    // );
+    final response = await client.get(
+      Uri.parse(BASE_URL + "city.php?city=GetCity"),
+      // headers: {"Content-Type": "application/json"},
+    );
 
     if (200 == 200) {
     // if (response.statusCode == 200) {
@@ -96,10 +96,11 @@ class PostRemoteDataSourceImpl implements PostRemoteDataSource {
           // .toList();
           final List<PostModel> postModels = posts.toList();
           // print(postModels);
-          
+           
 
       return postModels;
     } else {
+  
       throw ServerException();
     }
   }

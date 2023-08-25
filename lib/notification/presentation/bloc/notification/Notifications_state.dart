@@ -15,6 +15,7 @@ class NotificationsInitial extends NotificationsState {}
 class GetValueNotificationBarState extends NotificationsState {}
 
 class ReadValueNotificationBarState extends NotificationsState {}
+class ReadValueStudentFollowNotificationBarState extends NotificationsState {}
 
 class LoadingNotificationState extends NotificationsState {}
 

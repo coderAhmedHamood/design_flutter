@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../base/alart.dart';
 import '../../../../base/loading_screen.dart';
 import '../../../../notification/presentation/bloc/notification/Notifications_bloc.dart';
 import '../../../../notification/presentation/bloc/notification/Notifications_event.dart';
@@ -27,19 +28,19 @@ class _HomeScreenState extends State<StatefulWidget> {
         // color: Color.fromARGB(255, 197, 187, 187),
         child: BlocBuilder<PostsBloc, PostsState>(
           builder: (context, state) {
-            // if (state is LoadingPostsState) {
-            //   WidgetsBinding.instance.addPostFrameCallback((_) {
-            //     LoadingScreen.show(context, "loading data");
-            //   });
-            // }
+            if (state is LoadingPostsState) {
+              // WidgetsBinding.instance.addPostFrameCallback((_) {
+              // LoadingScreen.show(context, "loading data");
+              // });
+            }
             if (state is LoadedPostsState) {
               // LoadingScreen.hide(context);
               posts = state.posts; // تخزين البيانات في الحالة المؤقتة
-              BlocProvider.of<NotificationsBloc>(context)
-                  .add(GetValueNotificationBarEvent());
+              // BlocProvider.of<NotificationsBloc>(context)
+              //     .add(GetValueNotificationBarEvent());
             }
             if (state is GetValueNotificationBarState) {
-              BlocProvider.of<PostsBloc>(context).add(GetAllPostsEvent());
+              // BlocProvider.of<PostsBloc>(context).add(GetAllPostsEvent());
             }
             return RefreshIndicator(
               onRefresh: () async {

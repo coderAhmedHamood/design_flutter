@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
- 
+import '../../../../account/ui/screen/login_screen.dart';
+import '../../../../account/ui/screen/register_screen.dart';
+
 class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -22,6 +24,57 @@ class MenuPage extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 25,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 40,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => RegisterScreen()),
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.local_gas_station_rounded,
+                          size: 30,
+                        ),
+                        Text(
+                          'Register',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: 40,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.login,
+                          size: 30,
+                        ),
+                        Text(
+                          'Login',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -81,7 +134,7 @@ class MenuPage extends StatelessWidget {
                 ],
               ),
             ),
-           Padding(
+            Padding(
               padding:
                   const EdgeInsets.only(left: 10, right: 10, top: 4, bottom: 4),
               child: Row(
@@ -241,12 +294,8 @@ class MenuPage extends StatelessWidget {
                 ],
               ),
             ),
-         
-      
             SizedBox(height: 30),
-         
-         
-                Container(
+            Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -324,11 +373,11 @@ class MenuPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10),
-         Container(
+            Container(
               height: 60,
               decoration: BoxDecoration(
                 // color: Colors.white,
-                 color: Colors.white, borderRadius: BorderRadius.circular(15),
+                color: Colors.white, borderRadius: BorderRadius.circular(15),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.2),
@@ -351,9 +400,7 @@ class MenuPage extends StatelessWidget {
                 ],
               ),
             ),
-          
-          SizedBox(height: 10),
-         
+            SizedBox(height: 10),
             Container(
               height: 60,
               // color: Color.fromARGB(255, 226, 231, 231),
@@ -389,192 +436,186 @@ class MenuPage extends StatelessWidget {
   }
 }
 
-
- 
 class CustomPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    
-      body: Column(
-        children: [
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  "العمليات",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
-                  ),
+      body: Column(children: [
+        Container(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "العمليات",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25,
                 ),
-              ],
-            ),
-          ),
-       
-   Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, top: 4, bottom: 4),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    height: 90,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          blurRadius: 5,
-                          offset: Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Icon(
-                            Icons.assessment_outlined,
-                            size: 30,
-                            color: Color.fromARGB(255, 237, 101, 242),
-                          ),
-                          SizedBox(height: 5),
-                          Text(
-                            "عن المصلحة المشتركة",
-                            style: TextStyle(fontSize: 17),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(width: 10),
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    height: 90,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          blurRadius: 5,
-                          offset: Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Icon(
-                            Icons.person,
-                            size: 30,
-                            color: Color.fromARGB(255, 155, 16, 160),
-                          ),
-                          SizedBox(height: 5),
-                          Text(
-                            "go to data",
-                            style: TextStyle(fontSize: 17),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-           Padding(
-              padding:
-                  const EdgeInsets.only(left: 10, right: 10, top: 4, bottom: 4),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      height: 90,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(15),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            blurRadius: 5,
-                            offset: Offset(0, 3),
-                          ),
-                        ],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Icon(
-                              Icons.assessment_outlined,
-                              size: 30,
-                              color: Color.fromARGB(255, 236, 156, 57),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              "عن المصلحة المشتركة",
-                              style: TextStyle(fontSize: 17),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      height: 90,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(15),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            blurRadius: 5,
-                            offset: Offset(0, 3),
-                          ),
-                        ],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Icon(
-                              Icons.person,
-                              size: 30,
-                              color: Color.fromARGB(255, 76, 246, 195),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              "go to data",
-                              style: TextStyle(fontSize: 17),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
               ),
-            ),
-        
-        ]
-      ),
+            ],
+          ),
+        ),
+        Padding(
+          padding:
+              const EdgeInsets.only(left: 10, right: 10, top: 4, bottom: 4),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                flex: 1,
+                child: Container(
+                  height: 90,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        blurRadius: 5,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.assessment_outlined,
+                          size: 30,
+                          color: Color.fromARGB(255, 237, 101, 242),
+                        ),
+                        SizedBox(height: 5),
+                        Text(
+                          "عن المصلحة المشتركة",
+                          style: TextStyle(fontSize: 17),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width: 10),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  height: 90,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        blurRadius: 5,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.person,
+                          size: 30,
+                          color: Color.fromARGB(255, 155, 16, 160),
+                        ),
+                        SizedBox(height: 5),
+                        Text(
+                          "go to data",
+                          style: TextStyle(fontSize: 17),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding:
+              const EdgeInsets.only(left: 10, right: 10, top: 4, bottom: 4),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                flex: 1,
+                child: Container(
+                  height: 90,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        blurRadius: 5,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.assessment_outlined,
+                          size: 30,
+                          color: Color.fromARGB(255, 236, 156, 57),
+                        ),
+                        SizedBox(height: 5),
+                        Text(
+                          "عن المصلحة المشتركة",
+                          style: TextStyle(fontSize: 17),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width: 10),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  height: 90,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        blurRadius: 5,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.person,
+                          size: 30,
+                          color: Color.fromARGB(255, 76, 246, 195),
+                        ),
+                        SizedBox(height: 5),
+                        Text(
+                          "go to data",
+                          style: TextStyle(fontSize: 17),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ]),
     );
   }
-  }
+}

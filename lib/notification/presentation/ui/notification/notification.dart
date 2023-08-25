@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_design/notification/presentation/bloc/notification/Notifications_event.dart';
-import '../../../../account/ui/screen/login_screen.dart';
-import '../../../../account/ui/screen/register_screen.dart';
 import '../../../domain/entities/notification.dart';
 import '../../bloc/notification/Notifications_bloc.dart';
 import '../../bloc/notification/Notifications_state.dart';
@@ -21,6 +19,9 @@ class NotificationsScreen extends StatelessWidget {
         if (state is GetValueNotificationBarState) {
           BlocProvider.of<NotificationsBloc>(context)
               .add(GetAllNotificationsEvent());
+          BlocProvider.of<NotificationsBloc>(context)
+              .add(ReadValueNotificationBarEvent());
+              
         }
 
         return Directionality(
@@ -41,31 +42,7 @@ class NotificationsScreen extends StatelessWidget {
                             Icons.search,
                             size: 30,
                           ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                  builder: (context) => RegisterScreen()),
-                            );
-                          },
-                          child: Icon(
-                            Icons.local_gas_station_rounded,
-                            size: 30,
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                  builder: (context) => LoginScreen()),
-                            );
-                          },
-                          child: Icon(
-                            Icons.login,
-                            size: 30,
-                          ),
-                        ),
-                        Text(
+                       Text(
                           "الاشعارات",
                           style: TextStyle(
                               //  backgroundColor: Colors.white,

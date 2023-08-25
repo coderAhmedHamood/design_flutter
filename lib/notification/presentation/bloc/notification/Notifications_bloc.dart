@@ -24,25 +24,26 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
         final failureOrNotifications = await getAllNotifications();
         emit(_mapFailureOrNotificationsToState(failureOrNotifications));
 
-
         // ChangeEvent
       } else if (event is RefreshNotificationsEvent) {
         emit(LoadingNotificationState());
 
         final failureOrNotifications = await getAllNotifications();
         emit(_mapFailureOrNotificationsToState(failureOrNotifications));
-      }
+      } 
       else if (event is GetValueNotificationBarEvent) {
-    
         NotificationHome.assignment = 34;
         NotificationHome.notifications = 26;
         emit(GetValueNotificationBarState());
-        
-      } else if (event is ReadValueNotificationBarEvent) {
-        NotificationHome.assignment = 0;
+      }
+       else if (event is ReadValueNotificationBarEvent) {
         NotificationHome.notifications = 0;
 
         emit(ReadValueNotificationBarState());
+      }
+       else if (event is ReadValueStudentFollowNotificationBarEvent) {
+        NotificationHome.assignment = 0;
+        emit(ReadValueStudentFollowNotificationBarState());
       }
     });
   }
@@ -59,7 +60,6 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   }
 
   String _mapFailureToMessage(Failure failure) {
-
     switch (failure.runtimeType) {
       case ServerFailure:
         return SERVER_FAILURE_MESSAGE;

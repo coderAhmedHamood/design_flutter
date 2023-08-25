@@ -28,8 +28,8 @@ class MyApp extends StatelessWidget {
      return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => di.sl<PostsBloc>()..add(GetAllPostsEvent())),
-        BlocProvider(create: (_) => di.sl<NotificationsBloc>()..add(GetAllNotificationsEvent())),
-        // BlocProvider(create: (_) => di.sl<NotificationsBloc>()..add(GetValueNotificationBarEvent())),
+        // BlocProvider(create: (_) => di.sl<NotificationsBloc>()..add(GetAllNotificationsEvent())),
+        BlocProvider(create: (_) => di.sl<NotificationsBloc>()..add(GetValueNotificationBarEvent())),
         BlocProvider(create: (_) => di.sl<AddDeleteUpdatePostBloc>()),
         BlocProvider(create: (_) => di.sl<BranchBloc>()..add(GetAllBranchEvent())),
       ],

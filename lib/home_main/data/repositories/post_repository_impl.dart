@@ -30,6 +30,7 @@ class PostsRepositoryImpl implements PostsRepository {
         localDataSource.cachePosts(remotePosts);
         //hare store the data to cash
         return Right(remotePosts);
+ 
       } on ServerException {
      
         return Left(ServerFailure());

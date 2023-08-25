@@ -18,7 +18,6 @@ class _BranchScreenState extends State<StatefulWidget> {
     return BlocBuilder<BranchBloc, BranchState>(
       builder: (context, state) {
         if (state is LoadedBranchState) {
-          print("branchhhhhhhhhh");
           branches = state.branch;
         }
         return Container(

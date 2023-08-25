@@ -65,10 +65,10 @@ Widget _customDialog(BuildContext context) {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(
-            'assets/loading.gif',
-            fit: BoxFit.cover,
-          ),
+          // Image.asset(
+          //   'assets/loading.gif',
+          //   fit: BoxFit.cover,
+          // ),
           SizedBox(height: 10),
           Text(
             'Loading...',

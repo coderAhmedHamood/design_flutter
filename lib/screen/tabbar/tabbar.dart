@@ -45,9 +45,10 @@ class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
   Widget WidgetTabBar() {
     return BlocBuilder<NotificationsBloc, NotificationsState>(
       builder: (context, state) {
-        if (state is GetValueNotificationBarState) {
-          BlocProvider.of<PostsBloc>(context).add(GetAllPostsEvent());
-        }
+        // if (state is GetValueNotificationBarState) {
+          // BlocProvider.of<PostsBloc>(context).add(GetAllPostsEvent());
+        // }
+                 
         return TabBar(
           controller: tabController,
           indicatorColor: MyColors.facebook,
@@ -55,7 +56,7 @@ class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
           unselectedLabelColor: MyColors.appbarColor,
 
           // unselectedLabelColor: MyColors.appbarColor,
-          dividerColor: Colors.red,
+          dividerColor: const Color.fromRGBO(244, 67, 54, 1),
           tabs: [
             WidgetTab(Icons.home_outlined, 35),
             WidgetTab(Icons.photo_library_outlined, 35),

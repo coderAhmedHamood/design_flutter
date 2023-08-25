@@ -16,3 +16,5 @@ class GetAllNotificationsEvent extends NotificationsEvent {}
 class GetValueNotificationBarEvent extends NotificationsEvent {}
 
 class ReadValueNotificationBarEvent extends NotificationsEvent {}
+class ReadValueStudentFollowNotificationBarEvent extends NotificationsEvent {}
+
