@@ -51,10 +51,10 @@ class BranchRemoteDataSourceImpl implements BranchRemoteDataSource {
   Future<List<BranchModel>> getAllBranch() async {
     print("getAllBranch");
     
-    // final response = await client.get(
-    //   Uri.parse(URLs.URL_GetPosts),
-    //   // headers: {"Content-Type": "application/json"},
-    // );
+    final response = await client.get(
+      Uri.parse(URLs.URL_GetPosts),
+      // headers: {"Content-Type": "application/json"},
+    );
 
     if (200 == 200) {
     // if (response.statusCode == 200) {

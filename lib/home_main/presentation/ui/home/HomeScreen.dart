@@ -25,25 +25,16 @@ class _HomeScreenState extends State<StatefulWidget> {
       textDirection: TextDirection.rtl,
       child: Container(
         color: const Color.fromARGB(255, 135, 135, 135),
-        // color: Color.fromARGB(255, 197, 187, 187),
-        child: BlocBuilder<PostsBloc, PostsState>(
+         child: BlocBuilder<PostsBloc, PostsState>(
           builder: (context, state) {
-            if (state is LoadingPostsState) {
-              // WidgetsBinding.instance.addPostFrameCallback((_) {
-              // LoadingScreen.show(context, "loading data");
-              // });
-            }
+      
             if (state is LoadedPostsState) {
-              // LoadingScreen.hide(context);
-              posts = state.posts; // تخزين البيانات في الحالة المؤقتة
-              // BlocProvider.of<NotificationsBloc>(context)
-              //     .add(GetValueNotificationBarEvent());
-            }
-            if (state is GetValueNotificationBarState) {
-              // BlocProvider.of<PostsBloc>(context).add(GetAllPostsEvent());
+              posts = state.posts;
             }
             return RefreshIndicator(
               onRefresh: () async {
+                BlocProvider.of<PostsBloc>(context)
+                    .add(GetAllPostsEvent());
                 BlocProvider.of<NotificationsBloc>(context)
                     .add(GetValueNotificationBarEvent());
               },

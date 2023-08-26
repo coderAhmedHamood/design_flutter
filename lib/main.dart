@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_design/branch/presentation/bloc/branch/branch_bloc.dart';
 import 'package:flutter_design/notification/presentation/bloc/notification/Notifications_event.dart';
+import 'package:flutter_design/student/presentation/bloc/up_data_student/Student_event.dart';
+import 'package:flutter_design/student/presentation/bloc/up_data_student/student_bloc.dart';
 import 'home_main/presentation/bloc/add_delete_update_post/add_delete_update_post_bloc.dart';
 import 'base/bloc_ob_serve.dart';
 import 'home_main/presentation/bloc/posts/posts_bloc.dart';
@@ -27,10 +29,11 @@ class MyApp extends StatelessWidget {
  
      return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (_) => di.sl<StudentBloc>()), 
         BlocProvider(create: (_) => di.sl<PostsBloc>()..add(GetAllPostsEvent())),
         // BlocProvider(create: (_) => di.sl<NotificationsBloc>()..add(GetAllNotificationsEvent())),
         BlocProvider(create: (_) => di.sl<NotificationsBloc>()..add(GetValueNotificationBarEvent())),
-        BlocProvider(create: (_) => di.sl<AddDeleteUpdatePostBloc>()),
+        // BlocProvider(create: (_) => di.sl<AddDeleteUpdatePostBloc>()),
         BlocProvider(create: (_) => di.sl<BranchBloc>()..add(GetAllBranchEvent())),
       ],
       child: MaterialApp(

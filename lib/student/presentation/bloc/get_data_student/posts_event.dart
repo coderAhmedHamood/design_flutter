@@ -1,14 +1,14 @@
-// part of 'posts_bloc.dart';
+// // part of 'posts_bloc.dart';
 
-import 'package:equatable/equatable.dart';
+// import 'package:equatable/equatable.dart';
 
-abstract class PostsEvent extends Equatable {
-  const PostsEvent();
+// abstract class PostsEvent extends Equatable {
+//   const PostsEvent();
 
-  @override
-  List<Object> get props => [];
-}
+//   @override
+//   List<Object> get props => [];
+// }
 
-class GetAllPostsEvent extends PostsEvent {}
+// class GetAllPostsEvent extends PostsEvent {}
 
-class RefreshPostsEvent extends PostsEvent {}
+// class RefreshPostsEvent extends PostsEvent {}
