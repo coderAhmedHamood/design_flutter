@@ -5,10 +5,10 @@ import '../entities/student.dart';
 import '../repositories/students_repository.dart';
 
 
-class AddAssignmentUsecase {
+class AddStudentAssignmentUsecase {
   final StudentsRepository repository;
 
-  AddAssignmentUsecase(this.repository);
+  AddStudentAssignmentUsecase(this.repository);
 
   Future<Either<Failure, Unit>> call(Student student) async {
     return await repository.addStudentAssignment(student);

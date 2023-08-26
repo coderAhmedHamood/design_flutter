@@ -1,13 +1,15 @@
 
 import 'package:flutter_design/base/urls.dart';
+import 'package:flutter_design/student/domain/entities/student.dart';
 import '../../../../base/error/exceptions.dart';
 import '../models/student_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 
 abstract class StudentRemoteDataSource {
+  Future<List<StudentClassModel>> getStudentClass();
+  Future<Unit> addStudentAttendance(StudentsAttendanceClass studentsAttendanceClass);
   Future<Unit> addStudentAssignment(StudentModel studentModel);
-  Future<Unit> addStudentAttendance(StudentModel studentModel);
   Future<Unit> addStudentBehavior(StudentModel studentModel);
   Future<Unit> addStudentMonthlyExam(StudentModel studentModel);
 }
@@ -76,6 +78,44 @@ class StudentRemoteDataSourceImpl implements StudentRemoteDataSource {
   StudentRemoteDataSourceImpl({required this.client});
 
  
+  
+  @override
+  Future<List<StudentClassModel>> getStudentClass() async {
+    
+    
+    final response = await client.get(
+      Uri.parse(URLs.URL_GetBranches),
+      // headers: {"Content-Type": "application/json"},
+    );
+
+    if (200 == 200) {
+    // if (response.statusCode == 200) {
+      //   final body = json.decode(response.body);
+      // final error = body['error'];
+      //  final List decodedJson = body['city'] as List;
+      //  print(body['city']);
+      //  print(error.toString());
+
+      // final List<StudentModel> StudentModels = posts
+          // .map<StudentModel>((jsonStudentModel) => StudentModel.fromJson(jsonStudentModel))
+          // .toList();
+          print("StudentModels");
+          print(".StudentModels");
+          print("StudentModels");
+          List<StudentClassModel> studentClassModel=[
+            StudentClassModel(name: "ahmed",id: 12),
+            StudentClassModel(name: "ahm5ed",id: 13),
+            StudentClassModel(name: "ahme6d",id: 14),
+          ];
+          final List<StudentClassModel> studentClass = studentClassModel.toList();
+           
+
+      return studentClass;
+    } else {
+  
+      throw ServerException();
+    }
+  }
 
   @override
   Future<Unit> addStudentAssignment(StudentModel studentModel) async {
@@ -102,18 +142,21 @@ class StudentRemoteDataSourceImpl implements StudentRemoteDataSource {
 
 
 @override
-Future<Unit> addStudentAttendance(StudentModel studentModel) async {
- 
-  final response = await http.post(
+Future<Unit> addStudentAttendance(StudentsAttendanceClass studentsAttendanceClass) async {
+ print("StudentAttendanceModel studentAttendanceModel");
+ print(",,,,,,,,,,,,,,,,,,,,,,,");
+ print("StudentAttendanceModel studentAttendanceModel");
+  // final response = await http.post(
     
-      Uri.parse(URLs.URL_GetPosts),
-      body: {
-        // 'id': studentId.toString(),
-      },
-    );
+  //     Uri.parse(URLs.URL_GetPosts),
+  //     body: {
+  //       // 'id': studentId.toString(),
+  //     },
+  //   );
 
 
-  if (response.statusCode == 200) {
+  if (200 == 200) {
+  // if (response.statusCode == 200) {
     return Future.value(unit);
   } else {
     throw ServerException();

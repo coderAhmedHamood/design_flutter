@@ -9,9 +9,12 @@ import '../models/student_model.dart';
 abstract class StudentLocalDataSource {
   Future<List<StudentModel>> getCachedStudents();
   Future<Unit> cacheStudents(List<StudentModel> studentModels);
+  Future<List<StudentClassModel>> getCachedStudentClass();
+  Future<Unit> cachedStudentClass(List<StudentClassModel> studentClassModel);
 }
 
 const CACHED_STUDENTS = "CACHED_STUDENTS";
+const CACHED_STUDENTS_CLASS = "CACHED_STUDENTS_CLASS";
 
 class StudentLocalDataSourceImpl implements StudentLocalDataSource {
   final SharedPreferences sharedPreferences;
@@ -19,14 +22,13 @@ class StudentLocalDataSourceImpl implements StudentLocalDataSource {
   StudentLocalDataSourceImpl({required this.sharedPreferences});
   @override
   Future<Unit> cacheStudents(List<StudentModel> studentModels) {
-    
-
     List studentModelsToJson = studentModels
         .map<Map<String, dynamic>>((studentModel) => studentModel.toJson())
         .toList();
     sharedPreferences.setString(CACHED_STUDENTS, json.encode(studentModelsToJson));
     return Future.value(unit);
   }
+
 
   @override
   Future<List<StudentModel>> getCachedStudents() {
@@ -36,6 +38,32 @@ class StudentLocalDataSourceImpl implements StudentLocalDataSource {
       List decodeJsonData = json.decode(jsonString);
       List<StudentModel> jsonToStudentModels = decodeJsonData
           .map<StudentModel>((jsonStudentModel) => StudentModel.fromJson(jsonStudentModel))
+          .toList();
+      return Future.value(jsonToStudentModels);
+    } else {
+      throw EmptyCacheException();
+    }
+  }
+
+
+
+  @override
+  Future<Unit> cachedStudentClass(List<StudentClassModel> studentClassModel) {
+    List studentModelsToJson = studentClassModel
+        .map<Map<String, dynamic>>((studentClassModel) => studentClassModel.toJson())
+        .toList();
+    sharedPreferences.setString(CACHED_STUDENTS_CLASS, json.encode(studentModelsToJson));
+    return Future.value(unit);
+  }
+
+  @override
+  Future<List<StudentClassModel>> getCachedStudentClass() {
+ 
+    final jsonString = sharedPreferences.getString(CACHED_STUDENTS_CLASS);
+    if (jsonString != null) {
+      List decodeJsonData = json.decode(jsonString);
+      List<StudentClassModel> jsonToStudentModels = decodeJsonData
+          .map<StudentClassModel>((jsonStudentModel) => StudentClassModel.fromJson(jsonStudentModel))
           .toList();
       return Future.value(jsonToStudentModels);
     } else {

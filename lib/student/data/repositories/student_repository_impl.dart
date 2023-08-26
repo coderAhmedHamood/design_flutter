@@ -49,6 +49,27 @@ class StudentsRepositoryImpl implements StudentsRepository {
   // }
 
   @override
+  Future<Either<Failure, List<StudentsClassClass>>> getStudentClass() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final remotePosts = await remoteDataSource.getStudentClass();
+        localDataSource.cachedStudentClass(remotePosts);
+        //hare store the data to cash
+        return Right(remotePosts);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      try {
+        final localPosts = await localDataSource.getCachedStudentClass();
+        return Right(localPosts);
+      } on EmptyCacheException {
+        return Left(EmptyCacheFailure());
+      }
+    }
+  }
+
+  @override
   Future<Either<Failure, Unit>> addStudentBehavior(Student student) async {
     final StudentModel studentModel = StudentModel(
         username: student.username,
@@ -64,17 +85,17 @@ class StudentsRepositoryImpl implements StudentsRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> addStudentAttendance(Student student) async {
-    final StudentModel studentModel = StudentModel(
-        username: student.username,
-        time: student.time,
-        studentText: student.studentText,
-        studentImage: student.studentImage,
-        likes: student.likes,
-        islikes: student.islikes);
+  Future<Either<Failure, Unit>> addStudentAttendance(
+      StudentsAttendanceClass studentsAttendanceClass) async {
+    final StudentAttendanceModel studentAttendanceModel =
+        StudentAttendanceModel(
+      name: studentsAttendanceClass.name,
+      isPresent: studentsAttendanceClass.isPresent,
+      isSick: studentsAttendanceClass.isSick,
+    );
 
     return await _getMessage(() {
-      return remoteDataSource.addStudentAttendance(studentModel);
+      return remoteDataSource.addStudentAttendance(studentAttendanceModel);
     });
   }
 

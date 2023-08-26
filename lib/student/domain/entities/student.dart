@@ -23,3 +23,43 @@ class Student  extends Equatable{
   @override
   List<Object?> get props => [id, username,time,studentText,studentImage,likes,islikes];
 }
+
+class StudentsAttendanceClass  extends Equatable{
+ final int? id;
+ final String name;
+ final bool isPresent;
+ final bool isSick;
+
+  StudentsAttendanceClass({
+    required this.id,
+    required this.name,
+    required this.isPresent,
+    required this.isSick,
+  });
+  @override
+  List<Object?> get props => [id, name,isPresent,isSick];
+}
+
+class DegreeHomwWorkStudentsClass {
+  String name;
+  double degree;
+  int id;
+
+  DegreeHomwWorkStudentsClass({
+    required this.name,
+    required this.degree,
+    required this.id,
+  });
+}
+class StudentsClassClass extends Equatable{
+  final name;
+  final int? id;
+
+  StudentsClassClass({
+    required this.name,
+    
+    required this.id,
+  });
+  @override
+  List<Object?> get props => [id, name];
+}

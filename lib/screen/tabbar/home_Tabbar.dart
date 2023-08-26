@@ -6,7 +6,7 @@ import '../../home_main/presentation/ui/home/menu_drawer.dart';
 
 
 import '../../notification/presentation/ui/notification/notification.dart';
-import '../sudent_parent/dashboard_parents_screen.dart';
+ import '../../student/presentation/ui/page/dashboard_parents_screen.dart';
 import 'tabbar.dart';
 
 class TabBarViewScreen extends StatefulWidget {

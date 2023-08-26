@@ -11,6 +11,7 @@ abstract class PostRemoteDataSource {
   Future<Unit> updatePost(PostModel postModel);
   Future<Unit> addPost(PostModel postModel);
 }
+  
    List<PostModel> posts = [
   PostModel(
     id: 1,
@@ -74,6 +75,8 @@ class PostRemoteDataSourceImpl implements PostRemoteDataSource {
   final http.Client client;
 
   PostRemoteDataSourceImpl({required this.client});
+  
+  
   @override
   Future<List<PostModel>> getAllPosts() async {
     

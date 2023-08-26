@@ -2,6 +2,7 @@
 
 
 import 'package:equatable/equatable.dart';
+import 'package:flutter_design/student/domain/entities/student.dart';
 
 abstract class StudentState extends Equatable {
   const StudentState();
@@ -13,6 +14,15 @@ abstract class StudentState extends Equatable {
 class AddDeleteUpdateStudentInitial extends StudentState {}
 
 class LoadingStudentState extends StudentState {}
+
+class LoadedStudentsState extends StudentState {
+  final List<StudentsClassClass> studentsClassClass;
+
+  LoadedStudentsState({required this.studentsClassClass});
+
+  @override
+  List<Object> get props => [studentsClassClass];
+}
 
 class ErrorStudentState extends StudentState {
   final String message;

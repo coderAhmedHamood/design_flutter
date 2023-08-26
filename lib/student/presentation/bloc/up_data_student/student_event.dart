@@ -10,13 +10,19 @@ abstract class StudentEvent extends Equatable {
   List<Object> get props => [];
 }
 
+
+class GetStudentClassEvent extends StudentEvent {}
+
+
 class AddStudentAttendanceDataEvent extends StudentEvent {
-    final Student student;
+
+
+    final StudentsAttendanceClass studentsAttendanceClass;
   AddStudentAttendanceDataEvent({
-    required this.student,
+    required this.studentsAttendanceClass,
   });
   @override
-  List<Object> get props => [student];
+  List<Object> get props => [studentsAttendanceClass];
 }
 
 class AddStudentMonthlyExamGradesEvent extends StudentEvent {

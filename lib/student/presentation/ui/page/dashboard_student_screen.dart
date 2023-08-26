@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_design/screen/sudent_parent/students/behaviour_students.dart';
-import 'package:flutter_design/screen/sudent_parent/students/degree_test_students.dart';
-import 'package:flutter_design/screen/sudent_parent/students/homework_students.dart';
 
+import 'students/behaviour_students.dart';
+import 'students/degree_test_students.dart';
+import 'students/homework_students.dart';
 import 'students/present_students.dart';
 
 class DashboardStudentScreen extends StatelessWidget {
@@ -29,7 +29,7 @@ class DashboardStudentScreen extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => PreparingStudentsScreen()),
+                MaterialPageRoute(builder: (context) => AttendanceStudentsScreen()),
               );
             },
           ),

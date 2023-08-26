@@ -35,3 +35,55 @@ class StudentModel extends Student {
     return {'id': id, 'username': username,'time':time,'studentText':studentText,'studentImage': studentImage,'likes':likes,'islikes':islikes};
   }
 }
+ 
+class StudentAttendanceModel extends StudentsAttendanceClass {
+   StudentAttendanceModel({
+    int? id,
+    required String name,
+    required bool isPresent,
+    required bool isSick
+  }) : super(
+          id: id,
+          name: name,
+          isPresent: isPresent,
+          isSick: isSick,
+      
+        );
+ 
+  factory StudentAttendanceModel.fromJson(Map<String, dynamic> json) {
+ 
+    return StudentAttendanceModel(id: json['id'] , name: json['name'] ,isPresent:json['isPresent'],isSick:json['isSick']);
+    
+  }
+
+  Map<String, dynamic> toJson() {
+  return {
+    'id': id,
+    'name': name,
+    'isPresent': isPresent,
+    'isSick': isSick,
+  };  }
+}
+
+
+class StudentClassModel extends StudentsClassClass {
+   StudentClassModel({
+    int? id,
+    required String name,
+  }) : super(
+          id: id,
+          name: name,
+        );
+ 
+  factory StudentClassModel.fromJson(Map<String, dynamic> json) {
+ 
+    return StudentClassModel(id: json['id'] , name: json['name']);
+    
+  }
+
+  Map<String, dynamic> toJson() {
+  return {
+    'id': id,
+    'name': name,
+  };  }
+}

@@ -1,6 +1,6 @@
  
 class NotificationHome {
-  static int _notifications = 1;
+  static int _notifications = 0;
   static int _assignment = 0;
 
   static int get notifications => _notifications;

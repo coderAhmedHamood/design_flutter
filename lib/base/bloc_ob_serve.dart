@@ -4,19 +4,27 @@ class AppBlocObServer extends BlocObserver {
   @override
   void onChange(BlocBase bloc, Change change) {
     // print(bloc);
-    // print(change);
+    print("change bloc?????????");
+    print(change);
+    print("change bloc?????????");
     super.onChange(bloc, change);
   }
 
   @override
   void onClose(BlocBase bloc) {
-    // print(bloc);
+    print("close bloc&&&&&&&&&&&&&&&&&&&&&");
+    print(bloc);
+    print("close bloc&&&&&&&&&&&&&&&&&&&&&");
      super.onClose(bloc);
   }
 
   @override
   void onCreate(BlocBase bloc) {
-    // print(bloc);
+    
+    print("creaaaaaaat bloc##################");
+    print(bloc);
+    print("creaaaaaaat bloc##################");
+    
      super.onCreate(bloc);
   }
 }

@@ -15,13 +15,14 @@
 //     required this.getAllStudents,
 //   }) : super(StudentsInitial) {
 //     on<StudentEvent>((event, emit) async {
-//       // if (event is GetAllStudentsEvent) {
-//       //   emit(LoadingStudentsState());
-//       //   final failureOrStudents = await getAllStudents();
-//       //   emit(_mapFailureOrStudentsToState(failureOrStudents));
+//       if (event is GetAllStudentsEvent) {
+//         emit(LoadingStudentsState());
+//         final failureOrStudents = await getAllStudents();
+//         emit(_mapFailureOrStudentsToState(failureOrStudents));
 
 //       //   // ChangeEvent
-//       // } else if (event is RefreshStudentsEvent) {
+//       }
+//       // else if (event is RefreshStudentsEvent) {
 //       //   emit(LoadingStudentsState());
 
 //       //   final failureOrStudents = await getAllStudents();
@@ -34,26 +35,26 @@
 //     });
 //   }
 
-// //   StudentState _mapFailureOrStudentsToState(Either<Failure, List<Student>> either) {
+//   StudentState _mapFailureOrStudentsToState(Either<Failure, List<Student>> either) {
 
-// //     return either.fold(
-// //       (failure) => ErrorStudentState(message: _mapFailureToMessage(failure)),
-// //       (students) => LoadedStudentState(
-// //         students: students,
-// //       ),
-// //     );
-// //   }
+//     return either.fold(
+//       (failure) => ErrorStudentState(message: _mapFailureToMessage(failure)),
+//       (students) => LoadedStudentState(
+//         students: students,
+//       ),
+//     );
+//   }
 
-// //   String _mapFailureToMessage(Failure failure) {
-// //     switch (failure.runtimeType) {
-// //       case ServerFailure:
-// //         return SERVER_FAILURE_MESSAGE;
-// //       case EmptyCacheFailure:
-// //         return EMPTY_CACHE_FAILURE_MESSAGE;
-// //       case OfflineFailure:
-// //         return OFFLINE_FAILURE_MESSAGE;
-// //       default:
-// //         return "Unexpected Error , Please try again later .";
-// //     }
-// //   }
+//   String _mapFailureToMessage(Failure failure) {
+//     switch (failure.runtimeType) {
+//       case ServerFailure:
+//         return SERVER_FAILURE_MESSAGE;
+//       case EmptyCacheFailure:
+//         return EMPTY_CACHE_FAILURE_MESSAGE;
+//       case OfflineFailure:
+//         return OFFLINE_FAILURE_MESSAGE;
+//       default:
+//         return "Unexpected Error , Please try again later .";
+//     }
+//   }
 // }

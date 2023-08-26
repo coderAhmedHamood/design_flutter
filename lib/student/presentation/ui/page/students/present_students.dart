@@ -1,46 +1,49 @@
 import 'package:flutter/material.dart';
  
 
-class PreparingStudentsClass {
+class AttendanceStudentsClass {
   String name;
   bool isPresent;
   bool isSick;
   int id;
 
-  PreparingStudentsClass({
+  AttendanceStudentsClass({
     required this.name,
     required this.isPresent,
     required this.isSick,
     required this.id,
   });
 }
-
-class PreparingStudentsScreen extends StatefulWidget {
-  @override
-  State<PreparingStudentsScreen> createState() => _PreparingStudentsState();
-}
-
-class _PreparingStudentsState extends State<PreparingStudentsScreen> {
-  List<PreparingStudentsClass> students = [
-    PreparingStudentsClass(
+  List<AttendanceStudentsClass> students = [
+    AttendanceStudentsClass(
         name: 'عبداللة بن سعيد', isPresent: false, isSick: false, id: 19),
-    PreparingStudentsClass(
+    AttendanceStudentsClass(
         name: 'محمد العيساوي', isPresent: false, isSick: false, id: 1),
-    PreparingStudentsClass(
+    AttendanceStudentsClass(
         name: 'مريم علي', isPresent: false, isSick: false, id: 2),
-    PreparingStudentsClass(
+    AttendanceStudentsClass(
         name: 'زينب فارع', isPresent: false, isSick: false, id: 3),
-    PreparingStudentsClass(
+    AttendanceStudentsClass(
         name: 'علي المقطري', isPresent: false, isSick: false, id: 4),
-    PreparingStudentsClass(
+    AttendanceStudentsClass(
         name: 'فواد علي سالم', isPresent: false, isSick: false, id: 5),
-    PreparingStudentsClass(
+    AttendanceStudentsClass(
         name: 'مريم القاسمي', isPresent: false, isSick: false, id: 6),
-    PreparingStudentsClass(
+    AttendanceStudentsClass(
         name: 'عبدالله زين', isPresent: false, isSick: false, id: 8),
-    PreparingStudentsClass(
+    AttendanceStudentsClass(
         name: 'سيف الحداد', isPresent: false, isSick: false, id: 9),
   ];
+
+
+
+class AttendanceStudentsScreen extends StatefulWidget {
+  @override
+  State<AttendanceStudentsScreen> createState() => _AttendanceStudentsState();
+}
+
+class _AttendanceStudentsState extends State<AttendanceStudentsScreen> {
+  
 
   bool isAllPresent = false;
 
@@ -266,6 +269,7 @@ class _PreparingStudentsState extends State<PreparingStudentsScreen> {
                         .map((student) => student.name)
                         .toList();
 
+                    print(presentStudents);
                     print(presentStudents);
                   },
                   child: Icon(Icons.upload),

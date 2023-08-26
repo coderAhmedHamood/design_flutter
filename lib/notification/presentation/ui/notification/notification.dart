@@ -14,9 +14,13 @@ class NotificationsScreen extends StatelessWidget {
     return BlocBuilder<NotificationsBloc, NotificationsState>(
       builder: (context, state) {
         if (state is LoadedNotificationState) {
+          print("LoadedNotificationState");
           notifications = state.notification;
+          // print(notifications);
+          print("LoadedNotificatvvvvvvvvvvvvvvvvvvvvionState");
         }
         if (state is GetValueNotificationBarState) {
+          print("GetValueNotificationBarState");
           BlocProvider.of<NotificationsBloc>(context)
               .add(GetAllNotificationsEvent());
           BlocProvider.of<NotificationsBloc>(context)
