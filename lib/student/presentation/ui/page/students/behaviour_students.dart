@@ -1,88 +1,34 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_design/student/presentation/ui/widgets/title_body.dart';
 
-class BehaviourStudentsClass {
-  String name;
-  String title;
-  String message;
-  int id;
+import '../../../../../account/data/model/stor.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-  BehaviourStudentsClass({
-    required this.name,
-    required this.title,
-    required this.message,
-    required this.id,
-  });
-}
+import '../../../../../base/alart.dart';
+import '../../../../domain/entities/student.dart';
+import '../../../bloc/up_data_student/Student_event.dart';
+import '../../../bloc/up_data_student/student_bloc.dart';
+import '../../../bloc/up_data_student/student_state.dart';
 
+bool chickGetData = false; // تعريف المتغير خارج الصنف
+List<StudentActivityClass> students = [];
 class BehaviourStudentsScreen extends StatefulWidget {
   @override
   State<BehaviourStudentsScreen> createState() => _BehaviourStudentsState();
 }
 
 class _BehaviourStudentsState extends State<BehaviourStudentsScreen> {
-  List<BehaviourStudentsClass> students = [
-    BehaviourStudentsClass(
-      name: 'عبداللة بن سعيد',
-      title: 'عنوان الطالب',
-      message: 'رسالة الطالب',
-      id: 19,
-    ),
-    BehaviourStudentsClass(
-      name: 'محمد العيساوي',
-      title: 'عنوان الطالب',
-      message: 'رسالة الطالب',
-      id: 1,
-    ),
-    BehaviourStudentsClass(
-      name: 'مريم علي',
-      title: 'عنوان الطالب',
-      message: 'رسالة الطالب',
-      id: 2,
-    ),
-    BehaviourStudentsClass(
-      name: 'زينب فارع',
-      title: 'عنوان الطالب',
-      message: 'رسالة الطالب',
-      id: 3,
-    ),
-    BehaviourStudentsClass(
-      name: 'علي المقطري',
-      title: 'عنوان الطالب',
-      message: 'رسالة الطالب',
-      id: 4,
-    ),
-    BehaviourStudentsClass(
-      name: 'فواد علي سالم',
-      title: 'عنوان الطالب',
-      message: 'رسالة الطالب',
-      id: 5,
-    ),
-    BehaviourStudentsClass(
-      name: 'مريم القاسمي',
-      title: 'عنوان الطالب',
-      message: 'رسالة الطالب',
-      id: 6,
-    ),
-    BehaviourStudentsClass(
-      name: 'عبدالله زين',
-      title: 'عنوان الطالب',
-      message: 'رسالة الطالب',
-      id: 8,
-    ),
-    BehaviourStudentsClass(
-      name: 'سيف الحداد',
-      title: 'عنوان الطالب',
-      message: 'رسالة الطالب',
-      id: 9,
-    ),
-  ];
-  bool behaviour = false;
+ 
+ 
   void showGradeInputDialog(
       BuildContext context, String studentName, int index) {
-    String notificationTitle = '';
-    String notificationContent = '';
+ 
     int selectedGrade = 1; // القيمة المختارة الافتراضية
+      BehaviourStudentsClass defaultBehaviour = BehaviourStudentsClass(
+    title: "Title behavior",
+    message: "Message behavior",
+  );
 
     showDialog(
       context: context,
@@ -169,7 +115,14 @@ class _BehaviourStudentsState extends State<BehaviourStudentsScreen> {
                     child: TextButton(
                       onPressed: () {
                         print("accept");
+                        defaultBehaviour.message = "اضبطوة ";
+                        defaultBehaviour.title = "تحذير";
+                        students[index].behaviourStudentsClass=defaultBehaviour;
                         print('Grade: $selectedGrade');
+                        print(defaultBehaviour.message);
+                        print(defaultBehaviour.title);
+
+                        // print('DefaultBehaviour: $defaultBehaviour');
                         // قم بإرسال الدرجة إلى الأماكن التي ترغب فيها
                         Navigator.of(context).pop(); // إغلاق الـ dialog
                       },
@@ -191,33 +144,67 @@ class _BehaviourStudentsState extends State<BehaviourStudentsScreen> {
     );
   }
 
+
+
   @override
   Widget build(BuildContext context) {
+       return BlocBuilder<StudentBloc, StudentState>(builder: (context, state) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        final studentBloc =
+            context.read<StudentBloc>(); // Obtain the bloc instance
+        final state = studentBloc.state; // Obtain the current state
+        if (state is MessageStudentMonthlyTestState) {
+        
+          SnackbarService.showSuccessSnackbar(state.message);
+       
+          BlocProvider.of<StudentBloc>(context).add(ReloadStudentDataEvent());
+        }
+      });
+
+      if (state is ReLoadedStudentsDataState) {
+        students = state.studentActivity;
+      }
+      if (state is LoadingStudentState) {
+        chickGetData = false;
+      }
+
+      if (state is LoadedStudentsDataState) {
+        if (!chickGetData) {
+          students = state.studentActivity;
+          chickGetData = true;
+        }
+      }
+    
     return Scaffold(
-      // backgroundColor: Colors,
       appBar: AppBar(
-        title: Center(
-          child: Text(
-            'وضع سلوك الطلاب',
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
+       
         leading: IconButton(
           iconSize: 40,
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            // context.pop(),
-            Navigator.of(context).pop();
+             Navigator.of(context).pop();
           },
         ),
       ),
       body: Column(
         children: [
-          titleBody(),
+          TitleBodyWidget(title: "سلوك الصف "),
           SizedBox(
             height: 5,
           ),
-          Expanded(
+          WidgetListNotification()
+        ],
+      ),
+    );
+  
+  }
+  );
+  }
+
+
+
+Widget WidgetListNotification(){
+  return    Expanded(
             child: ListView.builder(
               itemCount: students.length,
               itemBuilder: (context, index) {
@@ -226,9 +213,11 @@ class _BehaviourStudentsState extends State<BehaviourStudentsScreen> {
                     setState(() {
                       showGradeInputDialog(
                           context, students[index].name, index);
-
-                      // students[index].isPresent = !students[index].isPresent;
                     });
+                    print("||||||||||||||||||||");
+                    print(students[index].behaviourStudentsClass?.message);
+                    print(students[index].behaviourStudentsClass?.title);
+                    print("||||||||||||||||||||");
                   },
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -270,53 +259,7 @@ class _BehaviourStudentsState extends State<BehaviourStudentsScreen> {
                 );
               },
             ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget titleBody() {
-    return Container(
-      decoration: BoxDecoration(
-        color: Color.fromARGB(255, 22, 153, 98),
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(50),
-          bottomRight: Radius.circular(50),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            offset: Offset(0, 2),
-            blurRadius: 4,
-          ),
-        ],
-      ),
-      margin: EdgeInsets.all(16),
-      padding: EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            'سلوك الصف الثالث ابتدائي',
-            style: TextStyle(
-              fontSize: 28,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 8),
-          Text(
-            'التربية الإسلامية',
-            style: TextStyle(
-              fontSize: 24,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 16),
-        ],
-      ),
-    );
-  }
+          );
+       
+}
 }

@@ -24,64 +24,65 @@ class Student  extends Equatable{
   List<Object?> get props => [id, username,time,studentText,studentImage,likes,islikes];
 }
 
-class StudentsAttendanceClass  extends Equatable{
- final int? id;
- final String name;
- final bool isPresent;
- final bool isSick;
 
-  StudentsAttendanceClass({
-    required this.id,
-    required this.name,
-    required this.isPresent,
-    required this.isSick,
-  });
-  @override
-  List<Object?> get props => [id, name,isPresent,isSick];
-}
  
 class StudentsClassClass extends Equatable{
-  final name;
   final int? id;
+  final name;
 
   StudentsClassClass({
-    required this.name,
-    
     required this.id,
+    required this.name,
   });
   @override
   List<Object?> get props => [id, name];
 }
+class BehaviourStudentsClass {
+  String title;
+  String message;
 
+  BehaviourStudentsClass({
+    required this.title,
+    required this.message,
+  });
+
+  factory BehaviourStudentsClass.fromJson(Map<String, dynamic> json) {
+    return BehaviourStudentsClass(
+      title: json['title'],
+      message: json['message'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'message': message,
+    };
+  }
+}
 
 class StudentActivityClass extends Equatable {
   int id;
   String name;
   bool isPresent;
   bool isSick;
-  double degree;
+  double degreeHomeWork;
+  double degreeMonthTest;
+  BehaviourStudentsClass? behaviourStudentsClass;
+
 
   StudentActivityClass({
     required this.id,
     required this.name,
     required this.isPresent,
     required this.isSick,
-    required this.degree,
+    required this.degreeHomeWork,
+    required this.degreeMonthTest,
+      this.behaviourStudentsClass,
   });
   @override
-  List<Object?> get props => [id, name,isPresent,isSick,degree];
+  List<Object?> get props => [id, name,isPresent,isSick,degreeHomeWork,degreeMonthTest,behaviourStudentsClass];
 }
 
-List<StudentActivityClass> convertStudentsClassToAttendance(
-    List<StudentsClassClass> studentsClass) {
-  return studentsClass.map((studentClass) {
-    return StudentActivityClass(
-      id: studentClass.id!,
-      name: studentClass.name,
-      isPresent: false,
-      isSick: false,
-      degree: 0.0,
-    );
-  }).toList();
-}
+
 

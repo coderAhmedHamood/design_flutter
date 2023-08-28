@@ -19,6 +19,7 @@ import 'student_state.dart';
 
 // part 'add_delete_update_student_state.dart';
 List<StudentActivityClass> students = [];
+
 class StudentBloc extends Bloc<StudentEvent, StudentState> {
   final AddStudentAttendanceUsecase addAttendance;
   final AddStudentBehaviorUsecase addBehavior;
@@ -44,23 +45,91 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
     on<ReloadStudentDataEvent>(_reloadStudentDataEvent);
   }
 
-  StudentState _eitherDoneMessageOrErrorState(
-      Either<Failure, Unit> either, String message) {
-    return either.fold(
+  FutureOr<void> _reloadStudentDataEvent(
+      ReloadStudentDataEvent event, Emitter<StudentState> emit) {
+    emit(ReLoadedStudentsDataState(studentActivity: students));
+  }
+
+  FutureOr<void> _addStudentAttendanceEvent(
+      AddStudentAttendanceEvent event, Emitter<StudentState> emit) async {
+    emit(LoadingStudentState());
+
+    final failureOrDoneMessage = await addAttendance(event.studentAttendance);
+    emit(failureOrDoneMessage.fold(
       (failure) => ErrorStudentState(
         message: _mapFailureToMessage(failure),
       ),
-      (_) => MessageStudentState(message: message),
-    );
+      (_) => MessageAddStudentsAttendanceState(
+          message: "تم التحضير بنجاح"),
+    ));
+    // emit(EmitNull());
   }
 
-  StudentState _mapFailureOrStudentsToState(
-      Either<Failure, List<StudentsClassClass>> either) {
-    return either.fold(
+  FutureOr<void> _addStudentAssignmentEvent(
+      AddStudentAssignmentEvent event, Emitter<StudentState> emit) async {
+    emit(LoadingStudentState());
+    final failureOrDoneMessage = await addAssignment(event.studentAssignment);
+    emit(failureOrDoneMessage.fold(
+      (failure) => ErrorStudentState(
+        message: _mapFailureToMessage(failure),
+      ),
+      (_) => MessageAddStudentsAssignmentState(
+          message: ADD_STUDENT_SUCCESS_MESSAGE),
+    ));
+  }
+
+  FutureOr<void> _getStudentClassEvent(
+      GetStudentClassEvent event, Emitter<StudentState> emit) async {
+    emit(LoadingStudentState());
+    final failureOrDoneMessage = await getClass();
+    emit(failureOrDoneMessage.fold(
       (failure) => ErrorStudentState(message: _mapFailureToMessage(failure)),
       (studentsClass) => LoadedStudentsState(
         studentsClassClass: studentsClass,
       ),
+    ));
+  }
+
+  FutureOr<void> _addStudentMonthlyTestDegreeEvent(
+      AddStudentMonthlyTestDegreeEvent event,
+      Emitter<StudentState> emit) async {
+    emit(LoadingStudentState());
+    final failureOrDoneMessage =
+        await addMonthTestDigree(event.studentMonthlyTest);
+
+    emit(failureOrDoneMessage.fold(
+      (failure) => ErrorStudentState(
+        message: _mapFailureToMessage(failure),
+      ),
+      (_) =>
+          MessageStudentMonthlyTestState(message: "تم رفع درجة الاختبار بنجاح"),
+    ));
+  }
+
+  FutureOr<void> _addStudentBehaviorDataEvent(
+      AddStudentBehaviorDataEvent event, Emitter<StudentState> emit) async {
+    emit(LoadingStudentState());
+    final failureOrDoneMessage = await addBehavior(event.student);
+    emit(failureOrDoneMessage.fold(
+      (failure) => ErrorStudentState(
+        message: _mapFailureToMessage(failure),
+      ),
+      (_) => MessageAddStudentBehaviourState(message: "تم رفع السلوك بنجاح"),
+    ));
+  }
+
+  FutureOr<void> _getStudentDataEvent(
+      GetStudentDataEvent event, Emitter<StudentState> emit) async {
+    emit(LoadingStudentState());
+    final failureOrDoneMessage = await getStudentData(event.idClass);
+
+    failureOrDoneMessage.fold(
+      (failure) =>
+          emit(ErrorStudentState(message: _mapFailureToMessage(failure))),
+      (studentsData) {
+        students = studentsData; // تعيين البيانات المسترجعة في `students`
+        emit(LoadedStudentsDataState(studentActivity: studentsData));
+      },
     );
   }
 
@@ -76,101 +145,4 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
         return "Unexpected Error , Please try again later .";
     }
   }
-
-
-  FutureOr<void> _reloadStudentDataEvent(ReloadStudentDataEvent event, Emitter<StudentState> emit) {
- emit(ReLoadedStudentsDataState(studentActivity: students));
-  }
-
-  FutureOr<void> _addStudentAttendanceEvent(
-      AddStudentAttendanceEvent event, Emitter<StudentState> emit) async {
-    emit(LoadingStudentState());
-   
-    final failureOrDoneMessage =
-        await addAttendance(event.studentAttendance);
-    emit(
-          failureOrDoneMessage.fold(
-      (failure) => ErrorStudentState(
-        message: _mapFailureToMessage(failure),
-      ),
-      (_) => MessageAddStudentsAttendanceState(message: ADD_STUDENT_SUCCESS_MESSAGE),
-    )
-    );
-    // emit(EmitNull());
-    
-  }
-
-  FutureOr<void> _addStudentAssignmentEvent(
-      AddStudentAssignmentEvent event, Emitter<StudentState> emit) async {
-    emit(LoadingStudentState());
-    final failureOrDoneMessage = await addAssignment(event.studentAssignment);
-    emit(
-      failureOrDoneMessage.fold(
-      (failure) => ErrorStudentState(
-        message: _mapFailureToMessage(failure),
-      ),
-      (_) => MessageAddStudentsAssignmentState(message: ADD_STUDENT_SUCCESS_MESSAGE),
-    )
-
-      // _eitherDoneMessageOrErrorState(
-      //     failureOrDoneMessage, ADD_STUDENT_SUCCESS_MESSAGE),
-    );
-    
-  }
-
-  FutureOr<void> _getStudentClassEvent(
-      GetStudentClassEvent event, Emitter<StudentState> emit) async {
-    emit(LoadingStudentState());
-    final failureOrDoneMessage = await getClass();
-     emit(
-      _mapFailureOrStudentsToState(failureOrDoneMessage),
-    );
-  }
-
-  FutureOr<void> _addStudentMonthlyTestDegreeEvent(
-      AddStudentMonthlyTestDegreeEvent event,
-      Emitter<StudentState> emit) async {
-    emit(LoadingStudentState());
-    final failureOrDoneMessage = await addMonthTestDigree(event.studentMonthlyTest);
-    
-    emit(
-      _eitherDoneMessageOrErrorState(
-          failureOrDoneMessage, ADD_STUDENT_SUCCESS_MESSAGE),
-    );
-  }
-
-  FutureOr<void> _addStudentBehaviorDataEvent(
-      AddStudentBehaviorDataEvent event, Emitter<StudentState> emit) async {
-    emit(LoadingStudentState());
-    final failureOrDoneMessage = await addBehavior(event.student);
-    emit(
-      _eitherDoneMessageOrErrorState(
-          failureOrDoneMessage, ADD_STUDENT_SUCCESS_MESSAGE),
-    );
-  }
-
-  FutureOr<void> _getStudentDataEvent(
-      GetStudentDataEvent event, Emitter<StudentState> emit) async {
-    emit(LoadingStudentState());
-    final failureOrDoneMessage = await getStudentData(event.idClass);
-    
-    // emit(
-    //   failureOrDoneMessage.fold(
-    //   (failure) => ErrorStudentState(message: _mapFailureToMessage(failure)),
-    //   (studentsData) => LoadedStudentsDataState(
-    //     studentActivity: studentsData,
-    //   ),
-    // )
-    // );
-     failureOrDoneMessage.fold(
-    (failure) => emit(ErrorStudentState(message: _mapFailureToMessage(failure))),
-    (studentsData) {
-      students = studentsData; // تعيين البيانات المسترجعة في `students`
-      emit(LoadedStudentsDataState(studentActivity: studentsData));
-    },
-  );
-
-  }
-
-
 }

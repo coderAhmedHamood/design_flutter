@@ -8,6 +8,8 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../../screen/tabbar/Notification_class.dart';
 
+import '../../../../account/data/model/stor.dart';
+import '../../../../student/domain/entities/student.dart';
 import '../../../domain/usecases/get_all_notification.dart';
 import 'Notifications_event.dart';
 import 'Notifications_state.dart';
@@ -34,6 +36,13 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       else if (event is GetValueNotificationBarEvent) {
         NotificationHome.assignment = 34;
         NotificationHome.notifications = 26;
+          UserData.setUserDataValues(11, "ابو العرب", "12345", "email", "مدير");
+          TeacherData teacherData = TeacherData('رياضيات', [
+  StudentsClassClass(id: 1, name: 'الخامس'),
+  StudentsClassClass(id: 2, name: 'السادس'),
+  StudentsClassClass(id: 3, name: 'السابع'),
+]);
+          UserData.setTeacherData(teacherData);
         emit(GetValueNotificationBarState());
       }
        else if (event is ReadValueNotificationBarEvent) {

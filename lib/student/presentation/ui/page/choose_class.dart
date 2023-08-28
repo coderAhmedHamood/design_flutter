@@ -24,7 +24,8 @@ class ChooseClassScreen extends StatelessWidget {
               ),
               _WidgetTitle(),
               SizedBox(height: 40),
-              WidgetRowClass(),
+              StudentClassListWidget(),
+              // WidgetRowClass(),
             ],
           ),
         ),
@@ -79,14 +80,15 @@ class ChooseClassScreen extends StatelessWidget {
     );
   }
 
-  Widget WidgetRowClass() {
-    return BlocBuilder<StudentBloc, StudentState>(
-      builder: (context, state) {
-        if (state is LoadedStudentsState) {
-          studentsClass = state.studentsClassClass;
-        }
-        return StudentClassListWidget(studentsClassClass: studentsClass);
-      },
-    );
-  }
+  // Widget WidgetRowClass() {
+  //   return BlocBuilder<StudentBloc, StudentState>(
+  //     builder: (context, state) {
+  //       if (state is LoadedStudentsState) {
+  //         studentsClass = state.studentsClassClass;
+          
+  //       }
+  //       return StudentClassListWidget(studentsClassClass: studentsClass);
+  //     },
+  //   );
+  // }
 }

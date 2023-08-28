@@ -23,10 +23,10 @@ class BranchModel extends Branch {
         );
  
  factory BranchModel.fromJson(Map<String, dynamic> json) {
-    dynamic id = json['id'];
-    int parsedId = (id is int) ? id : int.parse(id);
+   
+   
     return BranchModel(
-      id: parsedId,
+      id:  json['id'],
       title: json['title'],
       location: json['location'],
       likes: json['likes'],

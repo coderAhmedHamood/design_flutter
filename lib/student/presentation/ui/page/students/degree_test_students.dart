@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../../../account/data/model/stor.dart';
 import '../../../../../base/alart.dart';
 import '../../../../domain/entities/student.dart';
 import '../../../bloc/up_data_student/Student_event.dart';
 import '../../../bloc/up_data_student/student_bloc.dart';
 import '../../../bloc/up_data_student/student_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../widgets/title_body.dart';
 
 bool chickGetData = false; // تعريف المتغير خارج الصنف
 List<StudentActivityClass> students = [];
@@ -90,8 +93,7 @@ class _DegreeTestStudentsState extends State<DegreeTestStudentsScreen> {
                         print("accept");
                         print(grade);
                         setState(() {
-                          students[index].degree =
-                              grade; // تحديث درجة الطالب باستخدام الفهرس
+                          students[index].degreeMonthTest =grade; // تحديث درجة الطالب باستخدام الفهرس
                         });
                         Navigator.of(context).pop(); // إغلاق الـ dialog
                       },
@@ -112,7 +114,6 @@ class _DegreeTestStudentsState extends State<DegreeTestStudentsScreen> {
       },
     );
   }
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<StudentBloc, StudentState>(builder: (context, state) {
@@ -120,9 +121,10 @@ class _DegreeTestStudentsState extends State<DegreeTestStudentsScreen> {
         final studentBloc =
             context.read<StudentBloc>(); // Obtain the bloc instance
         final state = studentBloc.state; // Obtain the current state
-        if (state is MessageAddStudentsAttendanceState) {
+        if (state is MessageStudentMonthlyTestState) {
+        
           SnackbarService.showSuccessSnackbar(state.message);
-          print("object%%%%%%%%%%%%");
+       
           BlocProvider.of<StudentBloc>(context).add(ReloadStudentDataEvent());
         }
       });
@@ -160,11 +162,37 @@ class _DegreeTestStudentsState extends State<DegreeTestStudentsScreen> {
         ),
         body: Column(
           children: [
-            titleBody(),
+            TitleBodyWidget( title: 'اختبارات الصف ',),
             SizedBox(
               height: 5,
             ),
-            Expanded(
+         _WidgetListMonthTest(),
+
+        
+
+
+          ],
+        ),
+        floatingActionButton: 
+            students.any((student) => student.degreeMonthTest != 0.0)?
+                FloatingActionButton(
+                  onPressed: () {
+                    List<StudentActivityClass> studentsTestDegree = students
+                        .where((student) => student.degreeMonthTest != 0.0)
+                        .toList();
+
+                    BlocProvider.of<StudentBloc>(context).add(
+                        AddStudentMonthlyTestDegreeEvent(
+                            studentMonthlyTest: studentsTestDegree));
+                  },
+                  child: Icon(Icons.upload),
+                ):Container()
+      );
+    });
+  }
+
+ Widget _WidgetListMonthTest(){
+  return    Expanded(
               child: ListView.builder(
                 itemCount: students.length,
                 itemBuilder: (context, index) {
@@ -211,12 +239,12 @@ class _DegreeTestStudentsState extends State<DegreeTestStudentsScreen> {
                               Row(
                                 children: [
                                   Text(
-                                    students[index].degree.toString(),
+                                    students[index].degreeMonthTest.toString(),
                                     style: TextStyle(
-                                        color: students[index].degree > 15
+                                        color: students[index].degreeMonthTest > 15
                                             ? Colors.green
-                                            : students[index].degree > 0 &&
-                                                    students[index].degree < 15
+                                            : students[index].degreeMonthTest > 0 &&
+                                                    students[index].degreeMonthTest < 15
                                                 ? Colors.orange
                                                 : Colors.red,
                                         fontSize: 18,
@@ -241,73 +269,7 @@ class _DegreeTestStudentsState extends State<DegreeTestStudentsScreen> {
                   );
                 },
               ),
-            ),
-          ],
-        ),
-      );
-    });
-  }
+            );
 
-  Widget titleBody() {
-    return Container(
-      decoration: BoxDecoration(
-        color: Color.fromARGB(255, 22, 153, 98),
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(50),
-          bottomRight: Radius.circular(50),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            offset: Offset(0, 2),
-            blurRadius: 4,
-          ),
-        ],
-      ),
-      margin: EdgeInsets.all(16),
-      padding: EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            ' اختبارات الصف الثالث ابتدائي',
-            style: TextStyle(
-              fontSize: 28,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 8),
-          Text(
-            'التربية الإسلامية',
-            style: TextStyle(
-              fontSize: 24,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 16),
-          Row(
-            // crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              if (students.any((student) => student.degree != 0.0))
-                FloatingActionButton(
-                  onPressed: () {
-                    List<StudentActivityClass> studentsTestDegree = students
-                        .where((student) => student.degree != 0.0)
-                        .toList();
-
-                    BlocProvider.of<StudentBloc>(context).add(
-                        AddStudentAttendanceEvent(
-                            studentAttendance: studentsTestDegree));
-                  },
-                  child: Icon(Icons.upload),
-                ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
+ }
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_design/student/presentation/bloc/up_data_student/Student_event.dart';
+import 'package:flutter_design/student/presentation/ui/widgets/title_body.dart';
+import '../../../../../account/data/model/stor.dart';
 import '../../../../../base/alart.dart';
 import '../../../../domain/entities/student.dart';
 import '../../../bloc/up_data_student/student_bloc.dart';
@@ -89,7 +91,7 @@ class _HomeWorkStudentsState extends State<HomeWorkStudentsScreen> {
                         print("accept");
                         print(grade);
                         setState(() {
-                          students[index].degree =
+                          students[index].degreeHomeWork =
                               grade; // تحديث درجة الطالب باستخدام الفهرس
                         });
                         Navigator.of(context).pop(); // إغلاق الـ dialog
@@ -161,7 +163,7 @@ class _HomeWorkStudentsState extends State<HomeWorkStudentsScreen> {
           ),
           body: Column(
             children: [
-              _titleBody(),
+              TitleBodyWidget(title: "واجبات الصف "),
               SizedBox(height: 5),
               Expanded(
                 child: ListView.builder(
@@ -209,12 +211,12 @@ class _HomeWorkStudentsState extends State<HomeWorkStudentsScreen> {
                                 Row(
                                   children: [
                                     Text(
-                                      students[index].degree.toString(),
+                                      students[index].degreeHomeWork.toString(),
                                       style: TextStyle(
-                                            color: students[index].degree > 15
+                                            color: students[index].degreeHomeWork > 15
                                             ? Colors.green
-                                            : students[index].degree > 0 &&
-                                                    students[index].degree < 15
+                                            : students[index].degreeHomeWork > 0 &&
+                                                    students[index].degreeHomeWork < 15
                                                 ? Colors.orange
                                                 : Colors.red,
                                           fontSize: 18,
@@ -242,74 +244,22 @@ class _HomeWorkStudentsState extends State<HomeWorkStudentsScreen> {
               ),
             ],
           ),
+          floatingActionButton: 
+              students.any((student) => student.degreeHomeWork != 0.0)?
+                FloatingActionButton(
+                  onPressed: () {
+                    List<StudentActivityClass> studentsWithDegree = students
+                        .where((student) => student.degreeHomeWork != 0.0)
+                        .toList();
+                    BlocProvider.of<StudentBloc>(context).add(
+                        AddStudentAssignmentEvent(
+                            studentAssignment: studentsWithDegree));
+                  },
+                  child: Icon(Icons.upload),
+                ):Container()
         );
       },
     );
   }
 
-  Widget _titleBody() {
-    return Container(
-      decoration: BoxDecoration(
-        color: Color.fromARGB(255, 22, 153, 98),
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(50),
-          bottomRight: Radius.circular(50),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            offset: Offset(0, 2),
-            blurRadius: 4,
-          ),
-        ],
-      ),
-      margin: EdgeInsets.all(16),
-      padding: EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            'واجبات الصف الثالث ابتدائي',
-            style: TextStyle(
-              fontSize: 28,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 8),
-          Text(
-            'التربية الإسلامية',
-            style: TextStyle(
-              fontSize: 24,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 16),
-          Row(
-            // crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              if (students.any((student) => student.degree != 0.0))
-                FloatingActionButton(
-                  onPressed: () {
-                    List<StudentActivityClass> studentsWithDegree = students
-                        .where((student) => student.degree != 0.0)
-                        .toList();
-                    BlocProvider.of<StudentBloc>(context).add(
-                        AddStudentAssignmentEvent(
-                            studentAssignment: studentsWithDegree));
-
-                    // for (var student in studentsWithDegree) {
-                    //   print('Name: ${student.name}, Degree: ${student.degree}, ID: ${student.id}');
-                    // }
-                  },
-                  child: Icon(Icons.upload),
-                ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
 }

@@ -14,8 +14,9 @@ abstract class BranchRemoteDataSource {
       location: 'تعز شارع التحرير',
       likes: 10,
       isLikes:true,
-       imageUrl: 'assets/school/school1.jpg',
-      // imageUrl: 'assets/school/school1.jpg',
+      imageUrl: 'assets/school/school3.jpg',
+       
+      
     ),
  BranchModel(
       title: 'فرع الاربعين',
@@ -51,10 +52,10 @@ class BranchRemoteDataSourceImpl implements BranchRemoteDataSource {
   Future<List<BranchModel>> getAllBranch() async {
     print("getAllBranch");
     
-    final response = await client.get(
-      Uri.parse(URLs.URL_GetPosts),
-      // headers: {"Content-Type": "application/json"},
-    );
+    // final response = await client.get(
+    //   Uri.parse(URLs.URL_GetPosts),
+    //   // headers: {"Content-Type": "application/json"},
+    // );
 
     if (200 == 200) {
     // if (response.statusCode == 200) {

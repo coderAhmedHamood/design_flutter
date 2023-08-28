@@ -1,18 +1,15 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_design/student/domain/entities/student.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../account/data/model/stor.dart';
 import '../../bloc/up_data_student/Student_event.dart';
 import '../../bloc/up_data_student/student_bloc.dart';
 import '../page/dashboard_student_screen.dart';
 
 class StudentClassListWidget extends StatelessWidget {
-  final List<StudentsClassClass> studentsClassClass;
-  StudentClassListWidget({
-    Key? key,
-    required this.studentsClassClass,
-  }) : super(key: key);
+  final List<StudentsClassClass> studentsClassClass =
+      UserData.teacherData!.classes;
+  StudentClassListWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,49 +19,47 @@ class StudentClassListWidget extends StatelessWidget {
         itemBuilder: (context, index) {
           final studentsClass = studentsClassClass[index];
 
-       
           return InkWell(
             onTap: () {
-     
-            print(studentsClass.id);
-            print(studentsClass.name);
-               BlocProvider.of<StudentBloc>(context)
-                            .add(GetStudentDataEvent(idClass:studentsClass.id! ));
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => DashboardStudentScreen())
-        );
-               },
+          UserData.setSubject(studentsClass.name);
+              BlocProvider.of<StudentBloc>(context)
+                  .add(GetStudentDataEvent(idClass: studentsClass.id!));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => DashboardStudentScreen()));
+            },
             child: Ink(
               color: Colors.transparent,
               child: Column(
                 children: [
-                  SizedBox(height: 15,),
+                  SizedBox(
+                    height: 15,
+                  ),
                   Container(
-                              height: 60,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.2),
-                                    blurRadius: 5,
-                                    offset: Offset(0, 3),
-                                  ),
-                                ],
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    studentsClass.name,
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          studentsClass.name,
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -108,33 +103,4 @@ class StudentClassListWidget extends StatelessWidget {
   //         );
 
 
-
-
-// Container(
-//                           height: 60,
-//                           decoration: BoxDecoration(
-//                             color: Colors.white,
-//                             borderRadius: BorderRadius.circular(15),
-//                             boxShadow: [
-//                               BoxShadow(
-//                                 color: Colors.black.withOpacity(0.2),
-//                                 blurRadius: 5,
-//                                 offset: Offset(0, 3),
-//                               ),
-//                             ],
-//                           ),
-//                           child: Row(
-//                             mainAxisAlignment: MainAxisAlignment.center,
-//                             children: [
-//                               Text(
-//                                 studentsClass.name,
-//                                 style: TextStyle(
-//                                   fontSize: 20,
-//                                   fontWeight: FontWeight.bold,
-//                                 ),
-//                               ),
-//                             ],
-//                           ),
-//                         ),
-
-
+ 

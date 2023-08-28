@@ -27,7 +27,8 @@ class DashboardScreen extends StatelessWidget {
     bool permissions = false;
 
     if (isUserLoggedIn) {
-      String permission = UserData.permissions;
+      // TeacherData permission = UserData.teacherData;
+      String permission = UserData.permissions.toString();
       if (permission.contains("مدير")) {
         permissions = true;
       } else
@@ -48,10 +49,10 @@ class DashboardScreen extends StatelessWidget {
                       subtitle: 'العمليات المختصة بالطالب ',
                       color: Color.fromARGB(255, 145, 147, 148),
                       onTap: () {
-                        print("PPPPPPPPPPPPPPPPPP");
-                        BlocProvider.of<StudentBloc>(context)
-                            .add(GetStudentClassEvent());
-                        print("PPPPPPPPPPPPPPPPPP");
+                        // print("PPPPPPPPPPPPPPPPPP");
+                        // BlocProvider.of<StudentBloc>(context)
+                        //     .add(GetStudentClassEvent());
+                        // print("PPPPPPPPPPPPPPPPPP");
                         Navigator.push(
                           context,
                           MaterialPageRoute(

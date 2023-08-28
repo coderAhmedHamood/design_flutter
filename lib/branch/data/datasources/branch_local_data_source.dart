@@ -11,7 +11,7 @@ abstract class BranchLocalDataSource {
   Future<Unit> cacheBranchs(List<BranchModel> branchModels);
 }
 
-const CACHED_BRANCHS = "CACHED_BRANCH";
+const CACHED_BRANCHS = "CACHED_BRANCHES";
 
 class BranchLocalDataSourceImpl implements BranchLocalDataSource {
   final SharedPreferences sharedPreferences;
@@ -19,25 +19,44 @@ class BranchLocalDataSourceImpl implements BranchLocalDataSource {
   BranchLocalDataSourceImpl({required this.sharedPreferences});
   @override
   Future<Unit> cacheBranchs(List<BranchModel> branchModels) {
+    print("===================>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     print("datasources branch");
+    print("===================>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     
     List branchModelsToJson = branchModels
         .map<Map<String, dynamic>>((branchModel) => branchModel.toJson())
         .toList();
     sharedPreferences.setString(CACHED_BRANCHS, json.encode(branchModelsToJson));
+
+
+      final encodedBranchModels = sharedPreferences.getString(CACHED_BRANCHS);
+        print("=================!!!!!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>>>>>>>");
+    print(encodedBranchModels);
+    print("=================!!!!!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>>>>>>>");
+
     return Future.value(unit);
   }
 
   @override
   Future<List<BranchModel>> getCachedBranchs() {
-    print("datasources  branch");
     
     final jsonString = sharedPreferences.getString(CACHED_BRANCHS);
     if (jsonString != null) {
-      List decodeJsonData = json.decode(jsonString);
-      List<BranchModel> jsonToBranchModels = decodeJsonData
-          .map<BranchModel>((jsonBranchModel) => BranchModel.fromJson(jsonBranchModel))
-          .toList();
+    
+      List<dynamic> decodeJsonData = json.decode(jsonString);
+    print("=============000000000000000======>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+    print(decodeJsonData);
+    print("=============000000000000000======>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+      // List<BranchModel> jsonToBranchModels = decodeJsonData
+      //     .map<BranchModel>((jsonBranchModel) => BranchModel.fromJson(jsonBranchModel))
+      //     .toList();
+         List<BranchModel> jsonToBranchModels = decodeJsonData
+        .map<BranchModel>((jsonBranchModel) => BranchModel.fromJson(jsonBranchModel))
+        .toList();
+    
+    print("===================>>>>>>-------------->>>>>>>>>>>>>>>>>>>>>");
+          print(jsonToBranchModels);
+    print("===================>>>>>>-------------->>>>>>>>>>>>>>>>>>>>>");
       return Future.value(jsonToBranchModels);
     } else {
       throw EmptyCacheException();

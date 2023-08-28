@@ -45,37 +45,6 @@ class StudentModel extends Student {
   }
 }
 
-// class StudentAttendanceModel extends StudentsAttendanceClass {
-//   StudentAttendanceModel(
-//       {int? id,
-//       required String name,
-//       required bool isPresent,
-//       required bool isSick})
-//       : super(
-//           id: id,
-//           name: name,
-//           isPresent: isPresent,
-//           isSick: isSick,
-//         );
-
-//   factory StudentAttendanceModel.fromJson(Map<String, dynamic> json) {
-//     return StudentAttendanceModel(
-//         id: json['id'],
-//         name: json['name'],
-//         isPresent: json['isPresent'],
-//         isSick: json['isSick']);
-//   }
-
-//   Map<String, dynamic> toJson() {
-//     return {
-//       'id': id,
-//       'name': name,
-//       'isPresent': isPresent,
-//       'isSick': isSick,
-//     };
-//   }
-// }
-
 class StudentClassModel extends StudentsClassClass {
   StudentClassModel({
     int? id,
@@ -100,18 +69,23 @@ class StudentClassModel extends StudentsClassClass {
 
 
 class StudentActivityModel extends StudentActivityClass {
+    
   StudentActivityModel({
      required int id,
     required String name,
     required bool isPresent,
     required bool isSick,
-    required double degree,
+    required double degreeHomeWork,
+    required double degreeMonthTest,
+         BehaviourStudentsClass? behaviourStudentsClass,
   }) : super(
           id: id,
           name: name,
           isPresent: isPresent,
           isSick: isSick,
-          degree: degree,
+          degreeHomeWork: degreeHomeWork,
+          degreeMonthTest: degreeMonthTest,
+           behaviourStudentsClass: behaviourStudentsClass,
         );
 
   factory StudentActivityModel.fromJson(Map<String, dynamic> json) {
@@ -120,10 +94,13 @@ class StudentActivityModel extends StudentActivityClass {
       name: json['name'],
       isPresent: json['isPresent'],
       isSick: json['isSick'],
-      degree: json['degree'],
+      degreeHomeWork: json['degreeHomeWork'],
+      degreeMonthTest: json['degreeMonthTest'],
+ behaviourStudentsClass: json['behaviourStudentsClass'] != null
+          ? BehaviourStudentsClass.fromJson(json['behaviourStudentsClass'])
+          : null,
     );
   }
-
 
   Map<String, dynamic> toJson() {
     return {
@@ -131,7 +108,11 @@ class StudentActivityModel extends StudentActivityClass {
       'name': name,
       'isPresent': isPresent,
       'isSick': isSick,
-      'degree': degree,
+      'degreeHomeWork': degreeHomeWork,
+      'degreeMonthTest': degreeMonthTest,
+'behaviourStudentsClass': behaviourStudentsClass != null
+          ? behaviourStudentsClass!.toJson()
+          : null,
     };
   }
 }

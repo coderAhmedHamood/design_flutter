@@ -30,7 +30,6 @@ class LoadedStudentsDataState extends StudentState {
   List<Object> get props => [studentActivity];
 }
 
-
 class ReLoadedStudentsDataState extends StudentState {
   final List<StudentActivityClass> studentActivity;
   ReLoadedStudentsDataState({required this.studentActivity});
@@ -57,6 +56,13 @@ class MessageStudentState extends StudentState {
   List<Object> get props => [message];
 }
 
+class MessageStudentMonthlyTestState extends StudentState {
+  final String message;
+  MessageStudentMonthlyTestState({required this.message});
+  @override
+  List<Object> get props => [message];
+}
+
 class MessageAddStudentsAssignmentState extends StudentState {
   final String message;
 
@@ -66,11 +72,18 @@ class MessageAddStudentsAssignmentState extends StudentState {
   List<Object> get props => [message];
 }
 
- 
 class MessageAddStudentsAttendanceState extends StudentState {
   final String message;
 
   MessageAddStudentsAttendanceState({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}
+class MessageAddStudentBehaviourState extends StudentState {
+  final String message;
+
+  MessageAddStudentBehaviourState({required this.message});
 
   @override
   List<Object> get props => [message];

@@ -23,9 +23,11 @@ class BranchRepositoryImpl implements BranchRepository {
   Future<Either<Failure, List<Branch>>> getAllBranch() async {
     if (await networkInfo.isConnected) {
       try {
-        print("repositorise ..........getAllBranch..........");
+        print("....................stor data branch.......................");
         
         final remoteBranch = await remoteDataSource.getAllBranch();
+        // print(remoteBranch);
+        print("....................this  data branch.......................");
         localDataSource.cacheBranchs(remoteBranch);
         //hare store the data to cash
         return Right(remoteBranch);
@@ -35,7 +37,7 @@ class BranchRepositoryImpl implements BranchRepository {
     } else {
       try {
         
-        print("repositorise ..............getCachedBranchs......");
+        print(".................tt...stor data branch.......................");
         
         final localBranch = await localDataSource.getCachedBranchs();
         return Right(localBranch);

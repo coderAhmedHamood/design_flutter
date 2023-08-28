@@ -115,7 +115,9 @@ class StudentsRepositoryImpl implements StudentsRepository {
         name: student.name,
         isPresent: student.isPresent,
         isSick: student.isSick,
-        degree: student.degree,
+        degreeHomeWork: student.degreeHomeWork,
+        degreeMonthTest: student.degreeMonthTest,
+      
       );
     }).toList();
 
@@ -133,7 +135,9 @@ class StudentsRepositoryImpl implements StudentsRepository {
         name: student.name,
         isPresent: student.isPresent,
         isSick: student.isSick,
-        degree: student.degree,
+        degreeHomeWork: student.degreeHomeWork,
+        degreeMonthTest: student.degreeMonthTest,
+        
       );
     }).toList();
 
@@ -152,7 +156,8 @@ class StudentsRepositoryImpl implements StudentsRepository {
         name: student.name,
         isPresent: student.isPresent,
         isSick: student.isSick,
-        degree: student.degree,
+        degreeHomeWork: student.degreeHomeWork,
+        degreeMonthTest: student.degreeMonthTest,
       );
     }).toList();
         return await _getMessage(() {

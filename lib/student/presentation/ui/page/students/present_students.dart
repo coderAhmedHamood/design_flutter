@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../account/data/model/stor.dart';
 import '../../../../../base/alart.dart';
 import '../../../../domain/entities/student.dart';
 import '../../../bloc/up_data_student/Student_event.dart';
@@ -26,7 +27,7 @@ class _AttendanceStudentsState extends State<AttendanceStudentsScreen> {
           final studentBloc =
               context.read<StudentBloc>(); // Obtain the bloc instance
           final state = studentBloc.state; // Obtain the current state
-          if (state is MessageStudentState) {
+          if (state is MessageAddStudentsAttendanceState) {
             SnackbarService.showSuccessSnackbar(state.message);
             BlocProvider.of<StudentBloc>(context).add(ReloadStudentDataEvent());
           }
@@ -202,7 +203,7 @@ class _AttendanceStudentsState extends State<AttendanceStudentsScreen> {
       child: Column(
         children: [
           Row(
-             children: [
+            children: [
               Padding(
                 padding: const EdgeInsets.only(left: 12),
                 child: Container(
@@ -214,15 +215,13 @@ class _AttendanceStudentsState extends State<AttendanceStudentsScreen> {
                       Text(
                         "م",
                         style: TextStyle(
-                            
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold),
+                            fontSize: 15, fontWeight: FontWeight.bold),
                         textAlign: TextAlign.right,
                       ),
                       Text(
                         "ح",
-                        style:
-                            TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold),
                         textAlign: TextAlign.right,
                       ),
                     ],
@@ -265,7 +264,7 @@ class _AttendanceStudentsState extends State<AttendanceStudentsScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            'تحضير الصف الثالث ابتدائي',
+            'تحضير الصف ${UserData.className} ',
             style: TextStyle(
               fontSize: 28,
               color: Colors.white,
@@ -274,7 +273,7 @@ class _AttendanceStudentsState extends State<AttendanceStudentsScreen> {
           ),
           SizedBox(height: 8),
           Text(
-            'التربية الإسلامية',
+            UserData.teacherData!.subject,
             style: TextStyle(
               fontSize: 24,
               color: Colors.white,
@@ -336,8 +335,9 @@ class _AttendanceStudentsState extends State<AttendanceStudentsScreen> {
                         "presentStudents screen    [[[[[[[[[[[[[[]]]]]]]]]]]]]]");
                     // print(presentStudents);
                     BlocProvider.of<StudentBloc>(context).add(
-                        AddStudentMonthlyTestDegreeEvent(
-                            studentMonthlyTest: presentStudents));
+                        AddStudentAttendanceEvent(
+                            studentAttendance: presentStudents));
+                            
                   },
                   child: Icon(Icons.upload),
                 ),
