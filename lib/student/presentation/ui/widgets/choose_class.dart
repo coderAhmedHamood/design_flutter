@@ -2,6 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_design/student/domain/entities/student.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../bloc/up_data_student/Student_event.dart';
+import '../../bloc/up_data_student/student_bloc.dart';
+import '../page/dashboard_student_screen.dart';
 
 class StudentClassListWidget extends StatelessWidget {
   final List<StudentsClassClass> studentsClassClass;
@@ -21,7 +25,14 @@ class StudentClassListWidget extends StatelessWidget {
        
           return InkWell(
             onTap: () {
-          print(studentsClass.id);
+     
+            print(studentsClass.id);
+            print(studentsClass.name);
+               BlocProvider.of<StudentBloc>(context)
+                            .add(GetStudentDataEvent(idClass:studentsClass.id! ));
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => DashboardStudentScreen())
+        );
                },
             child: Ink(
               color: Colors.transparent,

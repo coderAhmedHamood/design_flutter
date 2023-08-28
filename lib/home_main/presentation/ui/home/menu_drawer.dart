@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../account/ui/screen/login_screen.dart';
-import '../../../../account/ui/screen/register_screen.dart';
-
 class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -26,57 +23,7 @@ class MenuPage extends StatelessWidget {
                       fontSize: 25,
                     ),
                   ),
-                  SizedBox(
-                    width: 40,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                            builder: (context) => RegisterScreen()),
-                      );
-                    },
-                    child: Column(
-                      children: [
-                        Icon(
-                          Icons.local_gas_station_rounded,
-                          size: 30,
-                        ),
-                        Text(
-                          'Register',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: 40,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
-                      );
-                    },
-                    child: Column(
-                      children: [
-                        Icon(
-                          Icons.login,
-                          size: 30,
-                        ),
-                        Text(
-                          'Login',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+          
                 ],
               ),
             ),

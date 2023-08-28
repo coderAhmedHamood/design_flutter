@@ -12,35 +12,46 @@ abstract class StudentEvent extends Equatable {
 
 
 class GetStudentClassEvent extends StudentEvent {}
-
-
-class AddStudentAttendanceDataEvent extends StudentEvent {
-
-
-    final StudentsAttendanceClass studentsAttendanceClass;
-  AddStudentAttendanceDataEvent({
-    required this.studentsAttendanceClass,
-  });
-  @override
-  List<Object> get props => [studentsAttendanceClass];
-}
-
-class AddStudentMonthlyExamGradesEvent extends StudentEvent {
-    final Student student;
-  AddStudentMonthlyExamGradesEvent({
-    required this.student,
+class ReloadStudentDataEvent extends StudentEvent {}
+class GetStudentDataEvent extends StudentEvent {
+  final int idClass;
+  GetStudentDataEvent({
+    required this.idClass,
   });
     @override
-  List<Object> get props => [student];
+  List<Object> get props => [idClass];
+}
+
+
+class AddStudentAttendanceEvent extends StudentEvent {
+
+
+      final List<StudentActivityClass> studentAttendance;
+  AddStudentAttendanceEvent({
+    required this.studentAttendance,
+  });
+  @override
+  List<Object> get props => [studentAttendance];
+}
+
+class AddStudentMonthlyTestDegreeEvent extends StudentEvent {
+    final List<StudentActivityClass> studentMonthlyTest;
+   
+  AddStudentMonthlyTestDegreeEvent({
+    required this.studentMonthlyTest,
+  });
+    @override
+  List<Object> get props => [studentMonthlyTest];
 }
 
 class AddStudentAssignmentEvent extends StudentEvent {
-  final Student student;
+  final List<StudentActivityClass> studentAssignment;
+   
   AddStudentAssignmentEvent({
-    required this.student,
+    required this.studentAssignment,
   });
     @override
-  List<Object> get props => [student];
+  List<Object> get props => [studentAssignment];
 }
 
 class AddStudentBehaviorDataEvent extends StudentEvent {

@@ -11,10 +11,13 @@ abstract class StudentLocalDataSource {
   Future<Unit> cacheStudents(List<StudentModel> studentModels);
   Future<List<StudentClassModel>> getCachedStudentClass();
   Future<Unit> cachedStudentClass(List<StudentClassModel> studentClassModel);
+  Future<List<StudentActivityModel>> getCachedStudentData();
+  Future<Unit> cachedStudentData(List<StudentActivityModel> studentDataModel);
 }
 
 const CACHED_STUDENTS = "CACHED_STUDENTS";
 const CACHED_STUDENTS_CLASS = "CACHED_STUDENTS_CLASS";
+const CACHED_STUDENTS_DATA = "CACHED_STUDENTS_Data";
 
 class StudentLocalDataSourceImpl implements StudentLocalDataSource {
   final SharedPreferences sharedPreferences;
@@ -70,4 +73,32 @@ class StudentLocalDataSourceImpl implements StudentLocalDataSource {
       throw EmptyCacheException();
     }
   }
+  
+  
+  
+  @override
+  Future<Unit> cachedStudentData(List<StudentActivityModel> studentDataModel) {
+    List studentModelsToJson = studentDataModel
+        .map<Map<String, dynamic>>((studentDataModel) => studentDataModel.toJson())
+        .toList();
+    sharedPreferences.setString(CACHED_STUDENTS_DATA, json.encode(studentModelsToJson));
+    return Future.value(unit);
+  }
+
+  @override
+  Future<List<StudentActivityModel>> getCachedStudentData() {
+ 
+    final jsonString = sharedPreferences.getString(CACHED_STUDENTS_DATA);
+    if (jsonString != null) {
+      List decodeJsonData = json.decode(jsonString);
+      List<StudentActivityModel> jsonToStudentModels = decodeJsonData
+          .map<StudentActivityModel>((jsonStudentModel) => StudentActivityModel.fromJson(jsonStudentModel))
+          .toList();
+      return Future.value(jsonToStudentModels);
+    } else {
+      throw EmptyCacheException();
+    }
+  }
+
+
 }

@@ -8,10 +8,11 @@ import 'package:http/http.dart' as http;
 
 abstract class StudentRemoteDataSource {
   Future<List<StudentClassModel>> getStudentClass();
-  Future<Unit> addStudentAttendance(StudentsAttendanceClass studentsAttendanceClass);
-  Future<Unit> addStudentAssignment(StudentModel studentModel);
+  Future<List<StudentActivityModel>> getStudentData(int idClass);
+  Future<Unit> addStudentAttendance(List<StudentActivityClass>  studentActivityList);
+  Future<Unit> addStudentAssignment(List<StudentActivityModel> studentActivityList);
   Future<Unit> addStudentBehavior(StudentModel studentModel);
-  Future<Unit> addStudentMonthlyExam(StudentModel studentModel);
+  Future<Unit> addStudentMonthlyTest(List<StudentActivityModel> studentActivityList);
 }
    List<StudentModel> students = [
   StudentModel(
@@ -83,7 +84,7 @@ class StudentRemoteDataSourceImpl implements StudentRemoteDataSource {
   Future<List<StudentClassModel>> getStudentClass() async {
     
     
-    final response = await client.get(
+     final response = await client.get(
       Uri.parse(URLs.URL_GetBranches),
       // headers: {"Content-Type": "application/json"},
     );
@@ -99,9 +100,9 @@ class StudentRemoteDataSourceImpl implements StudentRemoteDataSource {
       // final List<StudentModel> StudentModels = posts
           // .map<StudentModel>((jsonStudentModel) => StudentModel.fromJson(jsonStudentModel))
           // .toList();
-          print("StudentModels");
+          print("Student Class");
           print(".StudentModels");
-          print("StudentModels");
+          print("Student Class");
           List<StudentClassModel> studentClassModel=[
             StudentClassModel(name: "ahmed",id: 12),
             StudentClassModel(name: "ahm5ed",id: 13),
@@ -116,24 +117,68 @@ class StudentRemoteDataSourceImpl implements StudentRemoteDataSource {
       throw ServerException();
     }
   }
+  
+  @override
+  Future<List<StudentActivityModel>> getStudentData(int idClass) async {
+    
+    print(idClass);
+    print("idClass");
+    print(idClass);
+    print("idClass");
+    print(idClass);
+
+    final response = await client.get(
+      Uri.parse(URLs.URL_GetBranches),
+     );
+
+    if (200 == 200) {
+
+
+          List<StudentActivityModel> studentDataModel=[
+            StudentActivityModel(name: "احمد",id: 12,isPresent: false,isSick: false,degree: 0.0),
+            StudentActivityModel(name: "علي",id: 13,isPresent: false,isSick: false,degree: 0.0),
+            StudentActivityModel(name: "سيف الحداد",id: 14,isPresent: false,isSick: false,degree: 0.0),
+            StudentActivityModel(name: "قاسم محصنة",id: 16,isPresent: false,isSick: false,degree: 0.0),
+            StudentActivityModel(name: "عبداللة الرعوي",id: 19,isPresent: false,isSick: false,degree: 0.0),
+            StudentActivityModel(name: "علي",id: 13,isPresent: false,isSick: false,degree: 0.0),
+            StudentActivityModel(name: "سيف الحداد",id: 14,isPresent: false,isSick: false,degree: 0.0),
+            StudentActivityModel(name: "قاسم محصنة",id: 16,isPresent: false,isSick: false,degree: 0.0),
+            StudentActivityModel(name: "عبداللة الرعوي",id: 19,isPresent: false,isSick: false,degree: 0.0),
+            StudentActivityModel(name: "سيف قادر",id: 19,isPresent: false,isSick: false,degree: 0.0),
+          ];
+          final List<StudentActivityModel> studentData = studentDataModel.toList();
+           
+
+      return studentData;
+    } else {
+  
+      throw ServerException();
+    }
+  }
 
   @override
-  Future<Unit> addStudentAssignment(StudentModel studentModel) async {
-     final body = {
-      "city_name": studentModel.username,
+  Future<Unit> addStudentAssignment(List<StudentActivityModel> studentActivityList) async {
+    //  final body = {
+      // "city_name": studentModel.username,
           // "username": studentModel.username,
         // "time": studentModel.time,
         // "studentText": studentModel.studentText,
         // "studentImage": studentModel.studentImage,
         // "likes": studentModel.likes,
         // "islikes": studentModel.islikes,
-    };
+    // };
+    // final response =
+    //     await client.post(Uri.parse(URLs.URL_GetBranches), body: body);
+    print("------------------------------");
+    print("=========================");
+print(studentActivityList);
+    print("=========================");
+    print("------------------------------");
 
-    final response =
-        await client.post(Uri.parse(URLs.URL_GetBranches), body: body);
 
     // if (response.statusCode == 201) {
-    if (response.statusCode == 200) {
+    // if (response.statusCode == 200) {
+    if (200 == 200) {
       return Future.value(unit);
     } else {
       throw ServerException();
@@ -142,10 +187,12 @@ class StudentRemoteDataSourceImpl implements StudentRemoteDataSource {
 
 
 @override
-Future<Unit> addStudentAttendance(StudentsAttendanceClass studentsAttendanceClass) async {
- print("StudentAttendanceModel studentAttendanceModel");
+Future<Unit> addStudentAttendance(List<StudentActivityClass>  studentActivityList) async {
+ print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+ print(studentActivityList);
+ print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
  print(",,,,,,,,,,,,,,,,,,,,,,,");
- print("StudentAttendanceModel studentAttendanceModel");
+ print("data source");
   // final response = await http.post(
     
   //     Uri.parse(URLs.URL_GetPosts),
@@ -190,18 +237,23 @@ Future<Unit> addStudentAttendance(StudentsAttendanceClass studentsAttendanceClas
   }
 
   @override
-  Future<Unit> addStudentMonthlyExam(StudentModel studentModel) async {
-     final studentId = studentModel.id.toString();
-    final body = {
-      "name": studentModel.username,
-    };
+  Future<Unit> addStudentMonthlyTest(List<StudentActivityModel> studentActivityList) async {
+    //  final studentId = studentActivityList.id.toString();
+    // final body = {
+    //   "name": studentModel.username,
+    // };
 
-    final response = await client.patch(
-      Uri.parse(URLs.URL_REGISTER),
-      body: body,
-    );
+    // final response = await client.patch(
+    //   Uri.parse(URLs.URL_REGISTER),
+    //   body: body,
+    // );
+    print("#############    #######  ######");
+    print(studentActivityList);
+    print("#############    ######  #######");
+    
 
-    if (response.statusCode == 200) {
+    if (200 == 200) {
+    // if (response.statusCode == 200) {
       return Future.value(unit);
     } else {
       throw ServerException();

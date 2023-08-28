@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_design/notification/presentation/bloc/notification/Notifications_event.dart';
+import '../../../../account/data/model/stor.dart';
+import '../../../../account/ui/widget/widget_else.dart';
 import '../../../domain/entities/notification.dart';
 import '../../bloc/notification/Notifications_bloc.dart';
 import '../../bloc/notification/Notifications_state.dart';
@@ -11,6 +13,9 @@ class NotificationsScreen extends StatelessWidget {
   List<NotificationClass> notifications = [];
   @override
   Widget build(BuildContext context) {
+        bool isUserLoggedIn = UserData.id != null;
+    
+    
     return BlocBuilder<NotificationsBloc, NotificationsState>(
       builder: (context, state) {
         if (state is LoadedNotificationState) {
@@ -28,7 +33,9 @@ class NotificationsScreen extends StatelessWidget {
               
         }
 
-        return Directionality(
+        return
+        isUserLoggedIn
+        ? Directionality(
           textDirection: TextDirection.rtl, // تغيير اتجاه النصوص والعناصر
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +71,8 @@ class NotificationsScreen extends StatelessWidget {
               NotificationListWidget(notifications: notifications),
             ],
           ),
-        );
+        )
+        :PageChickLoginScreen();
       },
     );
   }

@@ -6,6 +6,7 @@ import 'package:flutter_design/student/data/datasources/student_local_data_sourc
 import 'package:flutter_design/student/data/datasources/student_remote_data_source.dart';
 import 'package:flutter_design/student/data/repositories/student_repository_impl.dart';
 import 'package:flutter_design/student/domain/repositories/students_repository.dart';
+import 'package:flutter_design/student/domain/usecases/get_Student_data.dart';
 import 'package:flutter_design/student/domain/usecases/up_assignment.dart';
 import 'package:flutter_design/student/domain/usecases/up_attendance.dart';
 import 'package:flutter_design/student/domain/usecases/up_behavior.dart';
@@ -90,18 +91,23 @@ Future<void> init() async {
       () => NotificationLocalDataSourceImpl(sharedPreferences: sl()));
 
 //! bloc  Student
-  sl.registerFactory(() => StudentBloc(
+  sl.registerFactory(
+    () => StudentBloc(
       addAttendance: sl(),
       addAssignment: sl(),
       addBehavior: sl(),
       addMonthTestDigree: sl(),
-      getClass: sl(),),);
+      getClass: sl(),
+      getStudentData: sl(),
+    ),
+  );
 //! Usecases  Student
   sl.registerLazySingleton(() => GetStudentClassUsecase(sl()));
   sl.registerLazySingleton(() => AddStudentAttendanceUsecase(sl()));
   sl.registerLazySingleton(() => AddStudentBehaviorUsecase(sl()));
   sl.registerLazySingleton(() => AddStudentAssignmentUsecase(sl()));
   sl.registerLazySingleton(() => AddStudentMonthTestUsecase(sl()));
+  sl.registerLazySingleton(() => GetStudentDataUsecase(sl()));
 //!  Repository Student
   sl.registerLazySingleton<StudentsRepository>(() => StudentsRepositoryImpl(
       remoteDataSource: sl(), localDataSource: sl(), networkInfo: sl()));

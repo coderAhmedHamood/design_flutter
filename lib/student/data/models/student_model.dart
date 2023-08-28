@@ -45,36 +45,36 @@ class StudentModel extends Student {
   }
 }
 
-class StudentAttendanceModel extends StudentsAttendanceClass {
-  StudentAttendanceModel(
-      {int? id,
-      required String name,
-      required bool isPresent,
-      required bool isSick})
-      : super(
-          id: id,
-          name: name,
-          isPresent: isPresent,
-          isSick: isSick,
-        );
+// class StudentAttendanceModel extends StudentsAttendanceClass {
+//   StudentAttendanceModel(
+//       {int? id,
+//       required String name,
+//       required bool isPresent,
+//       required bool isSick})
+//       : super(
+//           id: id,
+//           name: name,
+//           isPresent: isPresent,
+//           isSick: isSick,
+//         );
 
-  factory StudentAttendanceModel.fromJson(Map<String, dynamic> json) {
-    return StudentAttendanceModel(
-        id: json['id'],
-        name: json['name'],
-        isPresent: json['isPresent'],
-        isSick: json['isSick']);
-  }
+//   factory StudentAttendanceModel.fromJson(Map<String, dynamic> json) {
+//     return StudentAttendanceModel(
+//         id: json['id'],
+//         name: json['name'],
+//         isPresent: json['isPresent'],
+//         isSick: json['isSick']);
+//   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'isPresent': isPresent,
-      'isSick': isSick,
-    };
-  }
-}
+//   Map<String, dynamic> toJson() {
+//     return {
+//       'id': id,
+//       'name': name,
+//       'isPresent': isPresent,
+//       'isSick': isSick,
+//     };
+//   }
+// }
 
 class StudentClassModel extends StudentsClassClass {
   StudentClassModel({
@@ -93,6 +93,45 @@ class StudentClassModel extends StudentsClassClass {
     return {
       'id': id,
       'name': name,
+    };
+  }
+}
+
+
+
+class StudentActivityModel extends StudentActivityClass {
+  StudentActivityModel({
+     required int id,
+    required String name,
+    required bool isPresent,
+    required bool isSick,
+    required double degree,
+  }) : super(
+          id: id,
+          name: name,
+          isPresent: isPresent,
+          isSick: isSick,
+          degree: degree,
+        );
+
+  factory StudentActivityModel.fromJson(Map<String, dynamic> json) {
+    return StudentActivityModel(
+      id: json['id'],
+      name: json['name'],
+      isPresent: json['isPresent'],
+      isSick: json['isSick'],
+      degree: json['degree'],
+    );
+  }
+
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'isPresent': isPresent,
+      'isSick': isSick,
+      'degree': degree,
     };
   }
 }

@@ -39,18 +39,7 @@ class StudentsAttendanceClass  extends Equatable{
   @override
   List<Object?> get props => [id, name,isPresent,isSick];
 }
-
-class DegreeHomwWorkStudentsClass {
-  String name;
-  double degree;
-  int id;
-
-  DegreeHomwWorkStudentsClass({
-    required this.name,
-    required this.degree,
-    required this.id,
-  });
-}
+ 
 class StudentsClassClass extends Equatable{
   final name;
   final int? id;
@@ -63,3 +52,36 @@ class StudentsClassClass extends Equatable{
   @override
   List<Object?> get props => [id, name];
 }
+
+
+class StudentActivityClass extends Equatable {
+  int id;
+  String name;
+  bool isPresent;
+  bool isSick;
+  double degree;
+
+  StudentActivityClass({
+    required this.id,
+    required this.name,
+    required this.isPresent,
+    required this.isSick,
+    required this.degree,
+  });
+  @override
+  List<Object?> get props => [id, name,isPresent,isSick,degree];
+}
+
+List<StudentActivityClass> convertStudentsClassToAttendance(
+    List<StudentsClassClass> studentsClass) {
+  return studentsClass.map((studentClass) {
+    return StudentActivityClass(
+      id: studentClass.id!,
+      name: studentClass.name,
+      isPresent: false,
+      isSick: false,
+      degree: 0.0,
+    );
+  }).toList();
+}
+

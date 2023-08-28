@@ -70,6 +70,28 @@ class StudentsRepositoryImpl implements StudentsRepository {
   }
 
   @override
+  Future<Either<Failure, List<StudentActivityModel>>> getStudentData(
+      int idClass) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final remotePosts = await remoteDataSource.getStudentData(idClass);
+        localDataSource.cachedStudentData(remotePosts);
+        //hare store the data to cash
+        return Right(remotePosts);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      try {
+        final localPosts = await localDataSource.getCachedStudentData();
+        return Right(localPosts);
+      } on EmptyCacheException {
+        return Left(EmptyCacheFailure());
+      }
+    }
+  }
+
+  @override
   Future<Either<Failure, Unit>> addStudentBehavior(Student student) async {
     final StudentModel studentModel = StudentModel(
         username: student.username,
@@ -86,47 +108,55 @@ class StudentsRepositoryImpl implements StudentsRepository {
 
   @override
   Future<Either<Failure, Unit>> addStudentAttendance(
-      StudentsAttendanceClass studentsAttendanceClass) async {
-    final StudentAttendanceModel studentAttendanceModel =
-        StudentAttendanceModel(
-      name: studentsAttendanceClass.name,
-      isPresent: studentsAttendanceClass.isPresent,
-      isSick: studentsAttendanceClass.isSick,
-    );
+      List<StudentActivityClass>  studentActivityList) async {
+       final List<StudentActivityModel> studentAttendance = studentActivityList.map((student) {
+      return StudentActivityModel(
+        id: student.id,
+        name: student.name,
+        isPresent: student.isPresent,
+        isSick: student.isSick,
+        degree: student.degree,
+      );
+    }).toList();
 
     return await _getMessage(() {
-      return remoteDataSource.addStudentAttendance(studentAttendanceModel);
+      return remoteDataSource.addStudentAttendance(studentAttendance);
     });
   }
 
   @override
-  Future<Either<Failure, Unit>> addStudentAssignment(Student student) async {
-    final StudentModel studentModel = StudentModel(
-        username: student.username,
-        time: student.time,
-        studentText: student.studentText,
-        studentImage: student.studentImage,
-        likes: student.likes,
-        islikes: student.islikes);
+  Future<Either<Failure, Unit>> addStudentAssignment(
+      List<StudentActivityClass> studentsDataList) async {
+    final List<StudentActivityModel> studentModels = studentsDataList.map((student) {
+      return StudentActivityModel(
+        id: student.id,
+        name: student.name,
+        isPresent: student.isPresent,
+        isSick: student.isSick,
+        degree: student.degree,
+      );
+    }).toList();
 
     return await _getMessage(() {
-      return remoteDataSource.addStudentAssignment(studentModel);
+      return remoteDataSource.addStudentAssignment(studentModels);
     });
   }
 
   @override
   Future<Either<Failure, Unit>> addStudentMonthTestDigree(
-      Student student) async {
-    final StudentModel studentModel = StudentModel(
-        username: student.username,
-        time: student.time,
-        studentText: student.studentText,
-        studentImage: student.studentImage,
-        likes: student.likes,
-        islikes: student.islikes);
-
-    return await _getMessage(() {
-      return remoteDataSource.addStudentMonthlyExam(studentModel);
+      List<StudentActivityClass> studentList) async {
+    
+      final List<StudentActivityModel> studentModels = studentList.map((student) {
+      return StudentActivityModel(
+        id: student.id,
+        name: student.name,
+        isPresent: student.isPresent,
+        isSick: student.isSick,
+        degree: student.degree,
+      );
+    }).toList();
+        return await _getMessage(() {
+      return remoteDataSource.addStudentMonthlyTest(studentModels);
     });
   }
 

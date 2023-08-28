@@ -1,41 +1,14 @@
 import 'package:flutter/material.dart';
- 
 
-class AttendanceStudentsClass {
-  String name;
-  bool isPresent;
-  bool isSick;
-  int id;
+import '../../../../../base/alart.dart';
+import '../../../../domain/entities/student.dart';
+import '../../../bloc/up_data_student/Student_event.dart';
+import '../../../bloc/up_data_student/student_bloc.dart';
+import '../../../bloc/up_data_student/student_state.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-  AttendanceStudentsClass({
-    required this.name,
-    required this.isPresent,
-    required this.isSick,
-    required this.id,
-  });
-}
-  List<AttendanceStudentsClass> students = [
-    AttendanceStudentsClass(
-        name: 'عبداللة بن سعيد', isPresent: false, isSick: false, id: 19),
-    AttendanceStudentsClass(
-        name: 'محمد العيساوي', isPresent: false, isSick: false, id: 1),
-    AttendanceStudentsClass(
-        name: 'مريم علي', isPresent: false, isSick: false, id: 2),
-    AttendanceStudentsClass(
-        name: 'زينب فارع', isPresent: false, isSick: false, id: 3),
-    AttendanceStudentsClass(
-        name: 'علي المقطري', isPresent: false, isSick: false, id: 4),
-    AttendanceStudentsClass(
-        name: 'فواد علي سالم', isPresent: false, isSick: false, id: 5),
-    AttendanceStudentsClass(
-        name: 'مريم القاسمي', isPresent: false, isSick: false, id: 6),
-    AttendanceStudentsClass(
-        name: 'عبدالله زين', isPresent: false, isSick: false, id: 8),
-    AttendanceStudentsClass(
-        name: 'سيف الحداد', isPresent: false, isSick: false, id: 9),
-  ];
-
-
+bool chickGetData = false; // تعريف المتغير خارج الصنف
+List<StudentActivityClass> students = [];
 
 class AttendanceStudentsScreen extends StatefulWidget {
   @override
@@ -43,14 +16,37 @@ class AttendanceStudentsScreen extends StatefulWidget {
 }
 
 class _AttendanceStudentsState extends State<AttendanceStudentsScreen> {
-  
-
   bool isAllPresent = false;
 
   @override
   Widget build(BuildContext context) {
+    return BlocBuilder<StudentBloc, StudentState>(
+      builder: (context, state) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          final studentBloc =
+              context.read<StudentBloc>(); // Obtain the bloc instance
+          final state = studentBloc.state; // Obtain the current state
+          if (state is MessageStudentState) {
+            SnackbarService.showSuccessSnackbar(state.message);
+            BlocProvider.of<StudentBloc>(context).add(ReloadStudentDataEvent());
+          }
+        });
+
+        if (state is LoadingStudentState) {
+          chickGetData = false;
+        }
+
+        if (state is ReLoadedStudentsDataState) {
+          students = state.studentActivity;
+        }
+        if (state is LoadedStudentsDataState) {
+          if (!chickGetData) {
+            print(state.studentActivity);
+            students = state.studentActivity;
+            chickGetData = true;
+          }
+        }
         return Scaffold(
-          // backgroundColor: Colors,
           appBar: AppBar(
             title: Center(
               child: Text(
@@ -63,7 +59,7 @@ class _AttendanceStudentsState extends State<AttendanceStudentsScreen> {
               icon: Icon(Icons.arrow_back),
               onPressed: () {
                 // context.pop(),
-                 Navigator.of(context).pop();
+                Navigator.of(context).pop();
               },
             ),
           ),
@@ -71,113 +67,180 @@ class _AttendanceStudentsState extends State<AttendanceStudentsScreen> {
             children: [
               // SizedBox(height: 50,),
               titleBody(),
+
               SizedBox(
                 height: 5,
               ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: students.length,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          // students[index].isPresent = !students[index].isPresent;
-                        });
-                      },
-                      child: Container(
-                        margin:
-                            EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                        padding: EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          borderRadius: BorderRadius.circular(8),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              offset: Offset(0, 2),
-                              blurRadius: 4,
-                            ),
-                          ],
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      "م",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.right,
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Checkbox(
-                                      //  checkColor: Colors.white,
-                                      value: students[index].isSick,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          students[index].isSick = value!;
-                                          students[index].isPresent = false;
-                                        });
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      "ح",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.right,
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Checkbox(
-                                      value: students[index].isPresent,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          students[index].isPresent = value!;
-                                          students[index].isSick = false;
-                                        });
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            Expanded(
-                              child: Text(
-                                students[index].name,
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
-                                textAlign: TextAlign.right,
-                              ),
-                            ),
-                          ],
-                        ),
+              WidgetTitleList(),
+              WidgetList(),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget WidgetList() {
+    return Expanded(
+      child: ListView.builder(
+        itemCount: students.length,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              setState(() {
+                students[index].isPresent = !students[index].isPresent;
+                students[index].isSick = false;
+              });
+            },
+            child: Container(
+              // height: 80,
+              margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(8),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    offset: Offset(0, 2),
+                    blurRadius: 4,
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            "م",
+                            style: TextStyle(
+                                // backgroundColor: Colors.orange,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.right,
+                          ),
+                        ],
                       ),
-                    );
-                  },
+                      Row(
+                        children: [
+                          Checkbox(
+                            //  checkColor: Colors.white,
+                            value: students[index].isSick,
+                            onChanged: (value) {
+                              setState(() {
+                                students[index].isSick = value!;
+                                students[index].isPresent = false;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            "ح",
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.right,
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Checkbox(
+                            value: students[index].isPresent,
+                            onChanged: (value) {
+                              setState(() {
+                                students[index].isPresent = value!;
+                                students[index].isSick = false;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Expanded(
+                    child: Text(
+                      students[index].name,
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.right,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget WidgetTitleList() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.white,
+            offset: Offset(0, 2),
+            blurRadius: 4,
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          Row(
+             children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 12),
+                child: Container(
+                  width: 66,
+                  //  color: Colors.green,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "م",
+                        style: TextStyle(
+                            
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.right,
+                      ),
+                      Text(
+                        "ح",
+                        style:
+                            TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.right,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Text(
+                  "اسم الطالب",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.right,
                 ),
               ),
             ],
           ),
-        );
-       
+        ],
+      ),
+    );
   }
 
   Widget titleBody() {
@@ -264,13 +327,17 @@ class _AttendanceStudentsState extends State<AttendanceStudentsScreen> {
               if (students.any((student) => student.isPresent))
                 FloatingActionButton(
                   onPressed: () {
-                    List<String> presentStudents = students
-                        .where((student) => student.isPresent)
-                        .map((student) => student.name)
+                    List<StudentActivityClass> presentStudents = students
+                        .where((student) =>
+                            student.isPresent == true || student.isSick == true)
                         .toList();
 
-                    print(presentStudents);
-                    print(presentStudents);
+                    print(
+                        "presentStudents screen    [[[[[[[[[[[[[[]]]]]]]]]]]]]]");
+                    // print(presentStudents);
+                    BlocProvider.of<StudentBloc>(context).add(
+                        AddStudentMonthlyTestDegreeEvent(
+                            studentMonthlyTest: presentStudents));
                   },
                   child: Icon(Icons.upload),
                 ),

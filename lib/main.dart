@@ -3,6 +3,7 @@ import 'package:flutter_design/branch/presentation/bloc/branch/branch_bloc.dart'
 import 'package:flutter_design/notification/presentation/bloc/notification/Notifications_event.dart';
 import 'package:flutter_design/student/presentation/bloc/up_data_student/Student_event.dart';
 import 'package:flutter_design/student/presentation/bloc/up_data_student/student_bloc.dart';
+import 'package:get/get.dart';
 import 'home_main/presentation/bloc/add_delete_update_post/add_delete_update_post_bloc.dart';
 import 'base/bloc_ob_serve.dart';
 import 'home_main/presentation/bloc/posts/posts_bloc.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
         // BlocProvider(create: (_) => di.sl<AddDeleteUpdatePostBloc>()),
         BlocProvider(create: (_) => di.sl<BranchBloc>()..add(GetAllBranchEvent())),
       ],
-      child: MaterialApp(
+      child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: appTheme,
         title: 'Posts App',

@@ -9,8 +9,8 @@ class AddStudentMonthTestUsecase {
 
   AddStudentMonthTestUsecase(this.repository);
 
-  Future<Either<Failure, Unit>> call(Student student) async {
-    return await repository.addStudentMonthTestDigree(student);
+  Future<Either<Failure, Unit>> call(List<StudentActivityClass> studentList) async {
+    return await repository.addStudentMonthTestDigree(studentList);
   }
 }
 

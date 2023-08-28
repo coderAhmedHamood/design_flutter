@@ -10,7 +10,7 @@ class AddStudentAssignmentUsecase {
 
   AddStudentAssignmentUsecase(this.repository);
 
-  Future<Either<Failure, Unit>> call(Student student) async {
-    return await repository.addStudentAssignment(student);
+  Future<Either<Failure, Unit>> call(List<StudentActivityClass> studentsAssignment) async {
+    return await repository.addStudentAssignment(studentsAssignment);
   }
 }

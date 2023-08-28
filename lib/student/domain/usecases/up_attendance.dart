@@ -9,7 +9,7 @@ class AddStudentAttendanceUsecase {
 
   AddStudentAttendanceUsecase(this.repository);
 
-  Future<Either<Failure, Unit>> call(StudentsAttendanceClass studentsAttendanceClass) async {
-    return await repository.addStudentAttendance(studentsAttendanceClass);
+  Future<Either<Failure, Unit>> call(List<StudentActivityClass>  studentActivityList ) async {
+    return await repository.addStudentAttendance(studentActivityList );
   }
 }
