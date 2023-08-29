@@ -11,7 +11,8 @@ abstract class StudentRemoteDataSource {
   Future<List<StudentActivityModel>> getStudentData(int idClass);
   Future<Unit> addStudentAttendance(List<StudentActivityClass>  studentActivityList);
   Future<Unit> addStudentAssignment(List<StudentActivityModel> studentActivityList);
-  Future<Unit> addStudentBehavior(StudentModel studentModel);
+  Future<Unit> addStudentBehavior(List<StudentActivityModel> studentActivityList);
+  
   Future<Unit> addStudentMonthlyTest(List<StudentActivityModel> studentActivityList);
 }
    List<StudentModel> students = [
@@ -212,24 +213,27 @@ Future<Unit> addStudentAttendance(List<StudentActivityClass>  studentActivityLis
 
 
   @override
-  Future<Unit> addStudentBehavior(StudentModel studentModel) async {
-     final studentId = studentModel.id.toString();
-    final body = {
-      "name": studentModel.username,
-        // "username": studentModel.username,
-        // "time": studentModel.time,
-        // "studentText": studentModel.studentText,
-        // "studentImage": studentModel.studentImage,
-        // "likes": studentModel.likes,
-        // "islikes": studentModel.islikes,
-    };
+  Future<Unit> addStudentBehavior(List<StudentActivityModel> studentActivityList) async {
+    //  final studentId = studentModel.id.toString();
+    // final body = {
+    //   "name": studentModel.username,
+    //     // "username": studentModel.username,
+    //     // "time": studentModel.time,
+    //     // "studentText": studentModel.studentText,
+    //     // "studentImage": studentModel.studentImage,
+    //     // "likes": studentModel.likes,
+    //     // "islikes": studentModel.islikes,
+    // };
 
-    final response = await client.patch(
-      Uri.parse(URLs.URL_REGISTER),
-      body: body,
-    );
-
-    if (response.statusCode == 200) {
+    // final response = await client.patch(
+    //   Uri.parse(URLs.URL_REGISTER),
+    //   body: body,
+    // );
+print("0000000000000000000000000000");
+print(studentActivityList);
+print("0000000000000000000000000000");
+    if (200 == 200) {
+    // if (response.statusCode == 200) {
       return Future.value(unit);
     } else {
       throw ServerException();

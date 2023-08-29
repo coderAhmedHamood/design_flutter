@@ -1,7 +1,61 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter_design/constants/my_colors.dart';
 import 'package:flutter_dropdown/flutter_dropdown.dart';
+
+
+class PermissionRequesClass {
+  final String reason;
+  final String message;
+  final String date;
+  final bool status;
+  PermissionRequesClass({
+    required this.reason,
+    required this.message,
+    required this.date,
+    required this.status,
+  });
+}
+
+final List<PermissionRequesClass> permissionrequesclass = [
+  PermissionRequesClass(
+    reason: 'عنوان الإشعار الأول',
+    message:
+        'نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا.',
+    date: '13 أغسطس 2023',
+    status: false,
+  ),
+  PermissionRequesClass(
+    reason: 'عنوان الإشعار الثاني',
+    message:
+        'نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا.',
+    date: '12 أغسطس 2023',
+    status: true,
+  ),
+  // PermissionRequesClass(
+  //   reason: 'عنوان الإشعار الثالث',
+  //   message:
+  //       'نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا.',
+  //   date: '11 أغسطس 2023',
+  //   status: false,
+  // ),
+  // PermissionRequesClass(
+  //   reason: 'عنوان الإشعار الثالث',
+  //   message:
+  //       'نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا.',
+  //   date: '11 أغسطس 2023',
+  //   status: true,
+  // ),
+  // PermissionRequesClass(
+  //   reason: 'عنوان الإشعار الثالث',
+  //   message:
+  //       'نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا.',
+  //   date: '11 أغسطس 2023',
+  //   status: false,
+  // ),
+];
+
+
+
 
 class PermissionRequestStudentViewScreen extends StatefulWidget {
   @override
@@ -238,53 +292,3 @@ class _PermissionRequestScreenState extends State<PermissionRequestStudentViewSc
   }
 }
 
-class PermissionRequesClass {
-  final String reason;
-  final String message;
-  final String date;
-  final bool status;
-  PermissionRequesClass({
-    required this.reason,
-    required this.message,
-    required this.date,
-    required this.status,
-  });
-}
-
-final List<PermissionRequesClass> permissionrequesclass = [
-  PermissionRequesClass(
-    reason: 'عنوان الإشعار الأول',
-    message:
-        'نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا.',
-    date: '13 أغسطس 2023',
-    status: false,
-  ),
-  PermissionRequesClass(
-    reason: 'عنوان الإشعار الثاني',
-    message:
-        'نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا.',
-    date: '12 أغسطس 2023',
-    status: true,
-  ),
-  // PermissionRequesClass(
-  //   reason: 'عنوان الإشعار الثالث',
-  //   message:
-  //       'نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا.',
-  //   date: '11 أغسطس 2023',
-  //   status: false,
-  // ),
-  // PermissionRequesClass(
-  //   reason: 'عنوان الإشعار الثالث',
-  //   message:
-  //       'نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا.',
-  //   date: '11 أغسطس 2023',
-  //   status: true,
-  // ),
-  // PermissionRequesClass(
-  //   reason: 'عنوان الإشعار الثالث',
-  //   message:
-  //       'نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا.',
-  //   date: '11 أغسطس 2023',
-  //   status: false,
-  // ),
-];

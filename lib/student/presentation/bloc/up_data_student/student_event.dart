@@ -43,6 +43,15 @@ class AddStudentMonthlyTestDegreeEvent extends StudentEvent {
     @override
   List<Object> get props => [studentMonthlyTest];
 }
+class AddStudentBehaviorDataEvent extends StudentEvent {
+    final List<StudentActivityClass> studentBehavior;
+   
+  AddStudentBehaviorDataEvent({
+    required this.studentBehavior,
+  });
+    @override
+  List<Object> get props => [studentBehavior];
+}
 
 class AddStudentAssignmentEvent extends StudentEvent {
   final List<StudentActivityClass> studentAssignment;
@@ -53,14 +62,6 @@ class AddStudentAssignmentEvent extends StudentEvent {
     @override
   List<Object> get props => [studentAssignment];
 }
-
-class AddStudentBehaviorDataEvent extends StudentEvent {
-  final Student student;
-  AddStudentBehaviorDataEvent({
-    required this.student,
-  });
-    @override
-  List<Object> get props => [student];
-}
+ 
 
  

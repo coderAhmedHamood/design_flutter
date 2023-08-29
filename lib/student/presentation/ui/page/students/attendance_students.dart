@@ -115,14 +115,14 @@ class _AttendanceStudentsState extends State<AttendanceStudentsScreen> {
                     children: [
                       Row(
                         children: [
-                          Text(
-                            "م",
-                            style: TextStyle(
-                                // backgroundColor: Colors.orange,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.right,
-                          ),
+                          // Text(
+                          //   "م",
+                          //   style: TextStyle(
+                          //       // backgroundColor: Colors.orange,
+                          //       fontSize: 15,
+                          //       fontWeight: FontWeight.bold),
+                          //   textAlign: TextAlign.right,
+                          // ),
                         ],
                       ),
                       Row(
@@ -145,12 +145,12 @@ class _AttendanceStudentsState extends State<AttendanceStudentsScreen> {
                     children: [
                       Row(
                         children: [
-                          Text(
-                            "ح",
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.right,
-                          ),
+                          // Text(
+                          //   "ح",
+                          //   style: TextStyle(
+                          //       fontSize: 15, fontWeight: FontWeight.bold),
+                          //   textAlign: TextAlign.right,
+                          // ),
                         ],
                       ),
                       Row(
@@ -323,17 +323,13 @@ class _AttendanceStudentsState extends State<AttendanceStudentsScreen> {
                   ),
                 ),
               ),
-              if (students.any((student) => student.isPresent))
+              if (students.any((student) => student.isPresent||students.any((student) => student.isSick)))
                 FloatingActionButton(
                   onPressed: () {
                     List<StudentActivityClass> presentStudents = students
                         .where((student) =>
                             student.isPresent == true || student.isSick == true)
                         .toList();
-
-                    print(
-                        "presentStudents screen    [[[[[[[[[[[[[[]]]]]]]]]]]]]]");
-                    // print(presentStudents);
                     BlocProvider.of<StudentBloc>(context).add(
                         AddStudentAttendanceEvent(
                             studentAttendance: presentStudents));

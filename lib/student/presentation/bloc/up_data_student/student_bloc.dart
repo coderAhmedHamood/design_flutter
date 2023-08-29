@@ -7,7 +7,6 @@ import 'package:flutter_design/student/domain/usecases/up_behavior.dart';
 import 'package:flutter_design/student/domain/usecases/up_month_test.dart';
 import 'package:flutter_design/student/domain/usecases/up_assignment.dart';
 import '../../../../../base/strings/messages.dart';
-import 'package:dartz/dartz.dart';
 
 import '../../../../../base/error/failures.dart';
 import '../../../../../base/strings/failures.dart';
@@ -109,9 +108,9 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
   FutureOr<void> _addStudentBehaviorDataEvent(
       AddStudentBehaviorDataEvent event, Emitter<StudentState> emit) async {
     emit(LoadingStudentState());
-    final failureOrDoneMessage = await addBehavior(event.student);
+    final failureOrDoneMessage = await addBehavior(event.studentBehavior);
     emit(failureOrDoneMessage.fold(
-      (failure) => ErrorStudentState(
+      (failure) => ErrorStudentState( 
         message: _mapFailureToMessage(failure),
       ),
       (_) => MessageAddStudentBehaviourState(message: "تم رفع السلوك بنجاح"),

@@ -7,7 +7,7 @@ import '../entities/student.dart';
 
 abstract class StudentsRepository {
 
-  Future<Either<Failure, Unit>> addStudentBehavior(Student student);
+  Future<Either<Failure, Unit>> addStudentBehavior(List<StudentActivityClass> studentBehavior);
   Future<Either<Failure, Unit>> addStudentAttendance(List<StudentActivityClass>  studentActivityList);
   Future<Either<Failure, Unit>> addStudentAssignment(List<StudentActivityClass> studentsAssignment);
   Future<Either<Failure, Unit>> addStudentMonthTestDigree(List<StudentActivityClass> studentList);

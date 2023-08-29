@@ -92,17 +92,21 @@ class StudentsRepositoryImpl implements StudentsRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> addStudentBehavior(Student student) async {
-    final StudentModel studentModel = StudentModel(
-        username: student.username,
-        time: student.time,
-        studentText: student.studentText,
-        studentImage: student.studentImage,
-        likes: student.likes,
-        islikes: student.islikes);
+  Future<Either<Failure, Unit>> addStudentBehavior(List<StudentActivityClass> studentBehaviorList) async {
+  final List<StudentActivityModel> studentBehavior = studentBehaviorList.map((student) {
+      return StudentActivityModel(
+        id: student.id,
+        name: student.name,
+        isPresent: student.isPresent,
+        isSick: student.isSick,
+        degreeHomeWork: student.degreeHomeWork,
+        degreeMonthTest: student.degreeMonthTest,
+      
+      );
+    }).toList();
 
     return await _getMessage(() {
-      return remoteDataSource.addStudentBehavior(studentModel);
+      return remoteDataSource.addStudentBehavior(studentBehavior);
     });
   }
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'students/behaviour_students.dart';
-import 'students/degree_test_students.dart';
-import 'students/homework_students.dart';
-import 'students/present_students.dart';
+import 'students/month_test_students.dart';
+import 'students/assignment_students.dart';
+import 'students/attendance_students.dart';
 
 class DashboardStudentScreen extends StatelessWidget {
   @override
