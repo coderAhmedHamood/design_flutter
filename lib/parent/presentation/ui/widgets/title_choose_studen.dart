@@ -1,40 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_design/student/presentation/ui/widgets/student/choose_class.dart';
 
-import '../../../domain/entities/student.dart';
-import '../../../domain/entities/students_class_class.dart';
-import '../../bloc/up_data_student/student_bloc.dart';
-import '../../bloc/up_data_student/student_state.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-class ChooseClassScreen extends StatelessWidget {
-  List<StudentsClassClass> studentsClass = [];
+class TitleChooseStudent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      backgroundColor: Color.fromARGB(255, 240, 247, 247),
-      body: Center(
-        child: Padding(
-          padding:
-              const EdgeInsets.only(top: 8, bottom: 8, left: 40, right: 40),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 60,
-              ),
-              _WidgetTitle(),
-              SizedBox(height: 40),
-              StudentClassListWidget(),
-              // WidgetRowClass(),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _WidgetTitle() {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Container(
@@ -43,7 +11,6 @@ class ChooseClassScreen extends StatelessWidget {
           gradient: LinearGradient(
             colors: [
               Color.fromARGB(255, 99, 212, 99),
-              // Color.fromARGB(255, 37, 179, 169),
               Color.fromARGB(255, 97, 219, 119)
             ],
             begin: Alignment.topLeft,
@@ -53,7 +20,6 @@ class ChooseClassScreen extends StatelessWidget {
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(84),
             bottomRight: Radius.circular(84),
-            // topRight: Radius.circular(24),
           ),
           boxShadow: [
             BoxShadow(
@@ -68,7 +34,7 @@ class ChooseClassScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              'اختار الصف الدراسي',
+              'اختيار الطالب لمعرفة بياناتة',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 30,
@@ -80,6 +46,4 @@ class ChooseClassScreen extends StatelessWidget {
       ),
     );
   }
-
-
 }

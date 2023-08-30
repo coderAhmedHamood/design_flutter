@@ -1,4 +1,7 @@
+import '../../domain/entities/behaviour_students_class.dart';
 import '../../domain/entities/student.dart';
+import '../../domain/entities/student_activity_class.dart';
+import '../../domain/entities/students_class_class.dart';
 
 class StudentModel extends Student {
   StudentModel({

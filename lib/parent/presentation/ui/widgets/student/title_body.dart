@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../account/data/model/stor.dart';
+import '../../../../../account/data/model/stor.dart';
 
 class TitleBodyWidget extends StatelessWidget {
   final String title;

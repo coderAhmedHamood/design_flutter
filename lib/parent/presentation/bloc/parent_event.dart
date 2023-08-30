@@ -1,30 +1,37 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
-import '../../../domain/entities/student.dart';
-import '../../../domain/entities/student_activity_class.dart';
+import '../../../student/domain/entities/student_activity_class.dart';
 
-abstract class StudentEvent extends Equatable {
-  StudentEvent();
+abstract class ParentEvent extends Equatable {
+  ParentEvent();
 
   @override
   List<Object> get props => [];
 }
 
 
-class GetStudentClassEvent extends StudentEvent {}
-class ReloadStudentDataEvent extends StudentEvent {}
-class GetStudentDataEvent extends StudentEvent {
-  final int idClass;
+class GetDataStudentToParentEvent extends ParentEvent {
+  int idStuden;
+  GetDataStudentToParentEvent({
+    required this.idStuden,
+  });
+  @override
+  List<Object> get props => [idStuden];
+}
+
+class ReloadStudentDataEvent extends ParentEvent {}
+class GetStudentDataEvent extends ParentEvent {
+  final int idStuden;
   GetStudentDataEvent({
-    required this.idClass,
+    required this.idStuden,
   });
     @override
-  List<Object> get props => [idClass];
+  List<Object> get props => [idStuden];
 }
 
 
-class AddStudentAttendanceEvent extends StudentEvent {
+class AddStudentAttendanceEvent extends ParentEvent {
 
 
       final List<StudentActivityClass> studentAttendance;
@@ -35,7 +42,7 @@ class AddStudentAttendanceEvent extends StudentEvent {
   List<Object> get props => [studentAttendance];
 }
 
-class AddStudentMonthlyTestDegreeEvent extends StudentEvent {
+class AddStudentMonthlyTestDegreeEvent extends ParentEvent {
     final List<StudentActivityClass> studentMonthlyTest;
    
   AddStudentMonthlyTestDegreeEvent({
@@ -44,7 +51,7 @@ class AddStudentMonthlyTestDegreeEvent extends StudentEvent {
     @override
   List<Object> get props => [studentMonthlyTest];
 }
-class AddStudentBehaviorDataEvent extends StudentEvent {
+class AddStudentBehaviorDataEvent extends ParentEvent {
     final List<StudentActivityClass> studentBehavior;
    
   AddStudentBehaviorDataEvent({
@@ -54,7 +61,7 @@ class AddStudentBehaviorDataEvent extends StudentEvent {
   List<Object> get props => [studentBehavior];
 }
 
-class AddStudentAssignmentEvent extends StudentEvent {
+class AddStudentAssignmentEvent extends ParentEvent {
   final List<StudentActivityClass> studentAssignment;
    
   AddStudentAssignmentEvent({

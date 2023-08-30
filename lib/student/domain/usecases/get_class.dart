@@ -5,6 +5,7 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../base/error/failures.dart';
 import '../entities/student.dart';
+import '../entities/students_class_class.dart';
 import '../repositories/students_repository.dart';
 
 class GetStudentClassUsecase {

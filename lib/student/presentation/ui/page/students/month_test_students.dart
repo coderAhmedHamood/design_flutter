@@ -4,12 +4,13 @@ import 'package:flutter/services.dart';
 import '../../../../../account/data/model/stor.dart';
 import '../../../../../base/alart.dart';
 import '../../../../domain/entities/student.dart';
+import '../../../../domain/entities/student_activity_class.dart';
 import '../../../bloc/up_data_student/Student_event.dart';
 import '../../../bloc/up_data_student/student_bloc.dart';
 import '../../../bloc/up_data_student/student_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../widgets/title_body.dart';
+import '../../widgets/student/title_body.dart';
 
 bool chickGetData = false; // تعريف المتغير خارج الصنف
 List<StudentActivityClass> students = [];

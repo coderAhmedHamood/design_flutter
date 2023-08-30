@@ -11,6 +11,7 @@ import '../../../../../base/strings/messages.dart';
 import '../../../../../base/error/failures.dart';
 import '../../../../../base/strings/failures.dart';
 
+import '../../../domain/entities/student_activity_class.dart';
 import '../../../domain/usecases/get_Student_data.dart';
 import '../../../domain/usecases/get_class.dart';
 import 'Student_event.dart';

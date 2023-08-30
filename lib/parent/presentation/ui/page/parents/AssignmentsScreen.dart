@@ -15,103 +15,39 @@ class StudentAttendance {
   StudentAttendance({required this.day, required this.subjects});
 }
 
-class AttendanceStudentViewScreen extends StatelessWidget {
+class AssignmentsStudentViewScreen extends StatelessWidget {
   final List<StudentAttendanceClassTwo> studentAttendanceClassTwo = [
     StudentAttendanceClassTwo(
       date: '2024/7/26',
       studentAttendance: [
         StudentAttendance(
-            day: 'السبت', subjects: ['حاضر', 'حاضر', 'حاضر', 'غائب', 'حاضر']),
+            day: 'السبت', subjects: ['مسلم', 'مسلم', 'مسلم', 'فير مسلم', 'مسلم']),
         StudentAttendance(
-            day: 'الأحد', subjects: ['حاضر', 'مستأذن', 'حاضر', 'حاضر', 'حاضر']),
-        StudentAttendance(
-            day: 'الاثنين',
-            subjects: ['حاضر', 'حاضر', 'مستأذن', 'حاضر', 'مستأذن']),
-        StudentAttendance(
-            day: 'الثلاثاء',
-            subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'غائب']),
-        StudentAttendance(
-            day: 'الأربعاء',
-            subjects: ['حاضر', 'غائب', 'حاضر', 'حاضر', 'حاضر']),
-      ],
-    ),
-    StudentAttendanceClassTwo(
-      date: '2024/8/3',
-      studentAttendance: [
-        StudentAttendance(
-            day: 'السبت', subjects: ['حاضر', 'حاضر', 'حاضر', 'غائب', 'حاضر']),
-        StudentAttendance(
-            day: 'الأحد', subjects: ['حاضر', 'مستأذن', 'حاضر', 'حاضر', 'حاضر']),
+            day: 'الأحد', subjects: ['مسلم', 'ناقص', 'مسلم', 'مسلم', 'مسلم']),
         StudentAttendance(
             day: 'الاثنين',
-            subjects: ['حاضر', 'حاضر', 'مستأذن', 'حاضر', 'مستأذن']),
+            subjects: ['مسلم', 'مسلم', 'ناقص', 'مسلم', 'ناقص']),
         StudentAttendance(
             day: 'الثلاثاء',
-            subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'غائب']),
+            subjects: ['مسلم', 'مسلم', 'مسلم', 'مسلم', 'فير مسلم']),
         StudentAttendance(
             day: 'الأربعاء',
-            subjects: ['حاضر', 'غائب', 'حاضر', 'حاضر', 'حاضر']),
+            subjects: ['مسلم', 'فير مسلم', 'مسلم', 'مسلم', 'مسلم']),
       ],
     ),
-
+   
     StudentAttendanceClassTwo(
       date: '2024/8/19',
       studentAttendance: [
         StudentAttendance(
-            day: 'السبت', subjects: ['حاضر', 'حاضر', 'غائب', 'حاضر', 'مستأذن']),
+            day: 'السبت', subjects: ['مسلم', 'مسلم', 'فير مسلم', 'مسلم', 'ناقص']),
         StudentAttendance(
-            day: 'الأحد', subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'غائب']),
+            day: 'الأحد', subjects: ['مسلم', 'مسلم', 'مسلم', 'مسلم', 'فير مسلم']),
         StudentAttendance(
-            day: 'الاثنين', subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'حاضر']),
+            day: 'الاثنين', subjects: ['مسلم', 'مسلم', 'مسلم', 'مسلم', 'مسلم']),
       ],
     ),
-    StudentAttendanceClassTwo(
-      date: '2024/8/11',
-      studentAttendance: [
-        StudentAttendance(
-            day: 'السبت', subjects: ['حاضر', 'حاضر', 'حاضر', 'غائب', 'حاضر']),
-        StudentAttendance(
-            day: 'الأحد', subjects: ['حاضر', 'مستأذن', 'حاضر', 'حاضر', 'حاضر']),
-        StudentAttendance(
-            day: 'الاثنين',
-            subjects: ['حاضر', 'حاضر', 'مستأذن', 'حاضر', 'مستأذن']),
-        StudentAttendance(
-            day: 'الثلاثاء',
-            subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'غائب']),
-        StudentAttendance(
-            day: 'الأربعاء',
-            subjects: ['حاضر', 'غائب', 'حاضر', 'حاضر', 'حاضر']),
-      ],
-    ),
-
-    // StudentAttendanceClassTwo(
-    //   date: '2024/7/26',
-    //   studentAttendance: [
-    //     StudentAttendance(day: 'السبت', subjects: ['حاضر', 'حاضر']),
-    //     StudentAttendance(day: 'الأحد', subjects: ['حاضر', 'حاضر']),
-    //     StudentAttendance(day: 'الاثنين',subjects: [ 'مستأذن', 'حاضر']),
-    //     StudentAttendance(day: 'الثلاثاء',subjects: ['حاضر',   'غائب']),
-    //     StudentAttendance(day: 'الأربعاء',subjects: ['حاضر', 'غائب']),
-    //   ],
-    // ),
-    // StudentAttendanceClassTwo(
-    //   date: '2024/8/3',
-    //   studentAttendance: [
-    //     StudentAttendance(day: 'السبت', subjects: ['حاضر', 'حاضر']),
-    //     StudentAttendance(day: 'الأحد', subjects: ['حاضر', 'حاضر']),
-    //     StudentAttendance(day: 'الاثنين',subjects: [ 'مستأذن', 'حاضر']),
-    //     StudentAttendance(day: 'الثلاثاء',subjects: ['حاضر',   'غائب']),
-    //     StudentAttendance(day: 'الأربعاء',subjects: ['حاضر', 'غائب']),
-    //   ],
-    // ),
-    //     StudentAttendanceClassTwo(
-    //   date: '2024/8/3',
-    //   studentAttendance: [
-    //     StudentAttendance(day: 'السبت', subjects: ['حاضر', 'حاضر']),
-    //     StudentAttendance(day: 'الأحد', subjects: ['حاضر', 'حاضر']),
-    //     StudentAttendance(day: 'الأربعاء',subjects: ['حاضر', 'غائب']),
-    //   ],
-    // ),
+ 
   ];
   // List<String> columnNames = ['يوم', 'القرآن', 'التربية الاسلامية'];
   List<String> columnNames = [
@@ -122,6 +58,7 @@ class AttendanceStudentViewScreen extends StatelessWidget {
     'الرياضيات',
     'العلوم'
   ];
+  late bool chickIndex = false;
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +66,7 @@ class AttendanceStudentViewScreen extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('كشف الحضور والغياب'),
+          title: Text('كشف الواجبات'),
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -235,11 +172,11 @@ class AttendanceStudentViewScreen extends StatelessWidget {
         child: Text(
           status,
           style: TextStyle(
-            color: status == 'حاضر'
+            color: status == 'مسلم'
                 ? Colors.green
-                : status == 'مستأذن'
+                : status == 'ناقص'
                     ? Colors.blue
-                    : status == 'غائب'
+                    : status == 'فير مسلم'
                         ? Colors.red
                         : Colors.white,
             fontWeight: FontWeight.bold,
@@ -283,7 +220,7 @@ class AttendanceStudentViewScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              'كشف الحضور والغياب للطالب',
+              'كشف واجبات الطالب',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 30,

@@ -1,6 +1,8 @@
  
  import 'package:equatable/equatable.dart';
 
+import 'behaviour_students_class.dart';
+
 class Student  extends Equatable{
  final int? id;
  final String username;
@@ -26,63 +28,3 @@ class Student  extends Equatable{
 
 
  
-class StudentsClassClass extends Equatable{
-  final int? id;
-  final name;
-
-  StudentsClassClass({
-    required this.id,
-    required this.name,
-  });
-  @override
-  List<Object?> get props => [id, name];
-}
-class BehaviourStudentsClass {
-  String title;
-  String message;
-
-  BehaviourStudentsClass({
-    required this.title,
-    required this.message,
-  });
-
-  factory BehaviourStudentsClass.fromJson(Map<String, dynamic> json) {
-    return BehaviourStudentsClass(
-      title: json['title'],
-      message: json['message'],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'title': title,
-      'message': message,
-    };
-  }
-}
-
-class StudentActivityClass extends Equatable {
-  int id;
-  String name;
-  bool isPresent;
-  bool isSick;
-  double degreeHomeWork;
-  double degreeMonthTest;
-  BehaviourStudentsClass? behaviourStudentsClass;
-
-
-  StudentActivityClass({
-    required this.id,
-    required this.name,
-    required this.isPresent,
-    required this.isSick,
-    required this.degreeHomeWork,
-    required this.degreeMonthTest,
-      this.behaviourStudentsClass,
-  });
-  @override
-  List<Object?> get props => [id, name,isPresent,isSick,degreeHomeWork,degreeMonthTest,behaviourStudentsClass];
-}
-
-
-

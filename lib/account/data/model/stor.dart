@@ -1,4 +1,6 @@
+import '../../../parent/domain/entities/Student.dart';
 import '../../../student/domain/entities/student.dart';
+import '../../../student/domain/entities/students_class_class.dart';
 
 class TeacherData {
   String subject;
@@ -8,9 +10,9 @@ class TeacherData {
 }
 
 class ParentData {
-  List<String> studentNames;
+  List<StudentClass> studentName;
 
-  ParentData(this.studentNames);
+  ParentData(this.studentName);
 }
 
 class UserData {
@@ -22,15 +24,16 @@ class UserData {
   static TeacherData? _teacherData;
   static ParentData? _parentData;
   static String? _className;
-  
 
-  static void setUserDataValues(int id, String username, String password, String email, String permissions) {
+  static void setUserDataValues(int id, String username, String password,
+      String email, String permissions) {
     _id = id;
     _username = username;
     _password = password;
     _email = email;
     _permissions = permissions;
   }
+
   static void setTeacherData(TeacherData teacherData) {
     _teacherData = teacherData;
   }
@@ -38,12 +41,12 @@ class UserData {
   static void setParentData(ParentData parentData) {
     _parentData = parentData;
   }
+
   static void setSubject(String className) {
     _className = className;
   }
 
-
-static int? get id => _id;
+  static int? get id => _id;
   static String? get username => _username;
   static String? get password => _password;
   static String? get email => _email;
@@ -51,8 +54,4 @@ static int? get id => _id;
   static TeacherData? get teacherData => _teacherData;
   static ParentData? get parentData => _parentData;
   static String? get className => _className;
- } 
-
-  
-
-  
+}

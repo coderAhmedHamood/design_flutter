@@ -1,34 +1,75 @@
-// // part of 'students_bloc.dart';
+// part of 'Get_delete_update_StudentDataToFather_bloc.dart';
 
-// import 'package:equatable/equatable.dart';
+import 'package:equatable/equatable.dart';
+ 
+abstract class StudentDataToFatherState extends Equatable {
+  const StudentDataToFatherState();
 
-// import '../../../domain/entities/student.dart';
+  @override
+  List<Object> get props => [];
+}
 
-// abstract class StudentsState extends Equatable {
-//   const StudentsState();
+class StudentDataToFatherInitial extends StudentDataToFatherState {}
 
-//   @override
-//   List<Object> get props => [];
-// }
+class LoadingStudentDataToFatherState extends StudentDataToFatherState {}
 
-// class StudentsInitial extends StudentsState {}
 
-// class LoadingStudentsState extends StudentsState {}
 
-// class LoadedStudentsState extends StudentsState {
-//   final List<Student> students;
+class ReLoadedStudentDataToFatherDataState extends StudentDataToFatherState {
+  // final List<StudentActivityClass> StudentDataToFatherActivity;
+  // ReLoadedStudentDataToFatherDataState({required this.StudentDataToFatherActivity});
 
-//   LoadedStudentsState({required this.students});
+  // @override
+  // List<Object> get props => [StudentDataToFatherActivity];
+}
 
-//   @override
-//   List<Object> get props => [students];
-// }
+class ErrorStudentDataToFatherState extends StudentDataToFatherState {
+  final String message;
 
-// class ErrorStudentsState extends StudentsState {
-//   final String message;
+  ErrorStudentDataToFatherState({required this.message});
 
-//   ErrorStudentsState({required this.message});
+  @override
+  List<Object> get props => [message];
+}
 
-//   @override
-//   List<Object> get props => [message];
-// }
+class MessageStudentDataToFatherState extends StudentDataToFatherState {
+  final String message;
+
+  MessageStudentDataToFatherState({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}
+
+class MessageStudentDataToFatherMonthlyTestState extends StudentDataToFatherState {
+  final String message;
+  MessageStudentDataToFatherMonthlyTestState({required this.message});
+  @override
+  List<Object> get props => [message];
+}
+
+class MessageGetStudentDataToFatherAssignmentState extends StudentDataToFatherState {
+  final String message;
+
+  MessageGetStudentDataToFatherAssignmentState({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}
+
+class MessageGetStudentDataToFatherAttendanceState extends StudentDataToFatherState {
+  final String message;
+
+  MessageGetStudentDataToFatherAttendanceState({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}
+class MessageGetStudentDataToFatherBehaviourState extends StudentDataToFatherState {
+  final String message;
+
+  MessageGetStudentDataToFatherBehaviourState({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}

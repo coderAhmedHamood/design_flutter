@@ -1,22 +1,24 @@
 // part of 'add_delete_update_student_bloc.dart';
 
 import 'package:equatable/equatable.dart';
- 
-import '../../../domain/entities/student_activity_class.dart';
-import '../../../domain/entities/students_class_class.dart';
 
-abstract class StudentState extends Equatable {
-  const StudentState();
+import '../../../student/domain/entities/student_activity_class.dart';
+import '../../../student/domain/entities/students_class_class.dart';
+ 
+ 
+
+abstract class ParentState extends Equatable {
+  const ParentState();
 
   @override
   List<Object> get props => [];
 }
 
-class StudentInitial extends StudentState {}
+class ParentInitial extends ParentState {}
 
-class LoadingStudentState extends StudentState {}
+class LoadingParentState extends ParentState {}
 
-class LoadedStudentsState extends StudentState {
+class LoadedStudentsState extends ParentState {
   final List<StudentsClassClass> studentsClassClass;
   LoadedStudentsState({required this.studentsClassClass});
 
@@ -24,7 +26,7 @@ class LoadedStudentsState extends StudentState {
   List<Object> get props => [studentsClassClass];
 }
 
-class LoadedStudentsDataState extends StudentState {
+class LoadedStudentsDataState extends ParentState {
   final List<StudentActivityClass> studentActivity;
   LoadedStudentsDataState({required this.studentActivity});
 
@@ -32,7 +34,7 @@ class LoadedStudentsDataState extends StudentState {
   List<Object> get props => [studentActivity];
 }
 
-class ReLoadedStudentsDataState extends StudentState {
+class ReLoadedStudentsDataState extends ParentState {
   final List<StudentActivityClass> studentActivity;
   ReLoadedStudentsDataState({required this.studentActivity});
 
@@ -40,32 +42,32 @@ class ReLoadedStudentsDataState extends StudentState {
   List<Object> get props => [studentActivity];
 }
 
-class ErrorStudentState extends StudentState {
+class ErrorParentState extends ParentState {
   final String message;
 
-  ErrorStudentState({required this.message});
+  ErrorParentState({required this.message});
 
   @override
   List<Object> get props => [message];
 }
 
-class MessageStudentState extends StudentState {
+class MessageParentState extends ParentState {
   final String message;
 
-  MessageStudentState({required this.message});
+  MessageParentState({required this.message});
 
   @override
   List<Object> get props => [message];
 }
 
-class MessageStudentMonthlyTestState extends StudentState {
+class MessageStudentMonthlyTestState extends ParentState {
   final String message;
   MessageStudentMonthlyTestState({required this.message});
   @override
   List<Object> get props => [message];
 }
 
-class MessageAddStudentsAssignmentState extends StudentState {
+class MessageAddStudentsAssignmentState extends ParentState {
   final String message;
 
   MessageAddStudentsAssignmentState({required this.message});
@@ -74,7 +76,7 @@ class MessageAddStudentsAssignmentState extends StudentState {
   List<Object> get props => [message];
 }
 
-class MessageAddStudentsAttendanceState extends StudentState {
+class MessageAddStudentsAttendanceState extends ParentState {
   final String message;
 
   MessageAddStudentsAttendanceState({required this.message});
@@ -82,7 +84,7 @@ class MessageAddStudentsAttendanceState extends StudentState {
   @override
   List<Object> get props => [message];
 }
-class MessageAddStudentBehaviourState extends StudentState {
+class MessageAddStudentBehaviourState extends ParentState {
   final String message;
 
   MessageAddStudentBehaviourState({required this.message});

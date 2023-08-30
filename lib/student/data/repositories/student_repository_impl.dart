@@ -5,6 +5,8 @@ import '../../../../base/error/failures.dart';
 import '../../../../base/network/network_info.dart';
 
 import '../../domain/entities/student.dart';
+import '../../domain/entities/student_activity_class.dart';
+import '../../domain/entities/students_class_class.dart';
 import '../../domain/repositories/students_repository.dart';
 import '../datasources/student_local_data_source.dart';
 import '../datasources/student_remote_data_source.dart';

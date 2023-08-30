@@ -2,6 +2,7 @@
 import 'package:flutter_design/base/urls.dart';
 import 'package:flutter_design/student/domain/entities/student.dart';
 import '../../../../base/error/exceptions.dart';
+import '../../domain/entities/student_activity_class.dart';
 import '../models/student_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;

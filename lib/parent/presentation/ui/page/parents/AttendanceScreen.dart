@@ -1,98 +1,88 @@
 import 'package:flutter/material.dart';
 
-class StudentAttendanceClassTwo {
-  final String date;
-  final List<StudentAttendance> studentAttendance;
+import '../../../../domain/entities/student_attendance_class.dart';
+import '../../../../domain/entities/student_attendance_class.dart';
+import '../../../../domain/entities/student_attendance_day.dart';
+import '../../../../domain/entities/student_attendance_week.dart';
 
-  StudentAttendanceClassTwo(
-      {required this.date, required this.studentAttendance});
-}
+// class StudentAttendanceColumnClass {
+//   final List<String> column;
+//   final List<StudentAttendanceWeek> studentAttendanceClass;
 
-class StudentAttendance {
-  final String day;
-  final List<String> subjects;
+//   StudentAttendanceColumnClass(
+//       {required this.column, required this.studentAttendanceClass});
+// }
 
-  StudentAttendance({required this.day, required this.subjects});
-}
+// class StudentAttendanceWeek {
+//   final String date;
+//   final List<StudentAttendance> studentAttendance;
 
-class AssignmentsStudentViewScreen extends StatelessWidget {
-  final List<StudentAttendanceClassTwo> studentAttendanceClassTwo = [
-    StudentAttendanceClassTwo(
-      date: '2024/7/26',
-      studentAttendance: [
-        StudentAttendance(
-            day: 'السبت', subjects: ['مسلم', 'مسلم', 'مسلم', 'فير مسلم', 'مسلم']),
-        StudentAttendance(
-            day: 'الأحد', subjects: ['مسلم', 'ناقص', 'مسلم', 'مسلم', 'مسلم']),
-        StudentAttendance(
-            day: 'الاثنين',
-            subjects: ['مسلم', 'مسلم', 'ناقص', 'مسلم', 'ناقص']),
-        StudentAttendance(
-            day: 'الثلاثاء',
-            subjects: ['مسلم', 'مسلم', 'مسلم', 'مسلم', 'فير مسلم']),
-        StudentAttendance(
-            day: 'الأربعاء',
-            subjects: ['مسلم', 'فير مسلم', 'مسلم', 'مسلم', 'مسلم']),
-      ],
-    ),
-    StudentAttendanceClassTwo(
-      date: '2024/8/3',
-      studentAttendance: [
-        StudentAttendance(
-            day: 'السبت', subjects: ['مسلم', 'مسلم', 'مسلم', 'فير مسلم', 'مسلم']),
-        StudentAttendance(
-            day: 'الأحد', subjects: ['مسلم', 'ناقص', 'مسلم', 'مسلم', 'مسلم']),
-        StudentAttendance(
-            day: 'الاثنين',
-            subjects: ['مسلم', 'مسلم', 'ناقص', 'مسلم', 'ناقص']),
-        StudentAttendance(
-            day: 'الثلاثاء',
-            subjects: ['مسلم', 'مسلم', 'مسلم', 'مسلم', 'فير مسلم']),
-        StudentAttendance(
-            day: 'الأربعاء',
-            subjects: ['مسلم', 'فير مسلم', 'مسلم', 'فير مسلم', 'فير مسلم']),
-      ],
-    ),
-    StudentAttendanceClassTwo(
-      date: '2024/8/19',
-      studentAttendance: [
-        StudentAttendance(
-            day: 'السبت', subjects: ['مسلم', 'مسلم', 'فير مسلم', 'مسلم', 'ناقص']),
-        StudentAttendance(
-            day: 'الأحد', subjects: ['مسلم', 'مسلم', 'مسلم', 'مسلم', 'فير مسلم']),
-        StudentAttendance(
-            day: 'الاثنين', subjects: ['مسلم', 'مسلم', 'مسلم', 'مسلم', 'مسلم']),
-      ],
-    ),
-    StudentAttendanceClassTwo(
-      date: '2024/8/11',
-      studentAttendance: [
-        StudentAttendance(
-            day: 'السبت', subjects: ['مسلم', 'مسلم', 'مسلم', 'فير مسلم', 'مسلم']),
-        StudentAttendance(
-            day: 'الأحد', subjects: ['مسلم', 'ناقص', 'مسلم', 'مسلم', 'مسلم']),
-        StudentAttendance(
-            day: 'الاثنين',
-            subjects: ['مسلم', 'مسلم', 'ناقص', 'مسلم', 'ناقص']),
-        StudentAttendance(
-            day: 'الثلاثاء',
-            subjects: ['مسلم', 'مسلم', 'مسلم', 'مسلم', 'فير مسلم']),
-        StudentAttendance(
-            day: 'الأربعاء',
-            subjects: ['مسلم', 'فير مسلم', 'مسلم', 'مسلم', 'مسلم']),
-      ],
-    ),
-  ];
-  // List<String> columnNames = ['يوم', 'القرآن', 'التربية الاسلامية'];
-  List<String> columnNames = [
+//   StudentAttendanceWeek(
+//       {required this.date, required this.studentAttendance});
+// }
+
+// class StudentAttendance {
+//   final String day;
+//   final List<String> subjects;
+
+//   StudentAttendance({required this.day, required this.subjects});
+// }
+
+ final List<String> column = [
     'يوم',
     'القرآن',
     'التربية الاسلامية',
-    'اللغة العربية',
+    ' ...',
     'الرياضيات',
     'العلوم'
   ];
-  late bool chickIndex = false;
+
+  final List<StudentAttendanceWeek> studentAttendanceWeek = [
+    StudentAttendanceWeek(
+      date: '2024/7/26',
+      studentAttendance: [
+        StudentAttendanceDay(
+            day: 'السبت', subjects: ['حاضر', 'حاضر', 'حاضر', 'غائب', 'حاضر']),
+        StudentAttendanceDay(
+            day: 'الأحد', subjects: ['حاضر', 'مستأذن', 'حاضر', 'حاضر', 'حاضر']),
+        StudentAttendanceDay(
+            day: 'الاثنين',
+            subjects: ['حاضر', 'حاضر', 'مستأذن', 'حاضر', 'مستأذن']),
+        StudentAttendanceDay(
+            day: 'الثلاثاء',
+            subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'غائب']),
+        StudentAttendanceDay(
+            day: 'الأربعاء',
+            subjects: ['حاضر', 'غائب', 'حاضر', 'حاضر', 'حاضر']),
+      ],
+    ),
+    StudentAttendanceWeek(
+      date: '2024/8/3',
+      studentAttendance: [
+        StudentAttendanceDay(
+            day: 'السبت', subjects: ['حاضر', 'حاضر', 'حاضر', 'غائب', 'حاضر']),
+        StudentAttendanceDay(
+            day: 'الأحد', subjects: ['حاضر', 'مستأذن', 'حاضر', 'حاضر', 'حاضر']),
+        StudentAttendanceDay(
+            day: 'الاثنين',
+            subjects: ['حاضر', 'حاضر', 'مستأذن', 'حاضر', 'مستأذن']),
+        StudentAttendanceDay(
+            day: 'الثلاثاء',
+            subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'غائب']),
+        StudentAttendanceDay(
+            day: 'الأربعاء',
+            subjects: ['حاضر', 'غائب', 'حاضر', 'حاضر', 'حاضر']),
+      ],
+    ),
+  ];
+
+  StudentAttendanceClass attendanceColumn = StudentAttendanceClass(
+    column: column,
+    studentAttendanceClass: studentAttendanceWeek,
+  );
+
+
+class AttendanceStudentViewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +90,7 @@ class AssignmentsStudentViewScreen extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('كشف الواجبات'),
+          title: Text('كشف الحضور والغياب'),
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -117,8 +107,8 @@ class AssignmentsStudentViewScreen extends StatelessWidget {
   }
 
   Widget WidgetDataTable() {
-    List<StudentAttendanceClassTwo> filteredData =
-        studentAttendanceClassTwo.toList();
+    List<StudentAttendanceWeek> filteredData =
+        attendanceColumn.studentAttendanceClass.toList();
 
     return Container(
       child: Column(
@@ -157,8 +147,8 @@ class AssignmentsStudentViewScreen extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.grey[300],
             ),
-            children: List.generate(columnNames.length, (index) {
-              return TableCell(child: _WidgetCell(columnNames[index]));
+            children: List.generate(attendanceColumn.column.length, (index) {
+              return TableCell(child: _WidgetCell(attendanceColumn.column[index]));
             }),
           ),
         ],
@@ -166,14 +156,14 @@ class AssignmentsStudentViewScreen extends StatelessWidget {
     );
   }
 
-  Widget WidgetTable(List<StudentAttendance> studentAttendanceList) {
+  Widget WidgetTable(List<StudentAttendanceDay> studentAttendanceDay) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Table(
         border: TableBorder.all(),
         defaultVerticalAlignment: TableCellVerticalAlignment.middle,
         children: [
-          for (var attendance in studentAttendanceList)
+          for (var attendance in studentAttendanceDay)
             TableRow(
               children: [
                 TableCell(child: _WidgetCell(attendance.day)),
@@ -206,11 +196,11 @@ class AssignmentsStudentViewScreen extends StatelessWidget {
         child: Text(
           status,
           style: TextStyle(
-            color: status == 'مسلم'
+            color: status == 'حاضر'
                 ? Colors.green
-                : status == 'ناقص'
+                : status == 'مستأذن'
                     ? Colors.blue
-                    : status == 'فير مسلم'
+                    : status == 'غائب'
                         ? Colors.red
                         : Colors.white,
             fontWeight: FontWeight.bold,
@@ -254,7 +244,7 @@ class AssignmentsStudentViewScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              'كشف واجبات الطالب',
+              'كشف الحضور والغياب للطالب',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 30,

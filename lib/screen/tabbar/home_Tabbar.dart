@@ -6,7 +6,8 @@ import '../../home_main/presentation/ui/home/menu_drawer.dart';
 
 
 import '../../notification/presentation/ui/notification/notification.dart';
- import '../../student/presentation/ui/page/dashboard_parents_screen.dart';
+ import '../../parent/presentation/ui/page/chick_dashboard_parents.dart';
+import '../../parent/presentation/ui/page/dashboard_parents_screen.dart';
 import 'tabbar.dart';
 
 class TabBarViewScreen extends StatefulWidget {
@@ -38,13 +39,13 @@ class _TabBarViewScreenState extends State<TabBarViewScreen>
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: CustomTabBar(tabController: _tabController),
-
+        
         body: TabBarView(
           controller: _tabController,
           children: [
             HomeScreen(),
             BranchScreen(),
-            DashboardScreen(),
+            ChickDashboardScreen(),
             NotificationsScreen(),
             MenuPage(),
           ],

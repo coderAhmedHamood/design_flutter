@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_design/student/domain/entities/student.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../account/data/model/stor.dart';
-import '../../bloc/up_data_student/Student_event.dart';
-import '../../bloc/up_data_student/student_bloc.dart';
-import '../page/dashboard_student_screen.dart';
+ import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../account/data/model/stor.dart';
+import '../../../../domain/entities/students_class_class.dart';
+import '../../../bloc/up_data_student/Student_event.dart';
+import '../../../bloc/up_data_student/student_bloc.dart';
+import '../../page/dashboard_student_screen.dart';
 
 class StudentClassListWidget extends StatelessWidget {
   final List<StudentsClassClass> studentsClassClass =
