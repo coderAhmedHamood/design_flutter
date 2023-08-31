@@ -8,6 +8,7 @@ import 'home_main/presentation/bloc/add_delete_update_post/add_delete_update_pos
 import 'base/bloc_ob_serve.dart';
 import 'home_main/presentation/bloc/posts/posts_bloc.dart';
 import 'notification/presentation/bloc/notification/Notifications_bloc.dart';
+import 'parent/presentation/bloc/parent_bloc.dart';
 import 'screen/tabbar/home_Tabbar.dart';
 import 'base/app_theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart'; 
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
      return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => di.sl<StudentBloc>()), 
+        BlocProvider(create: (_) => di.sl<ParentBloc>()), 
         BlocProvider(create: (_) => di.sl<PostsBloc>()..add(GetAllPostsEvent())),
         // BlocProvider(create: (_) => di.sl<NotificationsBloc>()..add(GetAllNotificationsEvent())),
         BlocProvider(create: (_) => di.sl<NotificationsBloc>()..add(GetValueNotificationBarEvent())),

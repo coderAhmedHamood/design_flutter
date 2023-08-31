@@ -41,8 +41,8 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       else if (event is GetValueNotificationBarEvent) {
         NotificationHome.assignment = 34;
         NotificationHome.notifications = 26;
-        UserData.setUserDataValues(11, "ابو العرب", "12345", "email", "مدير");
-        // UserData.setUserDataValues(11, "ابو العرب", "12345", "email", "ولي امر");
+        // UserData.setUserDataValues(11, "ابو العرب", "12345", "email", "مدير");
+        UserData.setUserDataValues(11, "ابو العرب", "12345", "email", "ولي امر");
         TeacherData teacherData = TeacherData('رياضيات', [
           StudentsClassClass(id: 1, name: 'الخامس'),
           StudentsClassClass(id: 2, name: 'السادس'),
@@ -50,7 +50,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
         ]);
         ParentData parentData = ParentData([
           StudentClass(id: 1, name: 'عبداللة سيف'),
-          // StudentClass(id: 2, name: 'سيف بن سيف'),
+          StudentClass(id: 2, name: 'سيف بن سيف'),
         ]);
         UserData.setParentData(parentData);
         UserData.setTeacherData(teacherData);

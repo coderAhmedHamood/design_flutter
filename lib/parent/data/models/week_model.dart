@@ -1,3 +1,5 @@
+import 'package:flutter_design/parent/data/models/parent_model.dart';
+
 import '../../domain/entities/student_attendance_day.dart';
 import '../../domain/entities/student_attendance_week.dart';
 import 'day_model.dart';
@@ -24,10 +26,13 @@ class StudentAttendanceWeekModel extends StudentAttendanceWeek {
   }
 
   Map<String, dynamic> toJson() {
-    return {
+   return {
       'date': date,
-      'studentAttendance':
-          List<dynamic>.from(studentAttendance.map((day) => (day as StudentAttendanceDayModel).toJson())),
+      
+
+       'studentAttendance': List<StudentAttendanceDay>.from(
+        studentAttendance.map((day) => day ),
+      ),
     };
   }
 }

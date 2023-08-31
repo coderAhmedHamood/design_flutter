@@ -27,8 +27,14 @@ class StudentAttendanceModel extends StudentAttendanceClass {
   Map<String, dynamic> toJson() {
     return {
       'column': column,
-      'studentAttendanceClass': List<StudentAttendanceWeek>.from(
-          studentAttendanceClass.map((week) =>(week as StudentAttendanceWeekModel).toJson())),
+      'studentAttendanceClass':
+       List<StudentAttendanceWeek>.from(
+          studentAttendanceClass.map((week) =>week )),
+      // studentAttendanceClass.map((week) => week).toList(),
+      
+      
+      // 'studentAttendanceClass': List<StudentAttendanceWeek>.from(
+      //     studentAttendanceClass.map((week) =>(week as StudentAttendanceWeekModel).toJson())),
           
     };
   }

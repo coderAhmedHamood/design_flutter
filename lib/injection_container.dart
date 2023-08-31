@@ -2,6 +2,13 @@ import 'package:flutter_design/branch/domain/entities/branch.dart';
 import 'package:flutter_design/branch/domain/repositories/branch_repository.dart';
 import 'package:flutter_design/branch/presentation/bloc/branch/branch_bloc.dart';
 import 'package:flutter_design/notification/domain/usecases/get_all_notification.dart';
+import 'package:flutter_design/parent/data/datasources/parent_local_data_source.dart';
+import 'package:flutter_design/parent/data/datasources/parent_remote_data_source.dart';
+import 'package:flutter_design/parent/data/repositories/parent_repository_impl.dart';
+import 'package:flutter_design/parent/domain/repositories/parents_repository.dart';
+import 'package:flutter_design/parent/domain/usecases/get_student_data_to_parent.dart';
+import 'package:flutter_design/parent/domain/usecases/get_student_data_to_parent_monthly_test.dart';
+import 'package:flutter_design/parent/presentation/bloc/parent_bloc.dart';
 import 'package:flutter_design/student/data/datasources/student_local_data_source.dart';
 import 'package:flutter_design/student/data/datasources/student_remote_data_source.dart';
 import 'package:flutter_design/student/data/repositories/student_repository_impl.dart';
@@ -116,6 +123,36 @@ Future<void> init() async {
       () => StudentRemoteDataSourceImpl(client: sl()));
   sl.registerLazySingleton<StudentLocalDataSource>(
       () => StudentLocalDataSourceImpl(sharedPreferences: sl()));
+
+
+
+//! bloc  Parent
+  sl.registerFactory(
+    () => ParentBloc(
+      // addAttendance: sl(),
+      // addAssignment: sl(),
+      // addBehavior: sl(),
+      // addMonthTestDigree: sl(),
+      // getClass: sl(),
+      getDataStudentToParentAttendance: sl(),
+      getDataStudentToParentMonthlyTest: sl(),
+    ),
+  );
+//! Usecases  Parent
+  sl.registerLazySingleton(() => GetDataStudentToParenttUsecase(sl()));
+  sl.registerLazySingleton(() => GetDataStudentToParentMonthlyTestUsecase(sl()));
+  // sl.registerLazySingleton(() => AddStudentBehaviorUsecase(sl()));
+  // sl.registerLazySingleton(() => AddStudentAssignmentUsecase(sl()));
+  // sl.registerLazySingleton(() => AddStudentMonthTestUsecase(sl()));
+  // sl.registerLazySingleton(() => GetStudentDataUsecase(sl()));
+//!  Repository Parent
+  sl.registerLazySingleton<ParentsRepository>(() => ParentsRepositoryImpl(
+      remoteDataSource: sl(), localDataSource: sl(), networkInfo: sl()));
+//!  Datasources Parent
+  sl.registerLazySingleton<ParentRemoteDataSource>(
+      () => ParentRemoteDataSourceImpl(client: sl()));
+  sl.registerLazySingleton<ParentLocalDataSource>(
+      () => ParentLocalDataSourceImpl(sharedPreferences: sl()));
 
 //! Base
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));

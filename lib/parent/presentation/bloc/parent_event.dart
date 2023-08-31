@@ -19,6 +19,14 @@ class GetDataStudentToParentEvent extends ParentEvent {
   @override
   List<Object> get props => [idStuden];
 }
+class GetDataStudentToParentMonthlyTestEvent extends ParentEvent {
+  int idStuden;
+  GetDataStudentToParentMonthlyTestEvent({
+    required this.idStuden,
+  });
+  @override
+  List<Object> get props => [idStuden];
+}
 
 class ReloadStudentDataEvent extends ParentEvent {}
 class GetStudentDataEvent extends ParentEvent {

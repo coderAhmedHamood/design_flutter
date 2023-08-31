@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_design/parent/presentation/bloc/parent_event.dart';
 
 import '../../../../account/data/model/stor.dart';
 
 import '../../../../student/presentation/ui/page/choose_class.dart';
+import '../../bloc/parent_bloc.dart';
 import '../widgets/student/build_dashboard_item.dart';
 import 'choose_student.dart';
 import 'parents/AssignmentsScreen.dart';
@@ -10,6 +12,7 @@ import 'parents/AttendanceScreen.dart';
 import 'parents/BehaviorScreen.dart';
 import 'parents/MonthlyTestsScreen.dart';
 import 'parents/permission_request.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'dashboard_student_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -21,6 +24,7 @@ class DashboardScreen extends StatelessWidget {
     String permission = UserData.permissions.toString();
     if (permission.contains("مدير")) {
       permissions = true;
+      
     }
 
     return Scaffold(
@@ -64,6 +68,8 @@ class DashboardScreen extends StatelessWidget {
           subtitle: 'عرض سجلات الحضور',
           color: Colors.red,
           onTap: () {
+       
+            BlocProvider.of<ParentBloc>(context).add(GetDataStudentToParentEvent(idStuden: _idStudent));
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -90,7 +96,9 @@ class DashboardScreen extends StatelessWidget {
           title: 'الاختبارات الشهرية',
           subtitle: 'عرض نتائج الاختبارات الشهرية',
           color: Colors.purple,
+          
           onTap: () {
+          BlocProvider.of<ParentBloc>(context).add(GetDataStudentToParentMonthlyTestEvent(idStuden: _idStudent));
             Navigator.push(
               context,
               MaterialPageRoute(

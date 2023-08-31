@@ -6,7 +6,7 @@ class TitleChooseStudent extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Container(
-        height: 100,
+        // height: 100,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
@@ -37,7 +37,7 @@ class TitleChooseStudent extends StatelessWidget {
               'اختيار الطالب لمعرفة بياناتة',
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 30,
+                fontSize: 25,
                 fontWeight: FontWeight.bold,
               ),
             ),

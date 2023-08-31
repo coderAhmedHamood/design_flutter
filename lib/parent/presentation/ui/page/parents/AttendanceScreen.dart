@@ -1,108 +1,50 @@
 import 'package:flutter/material.dart';
 
 import '../../../../domain/entities/student_attendance_class.dart';
-import '../../../../domain/entities/student_attendance_class.dart';
 import '../../../../domain/entities/student_attendance_day.dart';
 import '../../../../domain/entities/student_attendance_week.dart';
-
-// class StudentAttendanceColumnClass {
-//   final List<String> column;
-//   final List<StudentAttendanceWeek> studentAttendanceClass;
-
-//   StudentAttendanceColumnClass(
-//       {required this.column, required this.studentAttendanceClass});
-// }
-
-// class StudentAttendanceWeek {
-//   final String date;
-//   final List<StudentAttendance> studentAttendance;
-
-//   StudentAttendanceWeek(
-//       {required this.date, required this.studentAttendance});
-// }
-
-// class StudentAttendance {
-//   final String day;
-//   final List<String> subjects;
-
-//   StudentAttendance({required this.day, required this.subjects});
-// }
-
- final List<String> column = [
-    'يوم',
-    'القرآن',
-    'التربية الاسلامية',
-    ' ...',
-    'الرياضيات',
-    'العلوم'
+import '../../../bloc/parent_bloc.dart';
+import '../../../bloc/parent_state.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+final List<String> column = [''];
+final List<StudentAttendanceWeek> studentAttendanceWeek = [
+  StudentAttendanceWeek(date: '',studentAttendance: [StudentAttendanceDay(day: '', subjects: ['']),],
+  ),
   ];
 
-  final List<StudentAttendanceWeek> studentAttendanceWeek = [
-    StudentAttendanceWeek(
-      date: '2024/7/26',
-      studentAttendance: [
-        StudentAttendanceDay(
-            day: 'السبت', subjects: ['حاضر', 'حاضر', 'حاضر', 'غائب', 'حاضر']),
-        StudentAttendanceDay(
-            day: 'الأحد', subjects: ['حاضر', 'مستأذن', 'حاضر', 'حاضر', 'حاضر']),
-        StudentAttendanceDay(
-            day: 'الاثنين',
-            subjects: ['حاضر', 'حاضر', 'مستأذن', 'حاضر', 'مستأذن']),
-        StudentAttendanceDay(
-            day: 'الثلاثاء',
-            subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'غائب']),
-        StudentAttendanceDay(
-            day: 'الأربعاء',
-            subjects: ['حاضر', 'غائب', 'حاضر', 'حاضر', 'حاضر']),
-      ],
-    ),
-    StudentAttendanceWeek(
-      date: '2024/8/3',
-      studentAttendance: [
-        StudentAttendanceDay(
-            day: 'السبت', subjects: ['حاضر', 'حاضر', 'حاضر', 'غائب', 'حاضر']),
-        StudentAttendanceDay(
-            day: 'الأحد', subjects: ['حاضر', 'مستأذن', 'حاضر', 'حاضر', 'حاضر']),
-        StudentAttendanceDay(
-            day: 'الاثنين',
-            subjects: ['حاضر', 'حاضر', 'مستأذن', 'حاضر', 'مستأذن']),
-        StudentAttendanceDay(
-            day: 'الثلاثاء',
-            subjects: ['حاضر', 'حاضر', 'حاضر', 'حاضر', 'غائب']),
-        StudentAttendanceDay(
-            day: 'الأربعاء',
-            subjects: ['حاضر', 'غائب', 'حاضر', 'حاضر', 'حاضر']),
-      ],
-    ),
-  ];
-
-  StudentAttendanceClass attendanceColumn = StudentAttendanceClass(
-    column: column,
-    studentAttendanceClass: studentAttendanceWeek,
-  );
-
+StudentAttendanceClass attendanceColumn = StudentAttendanceClass(
+  column: column,
+  studentAttendanceClass: studentAttendanceWeek,
+);
 
 class AttendanceStudentViewScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('كشف الحضور والغياب'),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(height: 5),
-              WidgetTitle(),
-              SizedBox(height: 10),
-              WidgetDataTable(),
-            ],
+    return BlocBuilder<ParentBloc, ParentState>(
+      builder: (context, state) {
+        if (state is LoadedStudentDataToParentState) {
+          
+          attendanceColumn = state.studentAttendanceClass;
+        }
+        return Directionality(
+          textDirection: TextDirection.rtl,
+          child: Scaffold(
+            appBar: AppBar(
+              title: Text('كشف الحضور والغياب'),
+            ),
+            body: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(height: 5),
+                  WidgetTitle(),
+                  SizedBox(height: 10),
+                  WidgetDataTable(),
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
@@ -125,7 +67,6 @@ class AttendanceStudentViewScreen extends StatelessWidget {
                     // fontWeight: FontWeight.bold,
                     decoration: TextDecoration.underline,
                   ),
-                  
                 ),
                 WidgetTable(data.studentAttendance),
               ],
@@ -148,7 +89,8 @@ class AttendanceStudentViewScreen extends StatelessWidget {
               color: Colors.grey[300],
             ),
             children: List.generate(attendanceColumn.column.length, (index) {
-              return TableCell(child: _WidgetCell(attendanceColumn.column[index]));
+              return TableCell(
+                  child: _WidgetCell(attendanceColumn.column[index]));
             }),
           ),
         ],

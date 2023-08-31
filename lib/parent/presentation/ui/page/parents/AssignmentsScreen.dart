@@ -1,63 +1,71 @@
 import 'package:flutter/material.dart';
+import '../../../../domain/entities/student_attendance_class.dart';
+import '../../../../domain/entities/student_attendance_day.dart';
+import '../../../../domain/entities/student_attendance_week.dart';
+import '../../../bloc/parent_bloc.dart';
+import '../../../bloc/parent_state.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+final List<String> column = [''];
+final List<StudentAttendanceWeek> studentAttendanceWeek = [
+  StudentAttendanceWeek(date: '',studentAttendance: [StudentAttendanceDay(day: '', subjects: ['']),],
+  ),
+  ];
 
-class StudentAttendanceClassTwo {
-  final String date;
-  final List<StudentAttendance> studentAttendance;
+StudentAttendanceClass attendanceColumn = StudentAttendanceClass(
+  column: column,
+  studentAttendanceClass: studentAttendanceWeek,
+);
+// class StudentAttendanceClassTwo {
+//   final String date;
+//   final List<StudentAttendance> studentAttendance;
 
-  StudentAttendanceClassTwo(
-      {required this.date, required this.studentAttendance});
-}
+//   StudentAttendanceClassTwo(
+//       {required this.date, required this.studentAttendance});
+// }
 
-class StudentAttendance {
-  final String day;
-  final List<String> subjects;
+// class StudentAttendance {
+//   final String day;
+//   final List<String> subjects;
 
-  StudentAttendance({required this.day, required this.subjects});
-}
+//   StudentAttendance({required this.day, required this.subjects});
+// }
 
 class AssignmentsStudentViewScreen extends StatelessWidget {
-  final List<StudentAttendanceClassTwo> studentAttendanceClassTwo = [
-    StudentAttendanceClassTwo(
-      date: '2024/7/26',
-      studentAttendance: [
-        StudentAttendance(
-            day: 'السبت', subjects: ['مسلم', 'مسلم', 'مسلم', 'فير مسلم', 'مسلم']),
-        StudentAttendance(
-            day: 'الأحد', subjects: ['مسلم', 'ناقص', 'مسلم', 'مسلم', 'مسلم']),
-        StudentAttendance(
-            day: 'الاثنين',
-            subjects: ['مسلم', 'مسلم', 'ناقص', 'مسلم', 'ناقص']),
-        StudentAttendance(
-            day: 'الثلاثاء',
-            subjects: ['مسلم', 'مسلم', 'مسلم', 'مسلم', 'فير مسلم']),
-        StudentAttendance(
-            day: 'الأربعاء',
-            subjects: ['مسلم', 'فير مسلم', 'مسلم', 'مسلم', 'مسلم']),
-      ],
-    ),
+  // final List<StudentAttendanceClassTwo> studentAttendanceClassTwo = [
+  //   StudentAttendanceClassTwo(
+  //     date: '2024/7/26',
+  //     studentAttendance: [
+  //       StudentAttendance(
+  //           day: 'السبت', subjects: ['مسلم', 'مسلم', 'مسلم', 'فير مسلم', 'مسلم']),
+  //       StudentAttendance(
+  //           day: 'الأحد', subjects: ['مسلم', 'ناقص', 'مسلم', 'مسلم', 'مسلم']),
+  //       StudentAttendance(
+  //           day: 'الاثنين',
+  //           subjects: ['مسلم', 'مسلم', 'ناقص', 'مسلم', 'ناقص']),
+  //       StudentAttendance(
+  //           day: 'الثلاثاء',
+  //           subjects: ['مسلم', 'مسلم', 'مسلم', 'مسلم', 'فير مسلم']),
+  //       StudentAttendance(
+  //           day: 'الأربعاء',
+  //           subjects: ['مسلم', 'فير مسلم', 'مسلم', 'مسلم', 'مسلم']),
+  //     ],
+  //   ),
    
-    StudentAttendanceClassTwo(
-      date: '2024/8/19',
-      studentAttendance: [
-        StudentAttendance(
-            day: 'السبت', subjects: ['مسلم', 'مسلم', 'فير مسلم', 'مسلم', 'ناقص']),
-        StudentAttendance(
-            day: 'الأحد', subjects: ['مسلم', 'مسلم', 'مسلم', 'مسلم', 'فير مسلم']),
-        StudentAttendance(
-            day: 'الاثنين', subjects: ['مسلم', 'مسلم', 'مسلم', 'مسلم', 'مسلم']),
-      ],
-    ),
+  //   StudentAttendanceClassTwo(
+  //     date: '2024/8/19',
+  //     studentAttendance: [
+  //       StudentAttendance(
+  //           day: 'السبت', subjects: ['مسلم', 'مسلم', 'فير مسلم', 'مسلم', 'ناقص']),
+  //       StudentAttendance(
+  //           day: 'الأحد', subjects: ['مسلم', 'مسلم', 'مسلم', 'مسلم', 'فير مسلم']),
+  //       StudentAttendance(
+  //           day: 'الاثنين', subjects: ['مسلم', 'مسلم', 'مسلم', 'مسلم', 'مسلم']),
+  //     ],
+  //   ),
  
-  ];
-  // List<String> columnNames = ['يوم', 'القرآن', 'التربية الاسلامية'];
-  List<String> columnNames = [
-    'يوم',
-    'القرآن',
-    'التربية الاسلامية',
-    'اللغة العربية',
-    'الرياضيات',
-    'العلوم'
-  ];
+  // ];
+  // // List<String> columnNames = ['يوم', 'القرآن', 'التربية الاسلامية'];
+ 
   late bool chickIndex = false;
 
   @override
@@ -83,14 +91,13 @@ class AssignmentsStudentViewScreen extends StatelessWidget {
   }
 
   Widget WidgetDataTable() {
-    List<StudentAttendanceClassTwo> filteredData =
-        studentAttendanceClassTwo.toList();
+ 
 
     return Container(
       child: Column(
         children: [
           WidgetCreateTable(),
-          for (var data in filteredData)
+          for (var data in attendanceColumn.studentAttendanceClass)
             Column(
               children: [
                 Text(
@@ -123,8 +130,8 @@ class AssignmentsStudentViewScreen extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.grey[300],
             ),
-            children: List.generate(columnNames.length, (index) {
-              return TableCell(child: _WidgetCell(columnNames[index]));
+            children: List.generate(attendanceColumn.column.length, (index) {
+              return TableCell(child: _WidgetCell(attendanceColumn.column[index]));
             }),
           ),
         ],
@@ -132,7 +139,7 @@ class AssignmentsStudentViewScreen extends StatelessWidget {
     );
   }
 
-  Widget WidgetTable(List<StudentAttendance> studentAttendanceList) {
+  Widget WidgetTable(List<StudentAttendanceDay> studentAttendanceList) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Table(

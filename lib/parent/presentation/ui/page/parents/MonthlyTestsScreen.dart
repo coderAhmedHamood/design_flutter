@@ -1,47 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../domain/entities/student_attendance_class.dart';
+import '../../../../domain/entities/student_attendance_day.dart';
+import '../../../../domain/entities/student_attendance_week.dart';
+import '../../../bloc/parent_bloc.dart';
+import '../../../bloc/parent_state.dart';
 
-class StudentAttendanceClassTwo {
-  final String date;
-  final List<StudentAttendance> studentAttendance;
 
-  StudentAttendanceClassTwo(
-      {required this.date, required this.studentAttendance});
-}
+ 
 
-class StudentAttendance {
-  final String day;
-  final List<String> subjects;
+final List<String> column = [''];
+final List<StudentAttendanceWeek> studentAttendanceWeek = [
+  StudentAttendanceWeek(date: '',studentAttendance: [StudentAttendanceDay(day: '', subjects: ['']),],
+  ),
+  ];
 
-  StudentAttendance({required this.day, required this.subjects});
-}
+StudentAttendanceClass attendanceColumn = StudentAttendanceClass(
+  column: column,
+  studentAttendanceClass: studentAttendanceWeek,
+);
 
 class MonthlyTestsStudentViewScreen extends StatelessWidget {
-  final List<StudentAttendanceClassTwo> studentAttendanceClassTwo = [
-    StudentAttendanceClassTwo(
-      date: 'الترم الاول',
-      studentAttendance: [
-        StudentAttendance(day: 'القران', subjects: ['15', '30.0']),
-        StudentAttendance(day: 'التربية الاسلامية', subjects: ['10', '10']),
-        StudentAttendance(day: 'الرياضيات', subjects: ['28', '30']),
-        StudentAttendance(day: 'العلوم', subjects: ['11', '20']),
-        StudentAttendance(day: 'اللغة العربية', subjects: ['18', '13']),
-        StudentAttendance(day: 'الاجتماعيات', subjects: ['28', '15']),
-      ],
-    ),
-    StudentAttendanceClassTwo(
-      date: 'الترم الثاني',
-      studentAttendance: [
-        StudentAttendance(day: 'القران', subjects: ['15', '30f']),
-        StudentAttendance(day: 'التربية الاسلامية', subjects: ['28', '30']),
-        StudentAttendance(day: 'الرياضيات', subjects: ['14', '30']),
-        StudentAttendance(day: 'العلوم', subjects: ['11', '20']),
-        StudentAttendance(day: 'اللغة العربية', subjects: ['28', '9']),
-        StudentAttendance(day: 'الاجتماعيات', subjects: ['28', '30']),
-      ],
-    ),
-  ];
-  List<String> columnNames = ['المادة', '2024/8/15', '2024/9/15'];
-
   Color _getStatusColor(String status) {
     try {
       final intStatus = double.parse(status);
@@ -55,7 +34,13 @@ class MonthlyTestsStudentViewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
+       return BlocBuilder<ParentBloc, ParentState>(
+      builder: (context, state) {
+        if (state is LoadedStudentDataToParentMonthlyTestState) {
+ 
+          attendanceColumn = state.studentAttendanceClassMonthly;
+        }
+        return  Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
@@ -73,17 +58,18 @@ class MonthlyTestsStudentViewScreen extends StatelessWidget {
         ),
       ),
     );
+  });
   }
 
   Widget WidgetDataTable() {
-    List<StudentAttendanceClassTwo> filteredData =
-        studentAttendanceClassTwo.toList();
+    // List<StudentAttendanceClassTwo> filteredData =
+    //     studentAttendanceClassTwo.toList();
 
     return Container(
       child: Column(
         children: [
           WidgetCreateTable(),
-          for (var data in filteredData)
+          for (var data in attendanceColumn.studentAttendanceClass)
             Column(
               children: [
                 Text(
@@ -115,8 +101,8 @@ class MonthlyTestsStudentViewScreen extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.grey[300],
             ),
-            children: List.generate(columnNames.length, (index) {
-              return TableCell(child: _WidgetCell(columnNames[index]));
+            children: List.generate(attendanceColumn.column.length, (index) {
+              return TableCell(child: _WidgetCell(attendanceColumn.column[index]));
             }),
           ),
         ],
@@ -124,7 +110,7 @@ class MonthlyTestsStudentViewScreen extends StatelessWidget {
     );
   }
 
-  Widget WidgetTable(List<StudentAttendance> studentAttendanceList) {
+  Widget WidgetTable(List<StudentAttendanceDay> studentAttendanceList) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Table(
