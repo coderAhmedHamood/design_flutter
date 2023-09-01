@@ -20,8 +20,6 @@ class NotificationListWidget extends StatelessWidget {
                 itemCount: notifications.length,
                 itemBuilder: (context, index) {
                   final notification = notifications[index];
-                  print(notification);
-                  print(".......................///");
                   return InkWell(
                     onTap: () {
                       isNotificationClicked = true;

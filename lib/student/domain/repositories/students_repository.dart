@@ -16,3 +16,5 @@ abstract class StudentsRepository {
   Future<Either<Failure, List<StudentsClassClass>>> getStudentClass();
   Future<Either<Failure, List<StudentActivityModel>>> getStudentData(int idClass);
 }
+
+

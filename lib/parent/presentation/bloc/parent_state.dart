@@ -1,12 +1,11 @@
 // part of 'add_delete_update_student_bloc.dart';
 
 import 'package:equatable/equatable.dart';
+import 'package:flutter_design/parent/data/models/permission_model.dart';
 import 'package:flutter_design/parent/domain/entities/student_attendance_class.dart';
 
 import '../../../student/domain/entities/student_activity_class.dart';
 import '../../../student/domain/entities/students_class_class.dart';
- 
- 
 
 abstract class ParentState extends Equatable {
   const ParentState();
@@ -15,8 +14,6 @@ abstract class ParentState extends Equatable {
   List<Object> get props => [];
 }
 
-
-
 // class LoadedStudentsDataToParentState extends ParentState {
 //   final StudentAttendanceClass studentAttendanceClass;
 //   LoadedStudentsDataToParentState({required this.studentAttendanceClass});
@@ -24,6 +21,7 @@ abstract class ParentState extends Equatable {
 //   @override
 //   List<Object> get props => [studentAttendanceClass];
 // }
+class LoadingAddPermissionStudentsDataToParentState extends ParentState {}
 
 class LoadingStudentDataToParentState extends ParentState {}
 
@@ -43,29 +41,24 @@ class LoadedStudentDataToParentState extends ParentState {
   List<Object> get props => [studentAttendanceClass];
 }
 
+class LoadedStudentDataToParentPermissionState extends ParentState {
+  final List<PermissionRequesModel> permissionRequesModel;
+  LoadedStudentDataToParentPermissionState(
+      {required this.permissionRequesModel});
+  @override
+  List<Object> get props => [permissionRequesModel];
+}
+
 class LoadedStudentDataToParentMonthlyTestState extends ParentState {
   final StudentAttendanceClass studentAttendanceClassMonthly;
-  LoadedStudentDataToParentMonthlyTestState({required this.studentAttendanceClassMonthly});
+  LoadedStudentDataToParentMonthlyTestState(
+      {required this.studentAttendanceClassMonthly});
   @override
   List<Object> get props => [studentAttendanceClassMonthly];
 }
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 class ParentInitial extends ParentState {}
-
-
-
 
 class ReLoadedStudentsDataState extends ParentState {
   final List<StudentActivityClass> studentActivity;
@@ -74,8 +67,6 @@ class ReLoadedStudentsDataState extends ParentState {
   @override
   List<Object> get props => [studentActivity];
 }
-
-
 
 class MessageParentState extends ParentState {
   final String message;
@@ -110,6 +101,7 @@ class MessageAddStudentsAttendanceState extends ParentState {
   @override
   List<Object> get props => [message];
 }
+
 class MessageAddStudentBehaviourState extends ParentState {
   final String message;
 

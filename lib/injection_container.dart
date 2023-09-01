@@ -1,4 +1,3 @@
-import 'package:flutter_design/branch/domain/entities/branch.dart';
 import 'package:flutter_design/branch/domain/repositories/branch_repository.dart';
 import 'package:flutter_design/branch/presentation/bloc/branch/branch_bloc.dart';
 import 'package:flutter_design/notification/domain/usecases/get_all_notification.dart';
@@ -6,8 +5,11 @@ import 'package:flutter_design/parent/data/datasources/parent_local_data_source.
 import 'package:flutter_design/parent/data/datasources/parent_remote_data_source.dart';
 import 'package:flutter_design/parent/data/repositories/parent_repository_impl.dart';
 import 'package:flutter_design/parent/domain/repositories/parents_repository.dart';
+import 'package:flutter_design/parent/domain/usecases/add_permission.dart';
 import 'package:flutter_design/parent/domain/usecases/get_student_data_to_parent.dart';
+import 'package:flutter_design/parent/domain/usecases/get_student_data_to_parent_assignments.dart';
 import 'package:flutter_design/parent/domain/usecases/get_student_data_to_parent_monthly_test.dart';
+import 'package:flutter_design/parent/domain/usecases/get_student_data_to_parent_permission.dart';
 import 'package:flutter_design/parent/presentation/bloc/parent_bloc.dart';
 import 'package:flutter_design/student/data/datasources/student_local_data_source.dart';
 import 'package:flutter_design/student/data/datasources/student_remote_data_source.dart';
@@ -42,6 +44,7 @@ import 'notification/data/datasources/notification_local_data_source.dart';
 import 'notification/data/datasources/notification_remote_data_source.dart';
 import 'notification/data/repositories/notification_repository_impl.dart';
 import 'notification/domain/repositories/notification_repository.dart';
+import 'notification/domain/usecases/get_notification_to_parent.dart';
 import 'notification/presentation/bloc/notification/Notifications_bloc.dart';
 import 'student/domain/usecases/get_class.dart';
 
@@ -83,10 +86,14 @@ Future<void> init() async {
       () => BranchLocalDataSourceImpl(sharedPreferences: sl()));
 
 //! bloc  Notification
-  sl.registerFactory(() => NotificationsBloc(getAllNotifications: sl()));
+  sl.registerFactory(() => NotificationsBloc(
+    getAllNotifications: sl(),
+    getNotificationToParent: sl(),
+    ));
 // Usecases
 //!  Usecases Notification
   sl.registerLazySingleton(() => GetAllNotificationUsecase(sl()));
+  sl.registerLazySingleton(() => GetNotificationToParentUsecase(sl()));
 //!  Repository Notification
   sl.registerLazySingleton<NotificationsRepository>(() =>
       NotificationsRepositoryImpl(
@@ -129,22 +136,20 @@ Future<void> init() async {
 //! bloc  Parent
   sl.registerFactory(
     () => ParentBloc(
-      // addAttendance: sl(),
-      // addAssignment: sl(),
-      // addBehavior: sl(),
-      // addMonthTestDigree: sl(),
-      // getClass: sl(),
+    
       getDataStudentToParentAttendance: sl(),
       getDataStudentToParentMonthlyTest: sl(),
+      getDataStudentToParentAssignments: sl(),
+      getDataStudentToParentPermission: sl(),
+      addPermissionToStudentUsecase: sl(),
     ),
   );
 //! Usecases  Parent
   sl.registerLazySingleton(() => GetDataStudentToParenttUsecase(sl()));
   sl.registerLazySingleton(() => GetDataStudentToParentMonthlyTestUsecase(sl()));
-  // sl.registerLazySingleton(() => AddStudentBehaviorUsecase(sl()));
-  // sl.registerLazySingleton(() => AddStudentAssignmentUsecase(sl()));
-  // sl.registerLazySingleton(() => AddStudentMonthTestUsecase(sl()));
-  // sl.registerLazySingleton(() => GetStudentDataUsecase(sl()));
+  sl.registerLazySingleton(() => GetDataStudentToParentAssignmentsEventUsecase(sl()));
+  sl.registerLazySingleton(() => GetDataStudentToParentPermissionUsecase(sl()));
+  sl.registerLazySingleton(() => AddPermissionToStudentUsecase(sl()));
 //!  Repository Parent
   sl.registerLazySingleton<ParentsRepository>(() => ParentsRepositoryImpl(
       remoteDataSource: sl(), localDataSource: sl(), networkInfo: sl()));

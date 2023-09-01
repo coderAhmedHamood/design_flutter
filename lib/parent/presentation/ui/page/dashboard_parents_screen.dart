@@ -3,18 +3,18 @@ import 'package:flutter_design/parent/presentation/bloc/parent_event.dart';
 
 import '../../../../account/data/model/stor.dart';
 
+import '../../../../notification/presentation/bloc/notification/Notifications_bloc.dart';
+import '../../../../notification/presentation/bloc/notification/Notifications_event.dart';
+import '../../../../notification/presentation/ui/notification/notification_parent.dart';
 import '../../../../student/presentation/ui/page/choose_class.dart';
 import '../../bloc/parent_bloc.dart';
 import '../widgets/student/build_dashboard_item.dart';
-import 'choose_student.dart';
 import 'parents/AssignmentsScreen.dart';
 import 'parents/AttendanceScreen.dart';
-import 'parents/BehaviorScreen.dart';
 import 'parents/MonthlyTestsScreen.dart';
 import 'parents/permission_request.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'dashboard_student_screen.dart';
-
+ 
 class DashboardScreen extends StatelessWidget {
   final int _idStudent;
   DashboardScreen(this._idStudent);
@@ -22,7 +22,7 @@ class DashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     bool permissions = false;
     String permission = UserData.permissions.toString();
-    if (permission.contains("مدير")) {
+    if (permission.contains("مدير")|| permission.contains("مدرس")) {
       permissions = true;
       
     }
@@ -83,11 +83,13 @@ class DashboardScreen extends StatelessWidget {
           subtitle: 'عرض سجلات السلوك والانضباط',
           color: Colors.green,
           onTap: () {
+            BlocProvider.of<NotificationsBloc>(context).add(GetNotificationToParentEvent(idStudent: _idStudent));
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => BehaviorStudentViewScreen()),
-              // MaterialPageRoute(builder: (context) => NotificationsScreen()),
+                  builder: (context) => NotificationsParentScreen()),
+                  // builder: (context) => BehaviorStudentViewScreen()),
+              
             );
           },
         ),
@@ -112,6 +114,7 @@ class DashboardScreen extends StatelessWidget {
           subtitle: 'عرض تفاصيل الواجبات',
           color: Colors.teal,
           onTap: () {
+            BlocProvider.of<ParentBloc>(context).add(GetDataStudentToParentAssignmentsEvent(idStuden: _idStudent));
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -125,6 +128,9 @@ class DashboardScreen extends StatelessWidget {
           subtitle: 'طلب استئذان لطالب',
           color: Colors.blue, // اختر لونًا مناسبًا
           onTap: () {
+               
+            BlocProvider.of<ParentBloc>(context).add(GetDataStudentToParentPermissionEvent(idStuden: _idStudent));
+            
             Navigator.push(
               context,
               MaterialPageRoute(

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 
 class NotificationItem {
   final String title;
@@ -29,116 +27,10 @@ final List<NotificationItem> notifications = [
     date: '١٤ أغسطس ٢٠٢٣',
     image: 'assets/notification2.png',
   ),
-  NotificationItem(
-    title: 'إشعار جديد',
-    message: 'تمت إضافة منشور جديد في صفحتك',
-    date: '١٥ أغسطس ٢٠٢٣',
-    image: 'assets/notification3.png',
-  ),
-  NotificationItem(
-    title: 'تم الإعجاب بمنشورك',
-    message: 'أحد الأصدقاء قام بالإعجاب بمنشورك',
-    date: '١٤ أغسطس ٢٠٢٣',
-    image: 'assets/notification2.png',
-  ),
-  NotificationItem(
-    title: 'إشعار جديد',
-    message: 'تمت إضافة منشور جديد في صفحتك',
-    date: '١٥ أغسطس ٢٠٢٣',
-    image: 'assets/notification1.png',
-  ),
-  NotificationItem(
-    title: 'تم الإعجاب بمنشورك',
-    message: 'أحد الأصدقاء قام بالإعجاب بمنشورك',
-    date: '١٤ أغسطس ٢٠٢٣',
-    image: 'assets/notification2.png',
-  ),
-  NotificationItem(
-    title: 'إشعار جديد',
-    message: 'تمت إضافة منشور جديد في صفحتك',
-    date: '١٥ أغسطس ٢٠٢٣',
-    image: 'assets/notification3.png',
-  ),
-  NotificationItem(
-    title: 'تم الإعجاب بمنشورك',
-    message: 'أحد الأصدقاء قام بالإعجاب بمنشورك',
-    date: '١٤ أغسطس ٢٠٢٣',
-    image: 'assets/notification2.png',
-  ),
-  NotificationItem(
-    title: 'إشعار جديد',
-    message: 'تمت إضافة منشور جديد في صفحتك',
-    date: '١٥ أغسطس ٢٠٢٣',
-    image: 'assets/notification1.png',
-  ),
-  NotificationItem(
-    title: 'تم الإعجاب بمنشورك',
-    message: 'أحد الأصدقاء قام بالإعجاب بمنشورك',
-    date: '١٤ أغسطس ٢٠٢٣',
-    image: 'assets/notification2.png',
-  ),
-  NotificationItem(
-    title: 'إشعار جديد',
-    message: 'تمت إضافة منشور جديد في صفحتك',
-    date: '١٥ أغسطس ٢٠٢٣',
-    image: 'assets/notification1.png',
-  ),
+ 
+ 
+ 
 
-  NotificationItem(
-    title: 'إشعار جديد',
-    message: 'تمت إضافة منشور جديد في صفحتك',
-    date: '١٥ أغسطس ٢٠٢٣',
-    image: 'assets/notification3.png',
-  ),
-  NotificationItem(
-    title: 'تم الإعجاب بمنشورك',
-    message: 'أحد الأصدقاء قام بالإعجاب بمنشورك',
-    date: '١٤ أغسطس ٢٠٢٣',
-    image: 'assets/notification2.png',
-  ),
-  NotificationItem(
-    title: 'إشعار جديد',
-    message: 'تمت إضافة منشور جديد في صفحتك',
-    date: '١٥ أغسطس ٢٠٢٣',
-    image: 'assets/notification3.png',
-  ),
-  NotificationItem(
-    title: 'تم الإعجاب بمنشورك',
-    message: 'أحد الأصدقاء قام بالإعجاب بمنشورك',
-    date: '١٤ أغسطس ٢٠٢٣',
-    image: 'assets/notification2.png',
-  ),
-  NotificationItem(
-    title: 'إشعار جديد',
-    message: 'تمت إضافة منشور جديد في صفحتك',
-    date: '١٥ أغسطس ٢٠٢٣',
-    image: 'assets/notification1.png',
-  ),
-  NotificationItem(
-    title: 'تم الإعجاب بمنشورك',
-    message: 'أحد الأصدقاء قام بالإعجاب بمنشورك',
-    date: '١٤ أغسطس ٢٠٢٣',
-    image: 'assets/notification2.png',
-  ),
-  NotificationItem(
-    title: 'إشعار جديد',
-    message: 'تمت إضافة منشور جديد في صفحتك',
-    date: '١٥ أغسطس ٢٠٢٣',
-    image: 'assets/notification1.png',
-  ),
-
-  NotificationItem(
-    title: 'إشعار جديد',
-    message: 'تمت إضافة منشور جديد في صفحتك',
-    date: '١٥ أغسطس ٢٠٢٣',
-    image: 'assets/notification3.png',
-  ),
-  NotificationItem(
-    title: 'تم الإعجاب بمنشورك',
-    message: 'أحد الأصدقاء قام بالإعجاب بمنشورك',
-    date: '١٤ أغسطس ٢٠٢٣',
-    image: 'assets/notification2.png',
-  ),
 
   // يمكنك إضافة المزيد من الإشعارات هنا
 ];

@@ -8,7 +8,7 @@ import '../../bloc/notification/Notifications_bloc.dart';
 import '../../bloc/notification/Notifications_state.dart';
 import '../widgets/notification_list_widget.dart';
 
-class NotificationsScreen extends StatelessWidget {
+class NotificationsParentScreen extends StatelessWidget {
   // bool isNotificationClicked = false;
   List<NotificationClass> notifications = [];
   @override
@@ -35,7 +35,9 @@ class NotificationsScreen extends StatelessWidget {
         isUserLoggedIn
         ? Directionality(
           textDirection: TextDirection.rtl, // تغيير اتجاه النصوص والعناصر
-          child: Column(
+          child: Scaffold(
+            appBar: AppBar(),
+            body:  Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Directionality(
@@ -69,7 +71,9 @@ class NotificationsScreen extends StatelessWidget {
               NotificationListWidget(notifications: notifications),
             ],
           ),
-        )
+      
+          ),
+          )
         :PageChickLoginScreen();
       },
     );

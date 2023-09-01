@@ -68,6 +68,30 @@ class NotificationsRepositoryImpl implements NotificationsRepository {
     });
   }
 
+
+  @override
+  Future<Either<Failure, List<NotificationClass>>> getNotificationsToParentData(
+      int idStudent) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final remotePosts = await remoteDataSource.getNotificationsToParent(idStudent);
+        localDataSource.cacheNotificationsToParent(remotePosts);
+        //hare store the data to cash
+        return Right(remotePosts);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      try {
+        final localPosts = await localDataSource.getCacheNotificationsToParent();
+        return Right(localPosts);
+      } on EmptyCacheException {
+        return Left(EmptyCacheFailure());
+      }
+    }
+  }
+
+
  
   Future<Either<Failure, Unit>> _getMessage(
       GetAddNotification getAddNotification) async {

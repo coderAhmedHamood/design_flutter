@@ -1,24 +1,41 @@
 
  
- import 'package:flutter_design/parent/data/models/parent_model.dart';
-import 'package:flutter_design/parent/domain/entities/student_attendance_class.dart';
+ import 'package:dartz/dartz.dart';
+import 'package:flutter_design/parent/data/models/parent_model.dart';
+import 'package:flutter_design/parent/data/models/permission_model.dart';
+
 import '../../../../base/error/exceptions.dart';
- import '../../domain/entities/student_attendance_day.dart';
+import '../../domain/entities/student_attendance_day.dart';
 import '../../domain/entities/student_attendance_week.dart';
 
 import 'package:http/http.dart' as http;
 
 abstract class ParentRemoteDataSource {
-  // Future<List<StudentClassModel>> getStudentClass();
   Future<StudentAttendanceModel> getStudentDataToParent(int idStuden);
+  Future<StudentAttendanceModel> getDataStudentToParentAssignments(int idStuden);
   Future<StudentAttendanceModel> getStudentDataToParentMonthlyTest(int idStuden);
-  // Future<Unit> addStudentAttendance(List<StudentActivityClass>  studentActivityList);
-  // Future<Unit> addStudentAssignment(List<StudentActivityModel> studentActivityList);
-  // Future<Unit> addStudentBehavior(List<StudentActivityModel> studentActivityList);
+  Future<List<PermissionRequesModel>> getDataStudentToParentPermission(int idStuden);
+  Future<Unit> addPermissionToStudent(PermissionRequesModel permissionRequesModel);
   
-  // Future<Unit> addStudentMonthlyTest(List<StudentActivityModel> studentActivityList);
 }
  
+ final List<PermissionRequesModel> permissionrequesModel = [
+  PermissionRequesModel(
+    reason: 'عنوان الإشعار الأول',
+    message:
+        'نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا.',
+    date: '13 أغسطس 2023',
+    status: false,
+  ),
+  PermissionRequesModel(
+    reason: 'عنوان الإشعار الثاني',
+    message:
+        'نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا.',
+    date: '12 أغسطس 2023',
+    status: true,
+  ),
+];
+
 
     final List<String> column = [
   'الشهر',
@@ -36,14 +53,9 @@ final List<StudentAttendanceWeek> studentAttendanceWeekMonthlyTest = [
     date: 'الترم الاول',
     studentAttendance: [
       StudentAttendanceDay(
-          day: '2024/4/1', subjects: ['29', '28', '22', '19', '30']),
-      // StudentAttendanceDay(
-      //     day: '2024/5/5', subjects: ['29', '18', '22', '19', '20']),
-      // StudentAttendanceDay(
-      //     day: '2024/6/2',
-      //      subjects: ['29', '28', '30', '29', '30']),
-      // StudentAttendanceDay(
-      //     day: '2024/7/3',  subjects: ['30', '28', '22', '30', '13']),
+          day: '2024/4/1', subjects: ['29', '12', '22', '19', '30']),
+      StudentAttendanceDay(
+          day: '2024/5/5', subjects: ['29', '11', '22', '19', '20']),
       
     ],
   ),
@@ -53,6 +65,29 @@ final List<StudentAttendanceWeek> studentAttendanceWeekMonthlyTest = [
       StudentAttendanceDay(
           day: '2024/9/8', subjects: ['29', '28', '22', '19', '30']),
     ],
+  ),
+];
+
+
+final List<StudentAttendanceWeek> studentAttendanceWeekAssignments = [
+
+  StudentAttendanceWeek(
+        date: '2024/7/26',
+
+    studentAttendance: [
+      StudentAttendanceDay(
+          day: 'السبت', subjects: ['ناقص', 'مسلم', 'مسلم', 'مسلم', 'مسلم']),
+      StudentAttendanceDay(
+          day: 'الاحد', subjects: ['ناقص', 'مسلم', 'ناقص', 'مسلم', 'مسلم']),
+      
+    ],
+  ),
+  StudentAttendanceWeek(
+    date: '2024/7/26',
+
+    studentAttendance: [
+      StudentAttendanceDay(
+day: 'الاثنين', subjects: ['غير مسلم', 'مسلم', 'ناقص', 'مسلم', 'غير مسلم']),    ],
   ),
 ];
 
@@ -100,6 +135,10 @@ StudentAttendanceModel attendanceColumnMonthlyTest = StudentAttendanceModel(
   column: column,
   studentAttendanceClass: studentAttendanceWeekMonthlyTest,
 );
+StudentAttendanceModel attendanceColumnAssignments = StudentAttendanceModel(
+  column: column,
+  studentAttendanceClass: studentAttendanceWeekAssignments,
+);
 
 class ParentRemoteDataSourceImpl implements ParentRemoteDataSource {
   final http.Client client;
@@ -124,16 +163,49 @@ class ParentRemoteDataSourceImpl implements ParentRemoteDataSource {
 
   @override
   Future<StudentAttendanceModel> getStudentDataToParentMonthlyTest(int idStudent) async {
-    
- 
     if (200 == 200) {
  
-
       return attendanceColumnMonthlyTest;
     } else {
   
       throw ServerException();
     }
+  }
+
+  @override
+  Future<StudentAttendanceModel> getDataStudentToParentAssignments(int idStudent) async {
+    if (200 == 200) {
+ 
+      return attendanceColumnAssignments;
+    } else {
+  
+      throw ServerException();
+    }
+  }
+  
+  @override
+  Future<List<PermissionRequesModel>> getDataStudentToParentPermission(int idStudent) async {
+    if (200 == 200) {
+ 
+List<PermissionRequesModel> permissionRequesModel= permissionrequesModel.toList();
+      return permissionRequesModel;
+    } else {
+  
+      throw ServerException();
+    }
+  }
+  
+  
+  @override
+  Future<Unit> addPermissionToStudent(PermissionRequesModel permissionRequesModel) async {
+    if (200 == 200) {
+    return Future.value(unit);
+  } else {
+    throw ServerException();
+  }
+
+
+  
   }
   
 

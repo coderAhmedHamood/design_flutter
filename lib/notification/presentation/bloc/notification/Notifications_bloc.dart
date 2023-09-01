@@ -10,62 +10,26 @@ import '../../../../../screen/tabbar/Notification_class.dart';
 
 import '../../../../account/data/model/stor.dart';
 import '../../../../parent/domain/entities/Student.dart';
-import '../../../../student/domain/entities/student.dart';
 import '../../../../student/domain/entities/students_class_class.dart';
 import '../../../domain/usecases/get_all_notification.dart';
+import '../../../domain/usecases/get_notification_to_parent.dart';
 import 'Notifications_event.dart';
 import 'Notifications_state.dart';
 
 class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   final GetAllNotificationUsecase getAllNotifications;
+  final GetNotificationToParentUsecase getNotificationToParent;
   NotificationsBloc({
     required this.getAllNotifications,
+    required this.getNotificationToParent,
   }) : super(NotificationsInitial()) {
-    on<NotificationsEvent>((event, emit) async {
-      if (event is GetAllNotificationsEvent) {
-        emit(LoadingNotificationState());
-
-        final failureOrNotifications = await getAllNotifications();
-        emit(_mapFailureOrNotificationsToState(failureOrNotifications));
-
-        // ChangeEvent
-      } 
-      
-      else if (event is RefreshNotificationsEvent) {
-        emit(LoadingNotificationState());
-
-        final failureOrNotifications = await getAllNotifications();
-        emit(_mapFailureOrNotificationsToState(failureOrNotifications));
-      } 
-      
-      else if (event is GetValueNotificationBarEvent) {
-        NotificationHome.assignment = 34;
-        NotificationHome.notifications = 26;
-        // UserData.setUserDataValues(11, "ابو العرب", "12345", "email", "مدير");
-        UserData.setUserDataValues(11, "ابو العرب", "12345", "email", "ولي امر");
-        TeacherData teacherData = TeacherData('رياضيات', [
-          StudentsClassClass(id: 1, name: 'الخامس'),
-          StudentsClassClass(id: 2, name: 'السادس'),
-          StudentsClassClass(id: 3, name: 'السابع'),
-        ]);
-        ParentData parentData = ParentData([
-          StudentClass(id: 1, name: 'عبداللة سيف'),
-          StudentClass(id: 2, name: 'سيف بن سيف'),
-        ]);
-        UserData.setParentData(parentData);
-        UserData.setTeacherData(teacherData);
-        emit(GetValueNotificationBarState());
-      } 
-      
-      else if (event is ReadValueNotificationBarEvent) {
-        NotificationHome.notifications = 0;
-
-        emit(ReadValueNotificationBarState());
-      } else if (event is ReadValueStudentFollowNotificationBarEvent) {
-        NotificationHome.assignment = 0;
-        emit(ReadValueStudentFollowNotificationBarState());
-      }
-    });
+    on<GetAllNotificationsEvent>(_getAllNotificationsEvent);
+    on<RefreshNotificationsEvent>(_refreshNotificationsEvent);
+    on<GetValueNotificationBarEvent>(_getValueNotificationBarEvent);
+    on<ReadValueNotificationBarEvent>(_readValueNotificationBarEvent);
+    on<ReadValueStudentFollowNotificationBarEvent>(
+        _readValueStudentFollowNotificationBarEvent);
+    on<GetNotificationToParentEvent>(_getNotificationToParentEvent);
   }
 
   NotificationsState _mapFailureOrNotificationsToState(
@@ -90,5 +54,71 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       default:
         return "Unexpected Error , Please try again later .";
     }
+  }
+
+  FutureOr<void> _getNotificationToParentEvent(
+      GetNotificationToParentEvent event,
+      Emitter<NotificationsState> emit) async {
+    emit(LoadingNotificationState());
+
+    final failureOrNotifications =
+        await getNotificationToParent(event.idStudent);
+
+    print("777777777777777777777777777777777");
+    print(failureOrNotifications);
+    print("777777777777777777777777777777777");
+    emit(_mapFailureOrNotificationsToState(failureOrNotifications));
+  }
+
+  FutureOr<void> _getAllNotificationsEvent(
+      GetAllNotificationsEvent event, Emitter<NotificationsState> emit) async {
+    emit(LoadingNotificationState());
+
+    final failureOrNotifications = await getAllNotifications();
+    emit(_mapFailureOrNotificationsToState(failureOrNotifications));
+  }
+
+  FutureOr<void> _refreshNotificationsEvent(
+      RefreshNotificationsEvent event, Emitter<NotificationsState> emit) async {
+    emit(LoadingNotificationState());
+
+    final failureOrNotifications = await getAllNotifications();
+    emit(_mapFailureOrNotificationsToState(failureOrNotifications));
+  }
+
+  FutureOr<void> _getValueNotificationBarEvent(
+      GetValueNotificationBarEvent event,
+      Emitter<NotificationsState> emit) async {
+    NotificationHome.assignment = 34;
+    NotificationHome.notifications = 26;
+    // UserData.setUserDataValues(11, "ابو العرب", "12345", "email", "مدير");
+    UserData.setUserDataValues(11, "ابو العرب", "12345", "email", "ولي امر");
+    TeacherData teacherData = TeacherData('رياضيات', [
+      StudentsClassClass(id: 1, name: 'الخامس'),
+      StudentsClassClass(id: 2, name: 'السادس'),
+      StudentsClassClass(id: 3, name: 'السابع'),
+    ]);
+    ParentData parentData = ParentData([
+      StudentClass(id: 1, name: 'عبداللة سيف'),
+      StudentClass(id: 2, name: 'سيف بن سيف'),
+    ]);
+    UserData.setParentData(parentData);
+    UserData.setTeacherData(teacherData);
+    emit(GetValueNotificationBarState());
+  }
+
+  FutureOr<void> _readValueNotificationBarEvent(
+      ReadValueNotificationBarEvent event,
+      Emitter<NotificationsState> emit) async {
+    NotificationHome.notifications = 0;
+
+    emit(ReadValueNotificationBarState());
+  }
+
+  FutureOr<void> _readValueStudentFollowNotificationBarEvent(
+      ReadValueStudentFollowNotificationBarEvent event,
+      Emitter<NotificationsState> emit) async {
+    NotificationHome.assignment = 0;
+    emit(ReadValueStudentFollowNotificationBarState());
   }
 }

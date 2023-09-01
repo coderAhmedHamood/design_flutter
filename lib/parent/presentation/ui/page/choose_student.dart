@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_design/parent/presentation/ui/page/dashboard_parents_screen.dart';
 import '../../../../account/data/model/stor.dart';
-import '../../../../screen/tabbar/tabbar.dart';
 import '../../../domain/entities/Student.dart';
  import '../widgets/title_choose_studen.dart';
+import '../widgets/title_page.dart';
+import '../widgets/title_page_two.dart';
  
  
  
@@ -27,8 +28,8 @@ class ChooseStudentScreen extends StatelessWidget {
               SizedBox(
                 height: 60,
               ),
-              TitleChooseStudent(),
-              
+              // TitleChooseStudent(),
+              TitlePageTow(titlePage: 'اختيار الطالب لمعرفة بياناتة'),
               SizedBox(height: 40),
               StudentViewListWidget(),
              ],

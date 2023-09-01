@@ -2,60 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dropdown/flutter_dropdown.dart';
 
+import '../../../../data/models/permission_model.dart';
+import '../../../bloc/parent_bloc.dart';
+import '../../../bloc/parent_event.dart';
+import '../../../bloc/parent_state.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class PermissionRequesClass {
-  final String reason;
-  final String message;
-  final String date;
-  final bool status;
-  PermissionRequesClass({
-    required this.reason,
-    required this.message,
-    required this.date,
-    required this.status,
-  });
-}
+import '../../widgets/title_page_two.dart';
 
-final List<PermissionRequesClass> permissionrequesclass = [
-  PermissionRequesClass(
-    reason: 'عنوان الإشعار الأول',
-    message:
-        'نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا.',
-    date: '13 أغسطس 2023',
-    status: false,
-  ),
-  PermissionRequesClass(
-    reason: 'عنوان الإشعار الثاني',
-    message:
-        'نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا.',
-    date: '12 أغسطس 2023',
-    status: true,
-  ),
-  // PermissionRequesClass(
-  //   reason: 'عنوان الإشعار الثالث',
-  //   message:
-  //       'نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا.',
-  //   date: '11 أغسطس 2023',
-  //   status: false,
-  // ),
-  // PermissionRequesClass(
-  //   reason: 'عنوان الإشعار الثالث',
-  //   message:
-  //       'نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا.',
-  //   date: '11 أغسطس 2023',
-  //   status: true,
-  // ),
-  // PermissionRequesClass(
-  //   reason: 'عنوان الإشعار الثالث',
-  //   message:
-  //       'نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا. نص الإشعار الثاني يظهر هنا.',
-  //   date: '11 أغسطس 2023',
-  //   status: false,
-  // ),
-];
-
-
-
+List<PermissionRequesModel> permissionrequesclass = [];
 
 class PermissionRequestStudentViewScreen extends StatefulWidget {
   @override
@@ -63,78 +18,44 @@ class PermissionRequestStudentViewScreen extends StatefulWidget {
       _PermissionRequestScreenState();
 }
 
-class _PermissionRequestScreenState extends State<PermissionRequestStudentViewScreen> {
+class _PermissionRequestScreenState
+    extends State<PermissionRequestStudentViewScreen> {
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 255, 252, 252),
-        appBar: AppBar(
-          // backgroundColor: Colors.green,
-        ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 3),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                height: 100,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Color.fromARGB(255, 19, 194, 45),
-                      // Color.fromARGB(255, 37, 179, 169),
-                      Color.fromARGB(255, 4, 255, 209)
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    stops: [0.1, 0.9],
-                  ),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(84),
-                    bottomRight: Radius.circular(84),
-                    // topRight: Radius.circular(24),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      offset: Offset(0, 7),
-                      blurRadius: 4,
-                    ),
-                  ],
-                ),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text(
-                      'طلب استئذان لطالب',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+    return BlocBuilder<ParentBloc, ParentState>(
+      builder: (context, state) {
+        if (state is LoadedStudentDataToParentPermissionState) {
+          permissionrequesclass = state.permissionRequesModel;
+        }
+        return Directionality(
+          textDirection: TextDirection.rtl,
+          child: Scaffold(
+            backgroundColor: Color.fromARGB(255, 255, 252, 252),
+            appBar: AppBar(),
+            body: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 3),
+              TitlePageTow(titlePage: 'طلب استئذان لطالب'),  
+
+                 SizedBox(height: 4),
+                WidgetListView(),
+              ],
             ),
-            SizedBox(height: 4),
-            WidgetListView(),
-          ],
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            _showAddPermissionDialog();
-          },
-          child: Icon(Icons.add),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
-      ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                _showAddPermissionDialog();
+              },
+              child: Icon(Icons.add),
+            ),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.startFloat,
+          ),
+        );
+      },
     );
   }
+
 
   Widget WidgetListView() {
     return Expanded(
@@ -150,10 +71,9 @@ class _PermissionRequestScreenState extends State<PermissionRequestStudentViewSc
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Container(
-                color:notification.status?
-                Color.fromARGB(255, 213, 241, 207):
-                Color.fromARGB(255, 243, 243, 170), 
-                
+                color: notification.status
+                    ? Color.fromARGB(255, 213, 241, 207)
+                    : Color.fromARGB(255, 243, 243, 170),
                 child: ListTile(
                   contentPadding: EdgeInsets.all(16),
                   // leading: CircleAvatar(
@@ -272,12 +192,21 @@ class _PermissionRequestScreenState extends State<PermissionRequestStudentViewSc
                     setState(() {
                       final now = DateTime.now();
                       final dateOnly = DateTime(now.year, now.month);
-                      permissionrequesclass.add(PermissionRequesClass(
+                      PermissionRequesModel newPermissionRequest =
+                          PermissionRequesModel(
                         reason: reason,
                         message: description,
                         date: dateOnly.toString(),
                         status: false,
-                      ));
+                      );
+
+                      permissionrequesclass.add(newPermissionRequest);
+
+
+
+                      BlocProvider.of<ParentBloc>(context).add(
+                          AddPermissionToStudentEvent(
+                              permissionRequesModel: newPermissionRequest));
                     });
                     Navigator.pop(context); // إغلاق حوار الإضافة
                   },
@@ -291,4 +220,3 @@ class _PermissionRequestScreenState extends State<PermissionRequestStudentViewSc
     );
   }
 }
-

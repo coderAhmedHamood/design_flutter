@@ -8,14 +8,12 @@ import '../../../../base/error/failures.dart';
 import '../repositories/parents_repository.dart';
  
 
-class GetDataStudentToParenttUsecase {
+class GetDataStudentToParentAssignmentsEventUsecase {
   final ParentsRepository repository;
 
-  GetDataStudentToParenttUsecase(this.repository);
+  GetDataStudentToParentAssignmentsEventUsecase(this.repository);
 
   Future<Either<Failure, StudentAttendanceClass>> call(int isStudent) async {
-    return await repository.getDataStudentToParent(isStudent);
+    return await repository.getDataStudentToParentAssignments(isStudent);
   }
 }
-
- 

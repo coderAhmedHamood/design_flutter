@@ -4,7 +4,6 @@ import '../repositories/notification_repository.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../../base/error/failures.dart';
-import '../entities/post.dart';
 
 class GetAllNotificationUsecase {
   final NotificationsRepository repository;
@@ -15,3 +14,4 @@ class GetAllNotificationUsecase {
     return await repository.getAllNotifications();
   }
 }
+

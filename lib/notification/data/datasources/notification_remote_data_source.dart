@@ -1,4 +1,4 @@
-import 'dart:convert';
+
 
 import '../../../../base/error/exceptions.dart';
 import '../models/notification_model.dart';
@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 abstract class NotificationRemoteDataSource {
   Future<List<NotificationModel>> getAllNotifications();
   Future<Unit> readAllNotification(int notificationId);
+  Future<List<NotificationModel>> getNotificationsToParent(int idStudent);
   Future<Unit> addNotification(NotificationModel notificationModel);
 }
    List<NotificationModel> notifications = [
@@ -129,6 +130,21 @@ class NotificationRemoteDataSourceImpl implements NotificationRemoteDataSource {
       throw ServerException();
     }
   }
+  @override
+  Future<List<NotificationModel>> getNotificationsToParent(int idStuden) async {
+  
+    if (200 == 200) {
+     
+          final List<NotificationModel> notificationModels = notifications.toList();
+           
+
+      return notificationModels;
+    } else {
+      throw ServerException();
+    }
+  }
+
+
 
   @override
   Future<Unit> addNotification(NotificationModel notificationModel) async {
