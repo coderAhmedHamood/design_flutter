@@ -4,6 +4,7 @@ import 'package:flutter_design/notification/presentation/bloc/notification/Notif
 
 import 'package:flutter_design/student/presentation/bloc/up_data_student/student_bloc.dart';
 import 'package:get/get.dart';
+import 'account/bloc/account_bloc.dart';
 import 'base/bloc_ob_serve.dart';
 import 'home_main/presentation/bloc/posts/posts_bloc.dart';
 import 'notification/presentation/bloc/notification/Notifications_bloc.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
      return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => di.sl<StudentBloc>()), 
+        BlocProvider(create: (_) => di.sl<AccountBloc>()), 
         BlocProvider(create: (_) => di.sl<ParentBloc>()), 
         BlocProvider(create: (_) => di.sl<PostsBloc>()..add(GetAllPostsEvent())),
         // BlocProvider(create: (_) => di.sl<NotificationsBloc>()..add(GetAllNotificationsEvent())),

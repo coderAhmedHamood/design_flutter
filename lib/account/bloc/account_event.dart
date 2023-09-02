@@ -11,6 +11,7 @@ class LoginEvent extends AccountEvent {
     required this.password,
   });
 }
+class LogoutEvent extends AccountEvent {}
 
 class RegisterEvent extends AccountEvent {
   String email,username,password;

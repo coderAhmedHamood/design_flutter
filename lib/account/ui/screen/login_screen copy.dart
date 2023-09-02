@@ -1,30 +1,27 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import '../../../base/loading_screen.dart';
 
 import '../../bloc/account_bloc.dart';
 import '../widget/curve_cliper.dart';
 import '../widget/custom_text.dart';
-import 'login_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-// import 'package:get/get.dart';
+import 'register_screen.dart';
 
-// import 'package:flutter_bloc/flutter_bloc.dart';
-
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
-  final GlobalKey<FormState> _formKeyEmail = GlobalKey<FormState>();
-  final GlobalKey<FormState> _formKeyUsername = GlobalKey<FormState>();
+class _LoginScreenState extends State<LoginScreen> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<FormState> _formKeyPassword = GlobalKey<FormState>();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _usernameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +31,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: SingleChildScrollView(
           child: Container(
             height: MediaQuery.of(context).size.height,
-            color: Colors.grey[200],
+            color: Color.fromARGB(255, 240, 247, 247),
+            // color: Colors.grey[200],
+            // backgroundColor: Color.fromARGB(255, 240, 247, 247),
             child: Material(
-              color: Colors.grey[200],
+              color: Color.fromARGB(255, 240, 247, 247),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -60,7 +59,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Form(
-                      key: _formKeyEmail,
+                      key: _formKey,
                       child: TextFormField(
                         controller: _emailController,
                         decoration: InputDecoration(
@@ -72,27 +71,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'يرجى إدخال البريد الإلكتروني';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Form(
-                      key: _formKeyUsername,
-                      child: TextFormField(
-                        controller: _usernameController,
-                        decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          filled: true,
-                          prefixIcon: Icon(Icons.person),
-                          hintText: 'اسم المستخدم',
-                        ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'يرجى إدخال اسم المستخدم';
                           }
                           return null;
                         },
@@ -133,21 +111,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: MaterialButton(
                         height: 50,
                         onPressed: () {
-                          if (_formKeyEmail.currentState!.validate() &&
-                              _formKeyUsername.currentState!.validate() &&
+                          if (_formKey.currentState!.validate() &&
                               _formKeyPassword.currentState!.validate()) {
                             // LoadingScreen.show(
-                            //     context, "انتضر من فضلك يتم انشاء الحساب ");
+                            //     context, "انتضر من فضلك يتم تسجيل الدخول ");
                             // تم التحقق من صحة الحقول
-                            context.read<AccountBloc>().add(RegisterEvent(
+                            print(_passwordController.text);
+                            print(_emailController.text);
+                            context.read<AccountBloc>().add(LoginEvent(
                                 email: _emailController.text,
-                                username: _usernameController.text,
                                 password: _passwordController.text));
-                            // BlocProvider.of<AccountBloc>(context).add(
-                            //     RegisterEvent(
-                            //         email: _emailController.text,
-                            //         username: _usernameController.text,
-                            //         password: _passwordController.text));
                           }
                         },
                         child: Row(
@@ -158,7 +131,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               color: Colors.white,
                             ),
                             CustomText(
-                              text: 'إنشاء حساب',
+                              text: 'تسجيل الدخول',
                               fontSize: 19,
                               color: Colors.white,
                               letterSpacing: 0,
@@ -172,7 +145,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       height: 15,
                     ),
                     Text(
-                      'لديك حساب؟',
+                      'ليس لديك حساب؟',
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w600,
@@ -181,14 +154,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     MaterialButton(
                       onPressed: () {
+                 
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => LoginScreen(),
+                              builder: (context) => RegisterScreen(),
                             ));
+                   
                       },
                       child: Text(
-                        'الذهاب الى تسجيل الدخول',
+                        'انشأ حساب',
                         style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.w600,

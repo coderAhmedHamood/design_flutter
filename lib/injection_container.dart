@@ -22,6 +22,7 @@ import 'package:flutter_design/student/domain/usecases/up_behavior.dart';
 import 'package:flutter_design/student/domain/usecases/up_month_test.dart';
 import 'package:flutter_design/student/presentation/bloc/up_data_student/student_bloc.dart';
 
+import 'account/bloc/account_bloc.dart';
 import 'base/network/network_info.dart';
 
 import 'package:get_it/get_it.dart';
@@ -51,6 +52,12 @@ import 'student/domain/usecases/get_class.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
+
+  //! bloc  Account
+  sl.registerFactory(() => AccountBloc());
+ 
+
+
 //! - Home_Page
 // Bloc
 //! bloc  Post

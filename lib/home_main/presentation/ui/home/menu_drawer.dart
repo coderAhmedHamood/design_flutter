@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_design/account/bloc/account_bloc.dart';
 
 class MenuPage extends StatelessWidget {
   @override
@@ -335,13 +337,18 @@ class MenuPage extends StatelessWidget {
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                // crossAxisAlignment: CrossAxisAlignment.end,
+                
                 children: [
-                  Text(
-                    "تسجيل الخروج",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold,
+                  ElevatedButton(
+                    onPressed: () {
+                      context.read<AccountBloc>().add(LogoutEvent());
+                    },
+                    child: Text(
+                      "تسجيل الخروج",
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],

@@ -63,10 +63,6 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
 
     final failureOrNotifications =
         await getNotificationToParent(event.idStudent);
-
-    print("777777777777777777777777777777777");
-    print(failureOrNotifications);
-    print("777777777777777777777777777777777");
     emit(_mapFailureOrNotificationsToState(failureOrNotifications));
   }
 
@@ -91,19 +87,19 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       Emitter<NotificationsState> emit) async {
     NotificationHome.assignment = 34;
     NotificationHome.notifications = 26;
-    // UserData.setUserDataValues(11, "ابو العرب", "12345", "email", "مدير");
-    UserData.setUserDataValues(11, "ابو العرب", "12345", "email", "ولي امر");
-    TeacherData teacherData = TeacherData('رياضيات', [
-      StudentsClassClass(id: 1, name: 'الخامس'),
-      StudentsClassClass(id: 2, name: 'السادس'),
-      StudentsClassClass(id: 3, name: 'السابع'),
-    ]);
-    ParentData parentData = ParentData([
-      StudentClass(id: 1, name: 'عبداللة سيف'),
-      StudentClass(id: 2, name: 'سيف بن سيف'),
-    ]);
-    UserData.setParentData(parentData);
-    UserData.setTeacherData(teacherData);
+    // // UserData.setUserDataValues(11, "ابو العرب", "12345", "email", "مدير");
+    // UserData.setUserDataValues(11, "ابو العرب", "12345", "email", "ولي امر");
+    // TeacherData teacherData = TeacherData('رياضيات', [
+    //   StudentsClassClass(id: 1, name: 'الخامس'),
+    //   StudentsClassClass(id: 2, name: 'السادس'),
+    //   StudentsClassClass(id: 3, name: 'السابع'),
+    // ]);
+    // ParentData parentData = ParentData([
+    //   StudentClass(id: 1, name: 'عبداللة سيف'),
+    //   StudentClass(id: 2, name: 'سيف بن سيف'),
+    // ]);
+    // UserData.setParentData(parentData);
+    // UserData.setTeacherData(teacherData);
     emit(GetValueNotificationBarState());
   }
 

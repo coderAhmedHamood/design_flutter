@@ -9,6 +9,7 @@ import '../../../../notification/presentation/ui/notification/notification_paren
 import '../../../../student/presentation/ui/page/choose_class.dart';
 import '../../bloc/parent_bloc.dart';
 import '../widgets/student/build_dashboard_item.dart';
+import 'chick_dashboard_parents.dart';
 import 'parents/AssignmentsScreen.dart';
 import 'parents/AttendanceScreen.dart';
 import 'parents/MonthlyTestsScreen.dart';
@@ -20,15 +21,21 @@ class DashboardScreen extends StatelessWidget {
   DashboardScreen(this._idStudent);
   @override
   Widget build(BuildContext context) {
+    // bool isUserLoggedIn = UserData.id != null;
     bool permissions = false;
     String permission = UserData.permissions.toString();
     if (permission.contains("مدير")|| permission.contains("مدرس")) {
       permissions = true;
       
     }
-
+    print("login is $permissions");
+    print("login  is $permissions");
+    print("login is $permissions");
+if (permissions) {
+      return ChickDashboardScreen();
+    }
     return Scaffold(
-      appBar: AppBar(),
+      // appBar: AppBar(),
       
         body: GridView.count(
       crossAxisCount: 2,
@@ -88,7 +95,6 @@ class DashboardScreen extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) => NotificationsParentScreen()),
-                  // builder: (context) => BehaviorStudentViewScreen()),
               
             );
           },

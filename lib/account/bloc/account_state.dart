@@ -15,4 +15,9 @@ class LoadingLoginState extends AccountState {}
 class ErrorLoginState extends AccountState {}
 
 
+class LoadingLogoutState extends AccountState {}
+class SuccessLogoutState extends AccountState {}
+class ErrorLogoutState extends AccountState {}
+
+
 

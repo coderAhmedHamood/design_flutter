@@ -7,11 +7,11 @@ import '../../home_main/presentation/ui/home/menu_drawer.dart';
 
 import '../../notification/presentation/ui/notification/notification.dart';
  import '../../parent/presentation/ui/page/chick_dashboard_parents.dart';
-import '../../parent/presentation/ui/page/dashboard_parents_screen.dart';
 import 'tabbar.dart';
 
 class TabBarViewScreen extends StatefulWidget {
-  const TabBarViewScreen({Key? key}) : super(key: key);
+    final int? initialIndexValue;
+  const TabBarViewScreen({Key? key, this.initialIndexValue}) : super(key: key);
 
   @override
   _TabBarViewScreenState createState() => _TabBarViewScreenState();
@@ -20,11 +20,21 @@ class TabBarViewScreen extends StatefulWidget {
 class _TabBarViewScreenState extends State<TabBarViewScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-
+ 
   @override
   void initState() {
+    
     super.initState();
-    _tabController = TabController(length: 5, vsync: this);
+    int initialIndex;
+    if (widget.initialIndexValue==null) {
+    initialIndex=0;  
+    }
+    else{
+      initialIndex = widget.initialIndexValue??0;
+    }
+    
+      _tabController = TabController(length: 5, vsync: this, initialIndex: initialIndex);
+
   }
 
   @override
@@ -42,6 +52,7 @@ class _TabBarViewScreenState extends State<TabBarViewScreen>
         
         body: TabBarView(
           controller: _tabController,
+ 
           children: [
             HomeScreen(),
             BranchScreen(),
