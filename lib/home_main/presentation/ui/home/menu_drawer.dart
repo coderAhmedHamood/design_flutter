@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_design/account/bloc/account_bloc.dart';
+import 'package:flutter_design/screen/account/login_screen.dart';
+
+import '../../../../account/data/model/UserSecureStorage.dart';
 
 class MenuPage extends StatelessWidget {
   @override
@@ -25,7 +28,6 @@ class MenuPage extends StatelessWidget {
                       fontSize: 25,
                     ),
                   ),
-          
                 ],
               ),
             ),
@@ -335,24 +337,7 @@ class MenuPage extends StatelessWidget {
                   ),
                 ],
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      context.read<AccountBloc>().add(LogoutEvent());
-                    },
-                    child: Text(
-                      "تسجيل الخروج",
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              child: WidgetLogoutOrLogin(context),
             ),
             SizedBox(height: 10),
             Container(
@@ -390,186 +375,55 @@ class MenuPage extends StatelessWidget {
   }
 }
 
-class CustomPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(children: [
-        Container(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                "العمليات",
+Widget WidgetLogoutOrLogin(BuildContext context) {
+  return BlocBuilder<AccountBloc, AccountState>(
+    builder: (context, state) {
+      String username = UserSecureStorage.getUsername().toString();
+      if (username != null) {
+        print(username);
+        print("username");
+        print(username);
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                context.read<AccountBloc>().add(LogoutEvent());
+              },
+              child: Text(
+                "تسجيل الخروج",
                 style: TextStyle(
+                  fontSize: 17,
                   fontWeight: FontWeight.bold,
-                  fontSize: 25,
                 ),
               ),
-            ],
-          ),
-        ),
-        Padding(
-          padding:
-              const EdgeInsets.only(left: 10, right: 10, top: 4, bottom: 4),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                flex: 1,
-                child: Container(
-                  height: 90,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        blurRadius: 5,
-                        offset: Offset(0, 3),
-                      ),
-                    ],
+            ),
+          ],
+        );
+      } else {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginSceen(),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.assessment_outlined,
-                          size: 30,
-                          color: Color.fromARGB(255, 237, 101, 242),
-                        ),
-                        SizedBox(height: 5),
-                        Text(
-                          "عن المصلحة المشتركة",
-                          style: TextStyle(fontSize: 17),
-                        ),
-                      ],
-                    ),
-                  ),
+                );
+              },
+              child: Text(
+                "تسجيل دخول",
+                style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(width: 10),
-              Expanded(
-                flex: 1,
-                child: Container(
-                  height: 90,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        blurRadius: 5,
-                        offset: Offset(0, 3),
-                      ),
-                    ],
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.person,
-                          size: 30,
-                          color: Color.fromARGB(255, 155, 16, 160),
-                        ),
-                        SizedBox(height: 5),
-                        Text(
-                          "go to data",
-                          style: TextStyle(fontSize: 17),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding:
-              const EdgeInsets.only(left: 10, right: 10, top: 4, bottom: 4),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                flex: 1,
-                child: Container(
-                  height: 90,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        blurRadius: 5,
-                        offset: Offset(0, 3),
-                      ),
-                    ],
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.assessment_outlined,
-                          size: 30,
-                          color: Color.fromARGB(255, 236, 156, 57),
-                        ),
-                        SizedBox(height: 5),
-                        Text(
-                          "عن المصلحة المشتركة",
-                          style: TextStyle(fontSize: 17),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(width: 10),
-              Expanded(
-                flex: 1,
-                child: Container(
-                  height: 90,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        blurRadius: 5,
-                        offset: Offset(0, 3),
-                      ),
-                    ],
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.person,
-                          size: 30,
-                          color: Color.fromARGB(255, 76, 246, 195),
-                        ),
-                        SizedBox(height: 5),
-                        Text(
-                          "go to data",
-                          style: TextStyle(fontSize: 17),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ]),
-    );
-  }
+            ),
+          ],
+        );
+      }
+    },
+  );
 }

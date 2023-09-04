@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
+ 
 import '../data/provider/provider.dart';
 
 part 'account_event.dart';
@@ -18,12 +19,14 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
   FutureOr<void> _loginEvent(
       LoginEvent event, Emitter<AccountState> emit) async {
     try {
-      print("...................");
-      print(event.email);
-      print(event.password);
-      print("...................");
       emit(LoadingLoginState());
       await UserProvider().login(event.email, event.password);
+    
+
+
+
+
+    
       emit(SuccessLoginState());
     } catch (error) {
       emit(SuccessLoginState());
@@ -42,8 +45,9 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     }
   }
 
-  FutureOr<void> _logoutEvent(LogoutEvent event, Emitter<AccountState> emit) async{
-      try {
+  FutureOr<void> _logoutEvent(
+      LogoutEvent event, Emitter<AccountState> emit) async {
+    try {
       emit(LoadingLogoutState());
       await UserProvider().logout();
       emit(SuccessLogoutState());

@@ -1,76 +1,46 @@
-import '../../../parent/domain/entities/Student.dart';
-import '../../../student/domain/entities/students_class_class.dart';
+import '../../../parent/data/models/student_model.dart';
+import '../../../student/data/models/student_model.dart';
+import '../UserStorageHelper.dart';
 import '../model/UserSecureStorage.dart';
 import '../model/stor.dart';
 
 class UserProvider {
   Future<void> login(String email, String password) async {
-    // await Future.delayed(Duration(seconds: 3));
-    print(email);
-    print(password);
-    UserData.setUserDataValues(11, "ابو العرب", "12345", "email", "ولي امر");
-
-
-
-UserSecureStorage userSecureStorage = UserSecureStorage();
-// String email = 'example@example.com';
-// String password = 'password123';
-
-await UserSecureStorage.setToken('your_token_here');
-await UserSecureStorage.setLists(['list1', 'list2', 'list3']);
-await UserSecureStorage.setDates(DateTime.now());
-await UserSecureStorage.setPassword("12345");
-await UserSecureStorage.setUsername("ahmed@gmail");
-await UserSecureStorage.setEmail("ahmed@gmail");
-await UserSecureStorage.setPermissions(email);
-
-// await UserSecureStorage.set("");
-
-
-String? token = await UserSecureStorage.getToken();
-List<String>? lists = await UserSecureStorage.getLists();
-DateTime? dates = await UserSecureStorage.getDates();
-
- 
-
-
-// UserProvider().login(email, password);
-
-
-    // if (email.contains("ولي امر")) {
-    //   ParentData parentData = ParentData([
-    //     StudentClass(id: 1, name: 'عبداللة سيف'),
-    //     StudentClass(id: 2, name: 'سيف بن سيف'),
-    //   ]);
-    //   UserData.setParentData(parentData);
-    // } else
-     if (email.contains("مدرس")) {
-      UserData.setUserDataValues(11, "ابو العرب", "12345", "email", "مدرس");
-      TeacherData teacherData = TeacherData('رياضيات', [
-        StudentsClassClass(id: 1, name: 'الخامس'),
-        StudentsClassClass(id: 2, name: 'السادس'),
-        StudentsClassClass(id: 3, name: 'السابع'),
+    if (email.contains("ولي امر")) {
+      ParentData parentData = ParentData([
+        StudentModel(id: 1, name: 'عبداللة بن سيف'),
+        StudentModel(id: 2, name: 'سيف بن سيف'),
+        StudentModel(id: 3, name: 'علي بن سيف'),
       ]);
-      UserData.setTeacherData(teacherData);
-      await UserSecureStorage.setTeacherData(teacherData);
+      UserSecureStorage.setParentData(parentData);
+    } else if (email.contains("مدرس")) {
+      ParentData parentData = ParentData([
+        StudentModel(id: 1, name: 'عبداللة بن قاسم'),
+        StudentModel(id: 2, name: 'سيف بن قاسم'),
+        StudentModel(id: 3, name: 'علي بن قاسم'),
+      ]);
+
+      await UserSecureStorage.setParentData(parentData);
+
+      TeacherData teacherData = TeacherData('رياضيات', [
+        StudentClassModel(id: 1, name: 'الخامس'),
+        StudentClassModel(id: 2, name: 'السادس'),
+        StudentClassModel(id: 3, name: 'السابع'),
+      ]);
+      UserSecureStorage.setTeacherData(teacherData);
     }
+
+    UserStorageHelper.storeUserData("12345", "ابو العرب", "ahmed@gmail", email);
+
+    await UserStorageHelper.executeDataRetrieval();
+    // await UserStorageHelper.checkParentData();
   }
 
   Future<void> register(String email, String username, String password) async {
-    // await Future.delayed(Duration(seconds: 3));
     print("...............register user .....");
-    print(email + "" + username + "" + password);
-    print(email + "" + username + "" + password);
-    print(email + "" + username + "" + password);
-// RequestHandler requestHandler=RequestHandler();
-    print("...............register user ok .....");
-
-// User.add("","");
   }
 
   Future<void> logout() async {
-    UserData.setUserDataValues(0, "", "", "", "");
-    print("ok logout ............");
-    print("ok logout .............");
+    UserStorageHelper.deleteDataStorge();
   }
 }

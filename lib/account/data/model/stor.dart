@@ -1,45 +1,63 @@
-import '../../../parent/domain/entities/Student.dart';
+import 'package:flutter_design/parent/data/models/student_model.dart';
+
 import '../../../student/data/models/student_model.dart';
-import '../../../student/domain/entities/students_class_class.dart';
-
-// class TeacherData {
-//   String subject;
-//   List<StudentClassModel> classes;
-
-//   TeacherData(this.subject, this.classes);
-
-//   Map<String, dynamic> toJson() {
-//     return {
-//       'subject': subject,
-//       'classes': classes.map((c) => c.toJson()).toList(),
-//     };
-//   }
-
-//   factory TeacherData.fromJson(Map<String, dynamic> json) {
-//     final subject = json['subject'];
-//     final classes = (json['classes'] as List<dynamic>)
-//         .map((c) => StudentClassModel.fromJson(c))
-//         .toList();
-//     return TeacherData(subject, classes);
-//   }
-// }
-
-
 
 class TeacherData {
   String subject;
-  List<StudentsClassClass> classes;
+  List<StudentClassModel> classes;
 
   TeacherData(this.subject, this.classes);
+
+  bool get isEmpty {
+    return subject.isEmpty && classes.isEmpty;
+  }
+
+  factory TeacherData.fromJson(Map<String, dynamic> json) {
+    final subject = json['subject'];
+    final classes = (json['classes'] as List<dynamic>)
+        .map((c) => StudentClassModel.fromJson(c))
+        .toList();
+    return TeacherData(subject, classes);
+  }
+  Map<String, dynamic> toJson() {
+    return {
+      'subject': subject,
+      'classes': classes.map((c) => c.toJson()).toList(),
+    };
+  }
 }
 
 class ParentData {
-  List<StudentClass> studentName;
+  List<StudentModel> studentName;
 
   ParentData(this.studentName);
+
+  
+    bool get isEmpty {
+    return studentName.isEmpty;
+  }
+  
+  factory ParentData.fromJson(Map<String, dynamic> json) {
+    // final studentName = (json['studentName'] as List<dynamic>)
+    //     .map((c) => StudentModel.fromJson(c))
+    //     .toList();
+           final studentName = (json['studentName'] as List<dynamic>)
+        .map((c) => StudentModel.fromJson(c))
+        .toList();
+    return ParentData(studentName);
+  }
+
+
+  Map<String, dynamic> toJson() {
+    return {
+      'studentName': studentName.map((c) => c.toJson()).toList(),
+    };
+  }
+
 }
 
 class UserData {
+ 
   static int? _id;
   static String? _username;
   static String? _password;
@@ -74,7 +92,7 @@ class UserData {
   static String? get username => _username;
   static String? get password => _password;
   static String? get email => _email;
-  static String? get permissions => _permissions;
+  static String? get permissions =>_permissions;
   static TeacherData? get teacherData => _teacherData;
   static ParentData? get parentData => _parentData;
   static String? get className => _className;

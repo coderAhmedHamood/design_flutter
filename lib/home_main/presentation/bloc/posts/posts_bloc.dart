@@ -3,8 +3,6 @@ import '../../../../../base/error/failures.dart';
 import '../../../../../base/strings/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-
-import '../../../../../screen/tabbar/Notification_class.dart';
  import '../../../domain/entities/post.dart';
 import '../../../domain/usecases/get_all_posts.dart';
 

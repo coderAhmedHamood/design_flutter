@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_design/parent/data/models/student_model.dart';
 import 'package:flutter_design/parent/presentation/ui/page/dashboard_parents_screen.dart';
 import '../../../../account/data/model/stor.dart';
-import '../../../domain/entities/Student.dart';
- import '../widgets/title_choose_studen.dart';
-import '../widgets/title_page.dart';
-import '../widgets/title_page_two.dart';
+ import '../widgets/title_page_two.dart';
  
  
  
 class ChooseStudentScreen extends StatelessWidget {
-    final List<StudentClass> studentClass =
+    final List<StudentModel> studentClass =
       UserData.parentData!.studentName;
         late TabController _tabController;
 
@@ -49,6 +47,7 @@ Widget StudentViewListWidget(){
 
                     return InkWell(
                       onTap: () {
+                        // Navigator.pop(context,studentsClass.id!);
                         Navigator.push(
                           context,
                           MaterialPageRoute(

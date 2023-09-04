@@ -7,8 +7,8 @@ import '../../../../base/error/exceptions.dart';
 import '../models/student_model.dart';
 
 abstract class StudentLocalDataSource {
-  Future<List<StudentModel>> getCachedStudents();
-  Future<Unit> cacheStudents(List<StudentModel> studentModels);
+  // Future<List<StudentModel>> getCachedStudents();
+  // Future<Unit> cacheStudents(List<StudentModel> studentModels);
   Future<List<StudentClassModel>> getCachedStudentClass();
   Future<Unit> cachedStudentClass(List<StudentClassModel> studentClassModel);
   Future<List<StudentActivityModel>> getCachedStudentData();
@@ -23,30 +23,30 @@ class StudentLocalDataSourceImpl implements StudentLocalDataSource {
   final SharedPreferences sharedPreferences;
 
   StudentLocalDataSourceImpl({required this.sharedPreferences});
-  @override
-  Future<Unit> cacheStudents(List<StudentModel> studentModels) {
-    List studentModelsToJson = studentModels
-        .map<Map<String, dynamic>>((studentModel) => studentModel.toJson())
-        .toList();
-    sharedPreferences.setString(CACHED_STUDENTS, json.encode(studentModelsToJson));
-    return Future.value(unit);
-  }
+  // @override
+  // Future<Unit> cacheStudents(List<StudentModel> studentModels) {
+  //   List studentModelsToJson = studentModels
+  //       .map<Map<String, dynamic>>((studentModel) => studentModel.toJson())
+  //       .toList();
+  //   sharedPreferences.setString(CACHED_STUDENTS, json.encode(studentModelsToJson));
+  //   return Future.value(unit);
+  // }
 
 
-  @override
-  Future<List<StudentModel>> getCachedStudents() {
+  // @override
+  // Future<List<StudentModel>> getCachedStudents() {
  
-    final jsonString = sharedPreferences.getString(CACHED_STUDENTS);
-    if (jsonString != null) {
-      List decodeJsonData = json.decode(jsonString);
-      List<StudentModel> jsonToStudentModels = decodeJsonData
-          .map<StudentModel>((jsonStudentModel) => StudentModel.fromJson(jsonStudentModel))
-          .toList();
-      return Future.value(jsonToStudentModels);
-    } else {
-      throw EmptyCacheException();
-    }
-  }
+  //   final jsonString = sharedPreferences.getString(CACHED_STUDENTS);
+  //   if (jsonString != null) {
+  //     List decodeJsonData = json.decode(jsonString);
+  //     List<StudentModel> jsonToStudentModels = decodeJsonData
+  //         .map<StudentModel>((jsonStudentModel) => StudentModel.fromJson(jsonStudentModel))
+  //         .toList();
+  //     return Future.value(jsonToStudentModels);
+  //   } else {
+  //     throw EmptyCacheException();
+  //   }
+  // }
 
 
 

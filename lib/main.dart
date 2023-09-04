@@ -19,6 +19,8 @@ void main() async {
   Bloc.observer = AppBlocObServer();
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const MyApp());
 }
 

@@ -7,10 +7,10 @@ import '../../../../../base/strings/failures.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../../../screen/tabbar/Notification_class.dart';
-
+import '../../../../account/data/UserStorageHelper.dart';
+import '../../../../account/data/model/UserSecureStorage.dart';
 import '../../../../account/data/model/stor.dart';
-import '../../../../parent/domain/entities/Student.dart';
-import '../../../../student/domain/entities/students_class_class.dart';
+import '../../../../student/data/models/student_model.dart';
 import '../../../domain/usecases/get_all_notification.dart';
 import '../../../domain/usecases/get_notification_to_parent.dart';
 import 'Notifications_event.dart';
@@ -69,7 +69,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   FutureOr<void> _getAllNotificationsEvent(
       GetAllNotificationsEvent event, Emitter<NotificationsState> emit) async {
     emit(LoadingNotificationState());
-
+     
     final failureOrNotifications = await getAllNotifications();
     emit(_mapFailureOrNotificationsToState(failureOrNotifications));
   }
@@ -77,6 +77,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   FutureOr<void> _refreshNotificationsEvent(
       RefreshNotificationsEvent event, Emitter<NotificationsState> emit) async {
     emit(LoadingNotificationState());
+    
 
     final failureOrNotifications = await getAllNotifications();
     emit(_mapFailureOrNotificationsToState(failureOrNotifications));
@@ -88,18 +89,25 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     NotificationHome.assignment = 34;
     NotificationHome.notifications = 26;
     // // UserData.setUserDataValues(11, "ابو العرب", "12345", "email", "مدير");
-    // UserData.setUserDataValues(11, "ابو العرب", "12345", "email", "ولي امر");
-    // TeacherData teacherData = TeacherData('رياضيات', [
-    //   StudentsClassClass(id: 1, name: 'الخامس'),
-    //   StudentsClassClass(id: 2, name: 'السادس'),
-    //   StudentsClassClass(id: 3, name: 'السابع'),
-    // ]);
-    // ParentData parentData = ParentData([
-    //   StudentClass(id: 1, name: 'عبداللة سيف'),
-    //   StudentClass(id: 2, name: 'سيف بن سيف'),
-    // ]);
-    // UserData.setParentData(parentData);
-    // UserData.setTeacherData(teacherData);
+    // UserData.setUserDataValues(
+    //   11,
+    //    await UserSecureStorage.getUsername().toString(),
+    //     await UserSecureStorage.getPassword().toString(),
+    //      await UserSecureStorage.getEmail().toString(),
+    //       await UserSecureStorage.getPermissions().toString(),
+    //       );
+//           final vv= await UserSecureStorage.getParentData();
+// print(".........,,,,ooooooooooo,,,,,,,,,,,,,,,,,...........");
+//           print(vv);
+//           print(vv);
+//           print('Username: ${await UserSecureStorage.getUsername()}');
+// print('Password: ${await UserSecureStorage.getPassword()}');
+// print('Email: ${await UserSecureStorage.getEmail()}');
+// print('Permissions: ${await UserSecureStorage.getPermissions()}');
+// print(".........,,,,ooooooooooo,,,,,,,,,,,,,,,,,...........");
+          
+    // UserData.setParentData();
+    // UserData.setTeacherData(await UserSecureStorage.gette);
     emit(GetValueNotificationBarState());
   }
 

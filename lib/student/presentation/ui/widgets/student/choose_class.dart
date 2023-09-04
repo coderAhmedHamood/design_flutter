@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
  import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../account/data/model/UserSecureStorage.dart';
 import '../../../../../account/data/model/stor.dart';
-import '../../../../domain/entities/students_class_class.dart';
+import '../../../../data/models/student_model.dart';
 import '../../../bloc/up_data_student/Student_event.dart';
 import '../../../bloc/up_data_student/student_bloc.dart';
 import '../../page/dashboard_student_screen.dart';
 
 class StudentClassListWidget extends StatelessWidget {
-  final List<StudentsClassClass> studentsClassClass =
-      UserData.teacherData!.classes;
+  // final List<StudentClassModel> studentsClassClass =
+  // UserSecureStorage.getTeacherData();
+  final List<StudentClassModel> studentsClassClass =UserData.teacherData!.classes;
+  
   StudentClassListWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // TeacherData g = UserSecureStorage.getTeacherData();
+    print(UserSecureStorage.getTeacherData());
+    print("....................f...");
     return Expanded(
       child: ListView.builder(
         itemCount: studentsClassClass.length,

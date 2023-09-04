@@ -38,8 +38,6 @@ class PostModel extends Post {
         );
  
   factory PostModel.fromJson(Map<String, dynamic> json) {
-    dynamic id = json['id'];
-    int parsedId = (id is int) ? id : int.parse(id);
     return PostModel(id: json['id'] , username: json['username'] ,time:json['time'],postText:json['postText'],postImage: json['postImage'],likes: json['likes'],islikes: json['islikes']);
     
   }

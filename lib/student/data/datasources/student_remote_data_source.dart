@@ -16,61 +16,61 @@ abstract class StudentRemoteDataSource {
   
   Future<Unit> addStudentMonthlyTest(List<StudentActivityModel> studentActivityList);
 }
-   List<StudentModel> students = [
-  StudentModel(
-    id: 1,
-    username: 'اسم المستخدم 1',
-    time: '2024/3/5',
-    studentText:
-        ' تعبكم راحه , يكفي ثقتكم في مجموعهمدارس العربية السعيدة الاهلية   رحله كل 10 ايام للفنكوش..',
-    studentImage: "",
-    // studentImage: 'assets/student_image1.png',
-    likes: 30,
-    islikes: true,
-  ),
-  StudentModel(
-    id: 2,
-    username: 'ابو العرب',
-    time: '2024/3/4',
-    studentText:
-        'Work with tabs Flutter documentationhttps:docs.flutter.dev › Cookbook › DesignYou',
-    studentImage: '',
-    likes: 15,
-    islikes: false,
-  ),
+  //  List<StudentModel> students = [
+  // StudentModel(
+  //   id: 1,
+  //   username: 'اسم المستخدم 1',
+  //   time: '2024/3/5',
+  //   studentText:
+  //       ' تعبكم راحه , يكفي ثقتكم في مجموعهمدارس العربية السعيدة الاهلية   رحله كل 10 ايام للفنكوش..',
+  //   studentImage: "",
+  //   // studentImage: 'assets/student_image1.png',
+  //   likes: 30,
+  //   islikes: true,
+  // ),
+  // StudentModel(
+  //   id: 2,
+  //   username: 'ابو العرب',
+  //   time: '2024/3/4',
+  //   studentText:
+  //       'Work with tabs Flutter documentationhttps:docs.flutter.dev › Cookbook › DesignYou',
+  //   studentImage: '',
+  //   likes: 15,
+  //   islikes: false,
+  // ),
     
-  StudentModel(
-    id: 3,
-    username: 'ابو العرب',
-    time: '2024/3/4',
-    studentText:
-        'Work with tabs Flutter documentationhttps:docs.flutter.dev › Cookbook › DesignYou',
-    studentImage: "assets/school/ahmed.jpg",
-    likes: 15,
-    islikes: true,
-  ),
-  StudentModel(
-    id: 4,
-    username: 'اسم المستخدم 2',
-    time: '2024/3/4',
-    studentText:
-        'Work with tabs Flutter documentationhttps:docs.flutter.dev › Cookbook › DesignYou',
-    studentImage: 'assets/school/school2.jpg',
-    likes: 15,
-    islikes: false,
-  ),
-  StudentModel(
-    id: 5,
-    username: 'اسم المستخدم 2',
-    time: '2024/3/4',
-    studentText:
-        'بسم الله ماشاء الله تبارك الرحمن الانتهاء من تفتيش ثالث برادات  #مجموعة_شركات_الماظة_للشحن_الدولي 16/8/2023 الان من امام ميناء سفاجا والتوجه الي المخازن في جمهورية مصر العربية للتواصل والاستفسارات 00971582040166 00971582040155 00971582616061 00971504113132 للتواصل والاستفسارات مكتب مصر 002011111004449',
-    studentImage: 'assets/school/school1.jpg',
-    likes: 15,
-    islikes: false,
-  ),
+  // StudentModel(
+  //   id: 3,
+  //   username: 'ابو العرب',
+  //   time: '2024/3/4',
+  //   studentText:
+  //       'Work with tabs Flutter documentationhttps:docs.flutter.dev › Cookbook › DesignYou',
+  //   studentImage: "assets/school/ahmed.jpg",
+  //   likes: 15,
+  //   islikes: true,
+  // ),
+  // StudentModel(
+  //   id: 4,
+  //   username: 'اسم المستخدم 2',
+  //   time: '2024/3/4',
+  //   studentText:
+  //       'Work with tabs Flutter documentationhttps:docs.flutter.dev › Cookbook › DesignYou',
+  //   studentImage: 'assets/school/school2.jpg',
+  //   likes: 15,
+  //   islikes: false,
+  // ),
+  // StudentModel(
+  //   id: 5,
+  //   username: 'اسم المستخدم 2',
+  //   time: '2024/3/4',
+  //   studentText:
+  //       'بسم الله ماشاء الله تبارك الرحمن الانتهاء من تفتيش ثالث برادات  #مجموعة_شركات_الماظة_للشحن_الدولي 16/8/2023 الان من امام ميناء سفاجا والتوجه الي المخازن في جمهورية مصر العربية للتواصل والاستفسارات 00971582040166 00971582040155 00971582616061 00971504113132 للتواصل والاستفسارات مكتب مصر 002011111004449',
+  //   studentImage: 'assets/school/school1.jpg',
+  //   likes: 15,
+  //   islikes: false,
+  // ),
 //    
-];
+// ];
 
 
 
@@ -215,21 +215,7 @@ Future<Unit> addStudentAttendance(List<StudentActivityClass>  studentActivityLis
 
   @override
   Future<Unit> addStudentBehavior(List<StudentActivityModel> studentActivityList) async {
-    //  final studentId = studentModel.id.toString();
-    // final body = {
-    //   "name": studentModel.username,
-    //     // "username": studentModel.username,
-    //     // "time": studentModel.time,
-    //     // "studentText": studentModel.studentText,
-    //     // "studentImage": studentModel.studentImage,
-    //     // "likes": studentModel.likes,
-    //     // "islikes": studentModel.islikes,
-    // };
-
-    // final response = await client.patch(
-    //   Uri.parse(URLs.URL_REGISTER),
-    //   body: body,
-    // );
+  
 print("0000000000000000000000000000");
 print(studentActivityList);
 print("0000000000000000000000000000");
@@ -243,15 +229,7 @@ print("0000000000000000000000000000");
 
   @override
   Future<Unit> addStudentMonthlyTest(List<StudentActivityModel> studentActivityList) async {
-    //  final studentId = studentActivityList.id.toString();
-    // final body = {
-    //   "name": studentModel.username,
-    // };
-
-    // final response = await client.patch(
-    //   Uri.parse(URLs.URL_REGISTER),
-    //   body: body,
-    // );
+ 
     print("#############    #######  ######");
     print(studentActivityList);
     print("#############    ######  #######");
