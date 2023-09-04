@@ -3,7 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_design/account/bloc/account_bloc.dart';
 import 'package:flutter_design/screen/account/login_screen.dart';
 
-import '../../../../account/data/model/UserSecureStorage.dart';
+
+import '../../../../account/data/model/stor.dart';
+import '../../../../account/ui/screen/login_screen.dart';
+
 
 class MenuPage extends StatelessWidget {
   @override
@@ -378,30 +381,8 @@ class MenuPage extends StatelessWidget {
 Widget WidgetLogoutOrLogin(BuildContext context) {
   return BlocBuilder<AccountBloc, AccountState>(
     builder: (context, state) {
-      String username = UserSecureStorage.getUsername().toString();
-      if (username != null) {
-        print(username);
-        print("username");
-        print(username);
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                context.read<AccountBloc>().add(LogoutEvent());
-              },
-              child: Text(
-                "تسجيل الخروج",
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ],
-        );
-      } else {
-        return Row(
+      if (state is SuccessLogoutState) {
+          return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
@@ -423,7 +404,59 @@ Widget WidgetLogoutOrLogin(BuildContext context) {
             ),
           ],
         );
+     
       }
+      bool isUserLogin = UserData.id!=null;
+      if (isUserLogin) {
+        print(isUserLogin);
+        print("username");
+        print(isUserLogin);
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                context.read<AccountBloc>().add(LogoutEvent());
+              },
+              child: Text(
+                "تسجيل الخروج",
+                style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        );
+      }
+       else {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    
+                    builder: (context) => LoginScreen(),
+                    // builder: (context) => SignUp(),
+                    // builder: (context) => LoginSceen(),
+                  ),
+                );
+              },
+              child: Text(
+                "تسجيل دخول",
+                style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        );
+      }
+      // return Container();
     },
   );
 }

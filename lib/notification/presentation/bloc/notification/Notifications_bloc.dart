@@ -69,7 +69,8 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   FutureOr<void> _getAllNotificationsEvent(
       GetAllNotificationsEvent event, Emitter<NotificationsState> emit) async {
     emit(LoadingNotificationState());
-     
+    
+
     final failureOrNotifications = await getAllNotifications();
     emit(_mapFailureOrNotificationsToState(failureOrNotifications));
   }
@@ -77,7 +78,6 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   FutureOr<void> _refreshNotificationsEvent(
       RefreshNotificationsEvent event, Emitter<NotificationsState> emit) async {
     emit(LoadingNotificationState());
-    
 
     final failureOrNotifications = await getAllNotifications();
     emit(_mapFailureOrNotificationsToState(failureOrNotifications));
@@ -88,6 +88,10 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       Emitter<NotificationsState> emit) async {
     NotificationHome.assignment = 34;
     NotificationHome.notifications = 26;
+    print("kkkkkkkkkkkkkkkkkk");
+    print("kkkkkkkkkkkkkkkkkd");
+    print("kkkkkkkkkkkkkkkkkk");
+    await UserStorageHelper.executeDataRetrieval();
     // // UserData.setUserDataValues(11, "ابو العرب", "12345", "email", "مدير");
     // UserData.setUserDataValues(
     //   11,
@@ -105,7 +109,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
 // print('Email: ${await UserSecureStorage.getEmail()}');
 // print('Permissions: ${await UserSecureStorage.getPermissions()}');
 // print(".........,,,,ooooooooooo,,,,,,,,,,,,,,,,,...........");
-          
+
     // UserData.setParentData();
     // UserData.setTeacherData(await UserSecureStorage.gette);
     emit(GetValueNotificationBarState());

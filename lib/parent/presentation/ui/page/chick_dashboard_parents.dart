@@ -1,73 +1,77 @@
 import 'package:flutter/material.dart';
 import '../../../../account/data/model/stor.dart';
 import '../../../../account/ui/screen/login_screen.dart';
+import '../../../../student/presentation/ui/page/choose_class.dart';
+import '../widgets/student/alert.dart';
 import 'choose_student.dart';
 import 'dashboard_parents_screen.dart';
 
 class ChickDashboardScreen extends StatefulWidget {
-  
-
-  
   @override
   _ChickDashboardScreenState createState() => _ChickDashboardScreenState();
 }
 
 class _ChickDashboardScreenState extends State<ChickDashboardScreen> {
-     int idStudent = 0;
-     bool goToDashbord=false;
- @override
-  void didUpdateWidget(ChickDashboardScreen oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    print('تم تحديث الصفحة');
-  }
+  int idStudent = 0;
 
   @override
   Widget build(BuildContext context) {
     bool isUserLoggedIn = UserData.id != null;
-
+    if ( UserData.id==0) {
+      isUserLoggedIn =false;
+    }
+    String permission = UserData.permissions.toString();
+    int _lengthArray = UserData.parentData?.studentName.length ?? 0;
+    // int _lengthArray = UserData.parentData!.studentName.length;
+    // bool _emptyData = UserData.parentData != null;
     bool parentHaveStudent = false;
- 
+    bool findStudent = false;
+    bool teacherHaveStudent = false;
+    bool teacherPermission = false;
+
+print('isUserLoggedIn: $isUserLoggedIn');
+print('permission: $permission');
+print('_lengthArray: $_lengthArray');
+// print(UserData.parentData != null);
+
     if (isUserLoggedIn) {
-      String permission = UserData.permissions.toString();
       if (permission.contains("مدرس")) {
-        print("lllllllllllllhhhhhhhhhhhhhhhhhh");
-        print(UserData.parentData);
-        print("lllllllllllllhhhhhhhhggggggggghhhhhhhhhh");
-        if (UserData.parentData != null &&
-            UserData.parentData!.studentName.length > 1) {
-        print("llllMMMMMMMMMMMMMMMMMMMMMMMMM");
-          parentHaveStudent = true;
+        if (UserData.parentData != null && _lengthArray == 0) {
+          teacherPermission = true;
         }
-        else  if (UserData.parentData != null &&
-            UserData.parentData!.studentName.length == 1) {
-          parentHaveStudent = false;
-        print("GGGGGGGGGGGGGGGGGGGGGGGGGG");
-           idStudent = UserData.parentData!.studentName[0].id!;
-        } 
-       } else if (permission.contains("ولي امر")) {
-        if (UserData.parentData != null &&
-            UserData.parentData!.studentName.length > 1) {
-          print(UserData.parentData!.studentName.length);
+      }
+      if (UserData.parentData != null) {
+        if (_lengthArray == 1) {
+          findStudent = true;
+          idStudent = UserData.parentData!.studentName[0].id!;
+        } else if (_lengthArray > 1) {
           parentHaveStudent = true;
-           idStudent = UserData.parentData!.studentName[0].id!;
+          idStudent = 0;
         }
-        else  if (UserData.parentData != null &&
-            UserData.parentData!.studentName.length == 1) {
+      }
+
+      if (permission.contains("مدرس")) {
+        if (findStudent || parentHaveStudent) {
+          print("okllllllll ok ok ok");
+          teacherHaveStudent = true;
           parentHaveStudent = false;
-           idStudent = UserData.parentData!.studentName[0].id!;
         }
       }
     }
 
-
-
-    return parentHaveStudent
-        ? ChooseStudentScreen()        
-        : isUserLoggedIn
-            ? DashboardScreen(idStudent)
-            : LoginScreen();
-
+    return teacherPermission
+        ? ChooseClassScreen()
+        : parentHaveStudent
+            ? ChooseStudentScreen()
+            :
+             teacherHaveStudent
+                ? GradeInputDialogScreen(studentId: idStudent)
+                :
+                 isUserLoggedIn
+                    ? DashboardScreen(idStudent)
+                    : LoginScreen();
   }
+
 }
 
     // if (parentHaveStudent) {

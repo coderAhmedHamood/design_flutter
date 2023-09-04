@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../base/alart.dart';
-import '../../../../base/loading_screen.dart';
 import '../../../../notification/presentation/bloc/notification/Notifications_bloc.dart';
 import '../../../../notification/presentation/bloc/notification/Notifications_event.dart';
-import '../../../../notification/presentation/bloc/notification/Notifications_state.dart';
 import '../../../domain/entities/post.dart';
 import '../../bloc/posts/posts_bloc.dart';
 import '../widgets/post_list_widget.dart';

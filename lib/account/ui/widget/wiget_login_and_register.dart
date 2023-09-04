@@ -7,9 +7,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../screen/register_screen.dart';
 import 'curve_cliper.dart';
 import 'custom_text.dart';
+
 class WidgetLoginOrRegisterScreen extends StatelessWidget {
- String pageName;
-  WidgetLoginOrRegisterScreen({super.key,required this.pageName});
+  String pageName;
+  WidgetLoginOrRegisterScreen({super.key, required this.pageName});
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<FormState> _formKeyPassword = GlobalKey<FormState>();
@@ -21,16 +22,24 @@ class WidgetLoginOrRegisterScreen extends StatelessWidget {
     return BlocBuilder<AccountBloc, AccountState>(
       builder: (context, state) {
         if (state is SuccessLoginState) {
-       
-
-   WidgetsBinding.instance.addPostFrameCallback((_) {
-          // Navigator.pop(context);
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => TabBarViewScreen(initialIndexValue: 2,)),
-          );
-        });
-          
+          print("?????????(((((((((((((((okokokok))))))))))))))??????????");
+          print("SuccessLoginState");
+          print("SuccessLoginStatel");
+          print("?????????(((((((((((((((okokokok))))))))))))))??????????");
+          print("SuccessLoginStatel");
+          print("SuccessLoginState");
+          print("SuccessLoginStatel");
+          print("?????????(((((((((((((((okokokok))))))))))))))??????????");
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            // Navigator.pop(context);
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => TabBarViewScreen(
+                        initialIndexValue: 2,
+                      )),
+            );
+          });
         }
         return Scaffold(
           body: Directionality(
@@ -86,9 +95,7 @@ class WidgetLoginOrRegisterScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 20
-                      ),
+                      SizedBox(height: 20),
                       Padding(
                         padding: const EdgeInsets.only(left: 20, right: 20),
                         child: Form(
@@ -130,14 +137,11 @@ class WidgetLoginOrRegisterScreen extends StatelessWidget {
                             onPressed: () {
                               if (_formKey.currentState!.validate() &&
                                   _formKeyPassword.currentState!.validate()) {
-                           
                                 print(_emailController.text);
                                 print(_passwordController.text);
                                 context.read<AccountBloc>().add(LoginEvent(
                                     email: _emailController.text,
                                     password: _passwordController.text));
-                         
-                           
                               }
                             },
                             child: Row(
@@ -158,9 +162,7 @@ class WidgetLoginOrRegisterScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: 15
-                        ),
+                        SizedBox(height: 15),
                         Text(
                           'ليس لديك حساب؟',
                           style: TextStyle(
@@ -198,4 +200,3 @@ class WidgetLoginOrRegisterScreen extends StatelessWidget {
     );
   }
 }
-

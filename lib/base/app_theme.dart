@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
-final primaryColor = Color(0xff082659);
+final primaryColor = Color.fromARGB(255, 16, 53, 118);
 final secondaryColor = Color(0xff51eec2);
+
+
+
 
 final appTheme = ThemeData(
     appBarTheme: AppBarTheme(

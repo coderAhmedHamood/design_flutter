@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class DashboardItem extends StatelessWidget {
   final IconData icon;
   final String title;
-  final String subtitle;
+  
   final Color color;
   final VoidCallback onTap;
 
@@ -11,7 +11,7 @@ class DashboardItem extends StatelessWidget {
     Key? key,
     required this.icon,
     required this.title,
-    required this.subtitle,
+  
     required this.color,
     required this.onTap,
   }) : super(key: key);
@@ -19,9 +19,10 @@ class DashboardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: color,
+      color:  Colors.white,
+      // color: const Color.fromARGB(255, 235, 239, 235),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(35),
       ),
       child: InkWell(
         onTap: onTap,
@@ -30,10 +31,14 @@ class DashboardItem extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                icon,
-                color: Colors.white,
-                size: 48,
+              Container(
+                
+                // color: const Color.fromARGB(255, 225, 220, 220),
+                child: Icon(
+                  icon,
+                  color: color,
+                  size: 60,
+                ),
               ),
               SizedBox(height: 16),
               Text(
@@ -41,19 +46,11 @@ class DashboardItem extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: 'Arabic',
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: Colors.black,
                   fontSize: 18,
                 ),
               ),
-              SizedBox(height: 8),
-              Text(
-                subtitle,
-                style: TextStyle(
-                  fontFamily: 'Arabic',
-                  color: Colors.white,
-                  fontSize: 14,
-                ),
-              ),
+        
             ],
           ),
         ),

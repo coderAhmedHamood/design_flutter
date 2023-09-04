@@ -21,15 +21,10 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     try {
       emit(LoadingLoginState());
       await UserProvider().login(event.email, event.password);
-    
-
-
-
-
-    
+ print("NNN   NNN       NNNN         NNNN  N NN");
       emit(SuccessLoginState());
     } catch (error) {
-      emit(SuccessLoginState());
+      emit(ErrorLoginState());
     }
   }
 

@@ -9,6 +9,9 @@ class UserStorageHelper {
     String? username = await UserSecureStorage.getUsername();
     String? email = await UserSecureStorage.getEmail();
     String? permissions = await UserSecureStorage.getPermissions();
+    print("........................uuuuuuuuuuuuuu....................");
+    print(permissions);
+    print("...........ppppppppppppp.................................");
 
     if (permissions.toString().contains("ولي امر")) {
       checkParentData();

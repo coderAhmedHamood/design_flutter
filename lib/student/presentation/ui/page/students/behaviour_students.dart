@@ -22,11 +22,10 @@ class BehaviourStudentsScreen extends StatefulWidget {
 }
 
 int selectedGrade = 1; // القيمة المختارة الافتراضية
-class _BehaviourStudentsState extends State<BehaviourStudentsScreen> {
 
+class _BehaviourStudentsState extends State<BehaviourStudentsScreen> {
   @override
   Widget build(BuildContext context) {
-
     return BlocBuilder<StudentBloc, StudentState>(builder: (context, state) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         final studentBloc =
@@ -54,40 +53,39 @@ class _BehaviourStudentsState extends State<BehaviourStudentsScreen> {
       }
 
       return Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            iconSize: 40,
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ),
-        body: Column(
-          children: [
-            TitleBodyWidget(title: "سلوك الصف "),
-            SizedBox(
-              height: 5,
+          appBar: AppBar(
+            leading: IconButton(
+              iconSize: 40,
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
-            WidgetListNotification()
-          ],
-        ),
-      
-            floatingActionButton: 
-            students.any((student) => student.behaviourStudentsClass!=null)?
-                FloatingActionButton(
+          ),
+          body: Column(
+            children: [
+              TitleBodyWidget(title: "سلوك الصف "),
+              SizedBox(
+                height: 5,
+              ),
+              WidgetListNotification()
+            ],
+          ),
+          floatingActionButton: students
+                  .any((student) => student.behaviourStudentsClass != null)
+              ? FloatingActionButton(
                   onPressed: () {
                     List<StudentActivityClass> studentsBehavior = students
-                        .where((student) => student.behaviourStudentsClass != null)
-                        .toList();                 
+                        .where(
+                            (student) => student.behaviourStudentsClass != null)
+                        .toList();
                     BlocProvider.of<StudentBloc>(context).add(
                         AddStudentBehaviorDataEvent(
                             studentBehavior: studentsBehavior));
                   },
                   child: Icon(Icons.upload),
-                ):Container()
-
-      );
+                )
+              : Container());
     });
   }
 
@@ -98,7 +96,7 @@ class _BehaviourStudentsState extends State<BehaviourStudentsScreen> {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-                 _showGradeInputDialog(context,students[index].name,index);
+              _showGradeInputDialog(context, students[index].name, index);
               // setState(() {
               //   // showGradeInputDialog(context, students[index].name, index);
               // });
@@ -129,7 +127,9 @@ class _BehaviourStudentsState extends State<BehaviourStudentsScreen> {
                       Icon(
                         Icons.notification_add,
                         size: 30, // Set the size of the icon
-                        color:students[index].behaviourStudentsClass!=null? Colors.red: Colors.blue,
+                        color: students[index].behaviourStudentsClass != null
+                            ? Colors.red
+                            : Colors.blue,
                       )
                     ],
                   ),
@@ -150,7 +150,8 @@ class _BehaviourStudentsState extends State<BehaviourStudentsScreen> {
     );
   }
 
-  void _showGradeInputDialog(BuildContext context,String studentName,int indexArray) async {
+  void _showGradeInputDialog(
+      BuildContext context, String studentName, int indexArray) async {
     final selectedBehaviour = await showDialog<List>(
       context: context,
       builder: (BuildContext context) {
@@ -165,13 +166,11 @@ class _BehaviourStudentsState extends State<BehaviourStudentsScreen> {
       print(selectedBehaviour[0]);
       print(selectedBehaviour[1]);
       print(selectedBehaviour[2]);
-     
-                                setState(() {
-                                   students[indexArray].behaviourStudentsClass =
-                            BehaviourStudentsClass(
-                                title: selectedBehaviour[1],
-                                message: selectedBehaviour[2]);
-                                });
+
+      setState(() {
+        students[indexArray].behaviourStudentsClass = BehaviourStudentsClass(
+            title: selectedBehaviour[1], message: selectedBehaviour[2]);
+      });
 
       // قم بمعالجة القيمة المختارة كما ترغب
     } else {
@@ -182,7 +181,4 @@ class _BehaviourStudentsState extends State<BehaviourStudentsScreen> {
   }
 
 
-
 }
-
-
