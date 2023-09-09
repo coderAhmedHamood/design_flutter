@@ -81,10 +81,10 @@ class PostRemoteDataSourceImpl implements PostRemoteDataSource {
   Future<List<PostModel>> getAllPosts() async {
     
     
-    final response = await client.get(
-      Uri.parse(BASE_URL + "city.php?city=GetCity"),
-      // headers: {"Content-Type": "application/json"},
-    );
+    // final response = await client.get(
+    //   Uri.parse(BASE_URL + "city.php?city=GetCity"),
+    //   // headers: {"Content-Type": "application/json"},
+    // );
 
     if (200 == 200) {
     // if (response.statusCode == 200) {
@@ -120,11 +120,12 @@ class PostRemoteDataSourceImpl implements PostRemoteDataSource {
         // "islikes": postModel.islikes,
     };
 
-    final response =
-        await client.post(Uri.parse(BASE_URL + "city.php?city=AddCity"), body: body);
+    // final response =
+        // await client.post(Uri.parse(BASE_URL + "city.php?city=AddCity"), body: body);
 
     // if (response.statusCode == 201) {
-    if (response.statusCode == 200) {
+    if (200 == 200) {
+    // if (response.statusCode == 200) {
       return Future.value(unit);
     } else {
       throw ServerException();
@@ -135,16 +136,17 @@ class PostRemoteDataSourceImpl implements PostRemoteDataSource {
 @override
 Future<Unit> deletePost(int postId) async {
  
-  final response = await http.post(
+  // final response = await http.post(
     
-      Uri.parse(BASE_URL + "delete.php?delete=DeleteCity"),
-      body: {
-        'id': postId.toString(),
-      },
-    );
+  //     Uri.parse(BASE_URL + "delete.php?delete=DeleteCity"),
+  //     body: {
+  //       'id': postId.toString(),
+  //     },
+  //   );
 
 
-  if (response.statusCode == 200) {
+  if (200 == 200) {
+  // if (response.statusCode == 200) {
     return Future.value(unit);
   } else {
     throw ServerException();

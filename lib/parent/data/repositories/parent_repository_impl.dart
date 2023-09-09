@@ -4,7 +4,6 @@ import 'package:flutter_design/parent/domain/entities/student_attendance_class.d
 import '../../../../base/error/exceptions.dart';
 import '../../../../base/error/failures.dart';
 import '../../../../base/network/network_info.dart';
-import '../../domain/entities/permission_class.dart';
 import '../../domain/repositories/parents_repository.dart';
 import '../datasources/parent_local_data_source.dart';
 import '../datasources/parent_remote_data_source.dart';
@@ -25,7 +24,7 @@ class ParentsRepositoryImpl implements ParentsRepository {
       required this.networkInfo});
  
   @override
-  Future<Either<Failure, StudentAttendanceClass>> getDataStudentToParent(int idStudent) async {
+  Future<Either<Failure, StudentDataTableClass>> getDataStudentToParent(int idStudent) async {
     if (await networkInfo.isConnected) {
       try {
  
@@ -50,7 +49,7 @@ class ParentsRepositoryImpl implements ParentsRepository {
 
 
   @override
-  Future<Either<Failure, StudentAttendanceClass>> getDataStudentToParentMonthlyTest(int idStudent) async {
+  Future<Either<Failure, StudentDataTableClass>> getDataStudentToParentMonthlyTest(int idStudent) async {
     if (await networkInfo.isConnected) {
       try {
  
@@ -73,11 +72,34 @@ class ParentsRepositoryImpl implements ParentsRepository {
   }
 
   @override
-  Future<Either<Failure, StudentAttendanceClass>> getDataStudentToParentAssignments(int idStudent) async {
+  Future<Either<Failure, StudentDataTableClass>> getDataStudentToParentAssignments(int idStudent) async {
     if (await networkInfo.isConnected) {
       try {
  
         final remotePosts = await remoteDataSource.getDataStudentToParentAssignments(idStudent);
+        // localDataSource.cachedStudentDataToParent(remotePosts);
+               
+        //hare store the data to cash
+        return Right(remotePosts);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      try {
+        final localPosts = await localDataSource.getCachedStudentDataToParent();
+        return Right(localPosts);
+      } on EmptyCacheException {
+        return Left(EmptyCacheFailure());
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, StudentDataTableClass>> getDataStudentToParentAssignedTask(int idStudent) async {
+    if (await networkInfo.isConnected) {
+      try {
+ 
+        final remotePosts = await remoteDataSource.getDataStudentToParentAssignedTask(idStudent);
         // localDataSource.cachedStudentDataToParent(remotePosts);
                
         //hare store the data to cash

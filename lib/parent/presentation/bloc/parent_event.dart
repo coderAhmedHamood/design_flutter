@@ -37,6 +37,14 @@ class GetDataStudentToParentAssignmentsEvent extends ParentEvent {
   @override
   List<Object> get props => [idStuden];
 }
+class GetDataStudentToParentAssignedTaskEvent extends ParentEvent {
+  int idStuden;
+  GetDataStudentToParentAssignedTaskEvent({
+    required this.idStuden,
+  });
+  @override
+  List<Object> get props => [idStuden];
+}
 class GetDataStudentToParentPermissionEvent extends ParentEvent {
   int idStuden;
   GetDataStudentToParentPermissionEvent({

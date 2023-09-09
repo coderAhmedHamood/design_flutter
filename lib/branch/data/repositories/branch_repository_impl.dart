@@ -4,6 +4,7 @@ import '../../../../base/error/exceptions.dart';
 import '../../../../base/error/failures.dart';
 import '../../../../base/network/network_info.dart';
 import '../../domain/entities/branch.dart';
+import '../../domain/entities/data_student.dart';
 import '../../domain/repositories/branch_repository.dart';
 import '../datasources/branch_local_data_source.dart';
 import '../datasources/branch_remote_data_source.dart';
@@ -26,9 +27,10 @@ class BranchRepositoryImpl implements BranchRepository {
         print("....................stor data branch.......................");
         
         final remoteBranch = await remoteDataSource.getAllBranch();
-        // print(remoteBranch);
+        print(remoteBranch);
         print("....................this  data branch.......................");
         localDataSource.cacheBranchs(remoteBranch);
+        print(".............ok.......this  data branch.......................");
         //hare store the data to cash
         return Right(remoteBranch);
       } on ServerException {
@@ -40,6 +42,35 @@ class BranchRepositoryImpl implements BranchRepository {
         print(".................tt...stor data branch.......................");
         
         final localBranch = await localDataSource.getCachedBranchs();
+        return Right(localBranch);
+      } on EmptyCacheException {
+   
+        return Left(EmptyCacheFailure());
+      }
+    }
+  }
+  
+  @override
+  Future<Either<Failure, List<DataStudent>>> getAllDataStudent(int idBranch) async {
+    if (await networkInfo.isConnected) {
+      try {
+        print("....................stor data branch.......................");
+        
+        final remoteBranch = await remoteDataSource.getAllDataStudent(idBranch);
+        // print(remoteBranch);
+        print("....................this  data branch.......................");
+        localDataSource.cachedDataStudent(remoteBranch);
+        //hare store the data to cash
+        return Right(remoteBranch);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      try {
+        
+        print(".................tt...stor data branch.......................");
+        
+        final localBranch = await localDataSource.getCachedDataStudent();
         return Right(localBranch);
       } on EmptyCacheException {
    

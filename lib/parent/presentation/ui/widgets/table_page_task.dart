@@ -8,7 +8,7 @@ import '../../bloc/parent_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 final List<String> column = [''];
-final List<StudentAttendanceWeek> objstudentDataWeek = [
+final List<StudentAttendanceWeek> studentStudentDataWeek = [
   StudentAttendanceWeek(
     date: '',
     studentAttendance: [
@@ -19,14 +19,14 @@ final List<StudentAttendanceWeek> objstudentDataWeek = [
 
 StudentDataTableClass attendanceColumn = StudentDataTableClass(
   column: column,
-  studentAttendanceClass: objstudentDataWeek,
+  studentAttendanceClass: studentStudentDataWeek,
 );
 
-class TablePage extends StatelessWidget {
+class TablePageTask extends StatelessWidget {
   // final StudentDataTableClass attendanceColumn;
  final String pageName;
 
-  TablePage({required this.pageName});
+  TablePageTask({required this.pageName});
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +36,7 @@ class TablePage extends StatelessWidget {
         attendanceColumn = state.StudentDataTableClassMonthly;
       }
          if (state is LoadedStudentDataToParentState) {
+          
           attendanceColumn = state.studentDataTableClass;
         }
  return WidgetPage();
@@ -55,7 +56,7 @@ class TablePage extends StatelessWidget {
                 Text(
                   data.date,
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.blue,
                     fontSize: 20,
               
                     decoration: TextDecoration.underline,
@@ -66,8 +67,7 @@ class TablePage extends StatelessWidget {
               ],
             ),
 
-          // WidgetTable(studentAttendanceList),
-        ],
+         ],
       );
   }
 
@@ -175,7 +175,7 @@ Widget WidgetTable(List<StudentAttendanceDay> studentAttendanceList) {
                     ? Colors.blue
                     : status == 'غير مسلم'
                         ? Colors.red
-                        : Colors.white,
+                        : Colors.black,
             fontWeight: FontWeight.bold,
             // fontSize: 20,
           ),

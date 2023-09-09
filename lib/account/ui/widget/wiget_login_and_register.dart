@@ -21,15 +21,7 @@ class WidgetLoginOrRegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AccountBloc, AccountState>(
       builder: (context, state) {
-        if (state is SuccessLoginState) {
-          print("?????????(((((((((((((((okokokok))))))))))))))??????????");
-          print("SuccessLoginState");
-          print("SuccessLoginStatel");
-          print("?????????(((((((((((((((okokokok))))))))))))))??????????");
-          print("SuccessLoginStatel");
-          print("SuccessLoginState");
-          print("SuccessLoginStatel");
-          print("?????????(((((((((((((((okokokok))))))))))))))??????????");
+        if (state is SuccessLoginState) {          
           WidgetsBinding.instance.addPostFrameCallback((_) {
             // Navigator.pop(context);
             Navigator.pushReplacement(
@@ -41,6 +33,8 @@ class WidgetLoginOrRegisterScreen extends StatelessWidget {
             );
           });
         }
+        
+        
         return Scaffold(
           body: Directionality(
             textDirection: TextDirection.rtl,

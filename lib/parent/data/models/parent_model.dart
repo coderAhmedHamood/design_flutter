@@ -2,39 +2,39 @@ import 'package:flutter_design/parent/domain/entities/student_attendance_class.d
 import '../../domain/entities/student_attendance_week.dart';
 import 'week_model.dart';
 
-class StudentAttendanceModel extends StudentAttendanceClass {
-  StudentAttendanceModel({
+class StudentDataTableModel extends StudentDataTableClass {
+  StudentDataTableModel({
     required List<String> column,
-    required List<StudentAttendanceWeek> studentAttendanceClass,
+    required List<StudentAttendanceWeek> StudentDataTableClass,
   }) : super(
           column: column,
-          studentAttendanceClass: studentAttendanceClass,
+          studentAttendanceClass: StudentDataTableClass,
         );
 
-  factory StudentAttendanceModel.fromJson(Map<String, dynamic> json) {
+  factory StudentDataTableModel.fromJson(Map<String, dynamic> json) {
     List<String> column = List<String>.from(json['column']);
-    List<StudentAttendanceWeek> studentAttendanceClass =
+    List<StudentAttendanceWeek> StudentDataTableClass =
         List<StudentAttendanceWeek>.from(
-      json['studentAttendanceClass']
+      json['StudentDataTableClass']
           .map((week) => StudentAttendanceWeekModel.fromJson(week)),
     );
-    return StudentAttendanceModel(
+    return StudentDataTableModel(
       column: column,
-      studentAttendanceClass: studentAttendanceClass,
+      StudentDataTableClass: StudentDataTableClass,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'column': column,
-      'studentAttendanceClass':
+      'StudentDataTableClass':
        List<StudentAttendanceWeek>.from(
           studentAttendanceClass.map((week) =>week )),
-      // studentAttendanceClass.map((week) => week).toList(),
+      // StudentDataTableClass.map((week) => week).toList(),
       
       
-      // 'studentAttendanceClass': List<StudentAttendanceWeek>.from(
-      //     studentAttendanceClass.map((week) =>(week as StudentAttendanceWeekModel).toJson())),
+      // 'StudentDataTableClass': List<StudentAttendanceWeek>.from(
+      //     StudentDataTableClass.map((week) =>(week as StudentAttendanceWeekModel).toJson())),
           
     };
   }

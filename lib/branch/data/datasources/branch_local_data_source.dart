@@ -5,13 +5,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../base/error/exceptions.dart';
 import '../models/branch_model.dart';
+import '../models/data_student.dart';
 
 abstract class BranchLocalDataSource {
   Future<List<BranchModel>> getCachedBranchs();
   Future<Unit> cacheBranchs(List<BranchModel> branchModels);
+  Future<List<DataStudentModel>> getCachedDataStudent();
+  Future<Unit> cachedDataStudent(List<DataStudentModel> dataStudentModel);
 }
 
 const CACHED_BRANCHS = "CACHED_BRANCHES";
+const CACHED_DATA_STUDENT = "CACHED_DATA_STUDENT";
 
 class BranchLocalDataSourceImpl implements BranchLocalDataSource {
   final SharedPreferences sharedPreferences;
@@ -19,21 +23,12 @@ class BranchLocalDataSourceImpl implements BranchLocalDataSource {
   BranchLocalDataSourceImpl({required this.sharedPreferences});
   @override
   Future<Unit> cacheBranchs(List<BranchModel> branchModels) {
-    print("===================>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-    print("datasources branch");
-    print("===================>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-    
+
     List branchModelsToJson = branchModels
         .map<Map<String, dynamic>>((branchModel) => branchModel.toJson())
         .toList();
     sharedPreferences.setString(CACHED_BRANCHS, json.encode(branchModelsToJson));
-
-
       final encodedBranchModels = sharedPreferences.getString(CACHED_BRANCHS);
-        print("=================!!!!!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>>>>>>>");
-    print(encodedBranchModels);
-    print("=================!!!!!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>>>>>>>");
-
     return Future.value(unit);
   }
 
@@ -44,22 +39,60 @@ class BranchLocalDataSourceImpl implements BranchLocalDataSource {
     if (jsonString != null) {
     
       List<dynamic> decodeJsonData = json.decode(jsonString);
+         List<BranchModel> jsonToBranchModels = decodeJsonData
+        .map<BranchModel>((jsonBranchModel) => BranchModel.fromJson(jsonBranchModel))
+        .toList();
+    print(jsonToBranchModels);
+    print("vvvvvvv   VVVVVVVVVVV   vvvvvvvvvv");
+      return Future.value(jsonToBranchModels);
+    } else {
+      throw EmptyCacheException();
+    }
+  }
+  
+  
+  @override
+  Future<Unit> cachedDataStudent(List<DataStudentModel> dataStudentModel) {
+
+    List dataStudentModelsToJson = dataStudentModel
+        .map<Map<String, dynamic>>((dataStudent) => dataStudent.toJson())
+        .toList();
+    sharedPreferences.setString(CACHED_DATA_STUDENT, json.encode(dataStudentModel));
+
+
+    //   final encodedBranchModels = sharedPreferences.getString(CACHED_DATA_STUDENT);
+    //     print("=================!!!!!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>>>>>>>");
+    // print(encodedBranchModels);
+    print("=================!!!!!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>>>>>>>");
+
+    return Future.value(unit);
+  }
+
+  @override
+  Future<List<DataStudentModel>> getCachedDataStudent() {
+    
+    final jsonString = sharedPreferences.getString(CACHED_DATA_STUDENT);
+    if (jsonString != null) {
+    
+      List<dynamic> decodeJsonData = json.decode(jsonString);
     print("=============000000000000000======>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     print(decodeJsonData);
     print("=============000000000000000======>>>>>>>>>>>>>>>>>>>>>>>>>>>");
       // List<BranchModel> jsonToBranchModels = decodeJsonData
       //     .map<BranchModel>((jsonBranchModel) => BranchModel.fromJson(jsonBranchModel))
       //     .toList();
-         List<BranchModel> jsonToBranchModels = decodeJsonData
-        .map<BranchModel>((jsonBranchModel) => BranchModel.fromJson(jsonBranchModel))
+         List<DataStudentModel> jsonDataStudent = decodeJsonData
+        .map<DataStudentModel>((jsonBranchModel) => DataStudentModel.fromJson(jsonBranchModel))
         .toList();
     
     print("===================>>>>>>-------------->>>>>>>>>>>>>>>>>>>>>");
-          print(jsonToBranchModels);
+          print(jsonDataStudent);
     print("===================>>>>>>-------------->>>>>>>>>>>>>>>>>>>>>");
-      return Future.value(jsonToBranchModels);
+      return Future.value(jsonDataStudent);
     } else {
       throw EmptyCacheException();
     }
   }
+
+
 }

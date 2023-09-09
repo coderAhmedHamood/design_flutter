@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'constants/my_colors.dart';
+
 class LoadingScreen extends StatelessWidget {
   final String text;
 
@@ -59,7 +61,7 @@ Widget _customDialog(BuildContext context) {
       width: 200,
       height: 200,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: MyColors.white,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(

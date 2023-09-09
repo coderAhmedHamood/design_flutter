@@ -5,12 +5,12 @@ import 'package:flutter_design/notification/presentation/bloc/notification/Notif
 import 'package:flutter_design/student/presentation/bloc/up_data_student/student_bloc.dart';
 import 'package:get/get.dart';
 import 'account/bloc/account_bloc.dart';
-import 'base/bloc_ob_serve.dart';
+import 'base/constants/bloc_ob_serve.dart';
 import 'home_main/presentation/bloc/posts/posts_bloc.dart';
 import 'notification/presentation/bloc/notification/Notifications_bloc.dart';
 import 'parent/presentation/bloc/parent_bloc.dart';
 import 'screen/tabbar/home_Tabbar.dart';
-import 'base/app_theme.dart';
+import 'base/constants/app_theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart'; 
   import 'injection_container.dart' as di;
 

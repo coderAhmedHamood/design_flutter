@@ -8,5 +8,11 @@ abstract class BranchEvent extends Equatable {
 }
 
 class GetAllBranchEvent extends BranchEvent {}
-
 class RefreshBranchEvent extends BranchEvent {}
+
+class GetAllDataStudentEvent extends BranchEvent {
+  final int idBranch;
+  GetAllDataStudentEvent({required this.idBranch});
+  @override
+  List<Object> get props => [idBranch];
+}

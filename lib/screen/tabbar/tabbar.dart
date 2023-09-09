@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../constants/my_colors.dart';
+import '../../base/constants/my_colors.dart';
 import '../../notification/presentation/bloc/notification/Notifications_bloc.dart';
 import '../../notification/presentation/bloc/notification/Notifications_state.dart';
 import 'Notification_class.dart';

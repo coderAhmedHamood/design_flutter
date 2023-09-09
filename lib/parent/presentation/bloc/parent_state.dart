@@ -15,11 +15,11 @@ abstract class ParentState extends Equatable {
 }
 
 // class LoadedStudentsDataToParentState extends ParentState {
-//   final StudentAttendanceClass studentAttendanceClass;
-//   LoadedStudentsDataToParentState({required this.studentAttendanceClass});
+//   final StudentDataTableClass StudentDataTableClass;
+//   LoadedStudentsDataToParentState({required this.StudentDataTableClass});
 
 //   @override
-//   List<Object> get props => [studentAttendanceClass];
+//   List<Object> get props => [StudentDataTableClass];
 // }
 class LoadingAddPermissionStudentsDataToParentState extends ParentState {}
 
@@ -35,10 +35,10 @@ class ErrorParentState extends ParentState {
 }
 
 class LoadedStudentDataToParentState extends ParentState {
-  final StudentAttendanceClass studentAttendanceClass;
-  LoadedStudentDataToParentState({required this.studentAttendanceClass});
+  final StudentDataTableClass studentDataTableClass;
+  LoadedStudentDataToParentState({required this.studentDataTableClass});
   @override
-  List<Object> get props => [studentAttendanceClass];
+  List<Object> get props => [studentDataTableClass];
 }
 
 class LoadedStudentDataToParentPermissionState extends ParentState {
@@ -50,11 +50,11 @@ class LoadedStudentDataToParentPermissionState extends ParentState {
 }
 
 class LoadedStudentDataToParentMonthlyTestState extends ParentState {
-  final StudentAttendanceClass studentAttendanceClassMonthly;
+  final StudentDataTableClass StudentDataTableClassMonthly;
   LoadedStudentDataToParentMonthlyTestState(
-      {required this.studentAttendanceClassMonthly});
+      {required this.StudentDataTableClassMonthly});
   @override
-  List<Object> get props => [studentAttendanceClassMonthly];
+  List<Object> get props => [StudentDataTableClassMonthly];
 }
  
 

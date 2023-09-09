@@ -27,3 +27,24 @@ class ErrorBranchState extends BranchState {
   @override
   List<Object> get props => [message];
 }
+
+
+class LoadingGetDataStudentState extends BranchState {}
+
+class LoadedGetDataStudentState extends BranchState {
+  final List<DataStudent> dataStudent;
+
+  LoadedGetDataStudentState({required this.dataStudent});
+
+  @override
+  List<Object> get props => [dataStudent];
+}
+
+
+class ErrorGetDataStudentState extends BranchState {
+  final String message;
+
+  ErrorGetDataStudentState({required this.message});
+  @override
+  List<Object> get props => [message];
+}

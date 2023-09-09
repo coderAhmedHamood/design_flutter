@@ -34,6 +34,7 @@ import 'branch/data/datasources/branch_local_data_source.dart';
 import 'branch/data/datasources/branch_remote_data_source.dart';
 import 'branch/data/repositories/branch_repository_impl.dart';
 import 'branch/domain/usecases/get_all_branch.dart';
+import 'branch/domain/usecases/get_data_student.dart';
 import 'home_main/data/datasources/post_local_data_source.dart';
 import 'home_main/data/datasources/post_remote_data_source.dart';
 import 'home_main/data/repositories/post_repository_impl.dart';
@@ -47,16 +48,14 @@ import 'notification/data/repositories/notification_repository_impl.dart';
 import 'notification/domain/repositories/notification_repository.dart';
 import 'notification/domain/usecases/get_notification_to_parent.dart';
 import 'notification/presentation/bloc/notification/Notifications_bloc.dart';
+import 'parent/domain/usecases/get_data_assigned_task.dart';
 import 'student/domain/usecases/get_class.dart';
 
 final sl = GetIt.instance;
 
 Future<void> init() async {
-
   //! bloc  Account
   sl.registerFactory(() => AccountBloc());
- 
-
 
 //! - Home_Page
 // Bloc
@@ -79,10 +78,16 @@ Future<void> init() async {
       () => PostLocalDataSourceImpl(sharedPreferences: sl()));
 
 //! bloc  Branch
-  sl.registerFactory(() => BranchBloc(getAllBranch: sl()));
+  sl.registerFactory(
+    () => BranchBloc(
+      getAllBranch: sl(),
+      getAllDataStudent: sl(),
+    ),
+  );
 // Usecases
 //!  Usecases Branch
   sl.registerLazySingleton(() => GetAllBranchUsecase(sl()));
+  sl.registerLazySingleton(() => GetAllDataStudentUsecase(sl()));
 //!  Repository Branch
   sl.registerLazySingleton<BranchRepository>(() => BranchRepositoryImpl(
       remoteDataSource: sl(), localDataSource: sl(), networkInfo: sl()));
@@ -94,9 +99,9 @@ Future<void> init() async {
 
 //! bloc  Notification
   sl.registerFactory(() => NotificationsBloc(
-    getAllNotifications: sl(),
-    getNotificationToParent: sl(),
-    ));
+        getAllNotifications: sl(),
+        getNotificationToParent: sl(),
+      ));
 // Usecases
 //!  Usecases Notification
   sl.registerLazySingleton(() => GetAllNotificationUsecase(sl()));
@@ -138,23 +143,23 @@ Future<void> init() async {
   sl.registerLazySingleton<StudentLocalDataSource>(
       () => StudentLocalDataSourceImpl(sharedPreferences: sl()));
 
-
-
 //! bloc  Parent
   sl.registerFactory(
     () => ParentBloc(
-    
       getDataStudentToParentAttendance: sl(),
       getDataStudentToParentMonthlyTest: sl(),
       getDataStudentToParentAssignments: sl(),
+      getDataStudentToParentAssignedTask: sl(),
       getDataStudentToParentPermission: sl(),
       addPermissionToStudentUsecase: sl(),
     ),
   );
 //! Usecases  Parent
   sl.registerLazySingleton(() => GetDataStudentToParenttUsecase(sl()));
-  sl.registerLazySingleton(() => GetDataStudentToParentMonthlyTestUsecase(sl()));
+  sl.registerLazySingleton(
+      () => GetDataStudentToParentMonthlyTestUsecase(sl()));
   sl.registerLazySingleton(() => GetDataStudentToParentAssignmentsEventUsecase(sl()));
+  sl.registerLazySingleton(() => GetDataStudentToParentAssignedTaskEventUsecase(sl()));
   sl.registerLazySingleton(() => GetDataStudentToParentPermissionUsecase(sl()));
   sl.registerLazySingleton(() => AddPermissionToStudentUsecase(sl()));
 //!  Repository Parent

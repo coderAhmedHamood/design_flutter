@@ -6,12 +6,13 @@ import '../widgets/student/alert.dart';
 import 'choose_student.dart';
 import 'dashboard_parents_screen.dart';
 
-class ChickDashboardScreen extends StatefulWidget {
-  @override
-  _ChickDashboardScreenState createState() => _ChickDashboardScreenState();
-}
+class ChickDashboardScreen extends StatelessWidget {
+// class ChickDashboardScreen extends StatefulWidget {
+//   @override
+//   _ChickDashboardScreenState createState() => _ChickDashboardScreenState();
+// }
 
-class _ChickDashboardScreenState extends State<ChickDashboardScreen> {
+// class _ChickDashboardScreenState extends State<ChickDashboardScreen> {
   int idStudent = 0;
 
   @override
@@ -29,9 +30,11 @@ class _ChickDashboardScreenState extends State<ChickDashboardScreen> {
     bool teacherHaveStudent = false;
     bool teacherPermission = false;
 
+print("logout ,,,,,,,,,,,chick ...xxxxxxxxxxxxxxxxxxx........,");
 print('isUserLoggedIn: $isUserLoggedIn');
 print('permission: $permission');
 print('_lengthArray: $_lengthArray');
+print("logout ,,,,,,,xxxxxxxxxxxxxxxxxxxxxxxxx,,,,chick ...........,");
 // print(UserData.parentData != null);
 
     if (isUserLoggedIn) {
@@ -52,7 +55,6 @@ print('_lengthArray: $_lengthArray');
 
       if (permission.contains("مدرس")) {
         if (findStudent || parentHaveStudent) {
-          print("okllllllll ok ok ok");
           teacherHaveStudent = true;
           parentHaveStudent = false;
         }

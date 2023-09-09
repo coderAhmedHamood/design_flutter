@@ -65,6 +65,7 @@ class UserData {
   static String? _permissions;
   static TeacherData? _teacherData;
   static String? _className;
+  static String? _StudentName;
   static ParentData? _parentData;
 
   static void setUserDataValues(int id, String username, String password,
@@ -87,6 +88,9 @@ class UserData {
   static void setSubject(String className) {
     _className = className;
   }
+  static void setStudentName(String studentName) {
+    _StudentName = studentName;
+  }
 
   static int? get id => _id;
   static String? get username => _username;
@@ -96,4 +100,5 @@ class UserData {
   static TeacherData? get teacherData => _teacherData;
   static ParentData? get parentData => _parentData;
   static String? get className => _className;
+  static String? get studentName => _StudentName;
 }

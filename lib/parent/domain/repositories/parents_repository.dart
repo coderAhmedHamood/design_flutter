@@ -7,9 +7,10 @@ import '../../data/models/permission_model.dart';
 
 abstract class ParentsRepository {
 
-  Future<Either<Failure, StudentAttendanceClass>> getDataStudentToParent(int isStudent);
-  Future<Either<Failure, StudentAttendanceClass>> getDataStudentToParentMonthlyTest(int isStudent);
-  Future<Either<Failure, StudentAttendanceClass>> getDataStudentToParentAssignments(int isStudent);
+  Future<Either<Failure, StudentDataTableClass>> getDataStudentToParent(int isStudent);
+  Future<Either<Failure, StudentDataTableClass>> getDataStudentToParentMonthlyTest(int isStudent);
+  Future<Either<Failure, StudentDataTableClass>> getDataStudentToParentAssignments(int isStudent);
+  Future<Either<Failure, StudentDataTableClass>> getDataStudentToParentAssignedTask(int isStudent);
   Future<Either<Failure, List<PermissionRequesModel>>> getDataStudentToParentPermission(int isStudent);
   Future<Either<Failure, Unit>> addPermissionToStudent(PermissionRequesModel permissionReques);
   

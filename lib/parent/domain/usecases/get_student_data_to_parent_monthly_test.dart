@@ -13,7 +13,7 @@ class GetDataStudentToParentMonthlyTestUsecase {
 
   GetDataStudentToParentMonthlyTestUsecase(this.repository);
 
-  Future<Either<Failure, StudentAttendanceClass>> call(int isStudent) async {
+  Future<Either<Failure, StudentDataTableClass>> call(int isStudent) async {
     return await repository.getDataStudentToParentMonthlyTest(isStudent);
   }
 }

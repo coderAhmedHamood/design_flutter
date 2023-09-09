@@ -10,7 +10,8 @@ import '../widgets/notification_list_widget.dart';
 
 class NotificationsParentScreen extends StatelessWidget {
   // bool isNotificationClicked = false;
-  List<NotificationClass> notifications = [];
+  List<NotificationClass> notifications = []; 
+  
   @override
   Widget build(BuildContext context) {
         bool isUserLoggedIn = UserData.id != null;

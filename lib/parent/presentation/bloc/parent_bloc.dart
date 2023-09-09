@@ -7,6 +7,7 @@ import '../../../base/error/failures.dart';
 import '../../../base/strings/failures.dart';
 import '../../../student/domain/entities/student_activity_class.dart';
 import '../../domain/usecases/add_permission.dart';
+import '../../domain/usecases/get_data_assigned_task.dart';
 import '../../domain/usecases/get_student_data_to_parent.dart';
 import '../../domain/usecases/get_student_data_to_parent_assignments.dart';
 import '../../domain/usecases/get_student_data_to_parent_monthly_test.dart';
@@ -20,6 +21,7 @@ List<StudentActivityClass> students = [];
 class ParentBloc extends Bloc<ParentEvent, ParentState> {
   final GetDataStudentToParenttUsecase getDataStudentToParentAttendance;
   final GetDataStudentToParentAssignmentsEventUsecase getDataStudentToParentAssignments;
+  final GetDataStudentToParentAssignedTaskEventUsecase getDataStudentToParentAssignedTask;
   final GetDataStudentToParentMonthlyTestUsecase getDataStudentToParentMonthlyTest;
   final GetDataStudentToParentPermissionUsecase getDataStudentToParentPermission;
   final AddPermissionToStudentUsecase addPermissionToStudentUsecase;
@@ -28,6 +30,7 @@ class ParentBloc extends Bloc<ParentEvent, ParentState> {
     required this.getDataStudentToParentAttendance,
     required this.getDataStudentToParentMonthlyTest,
     required this.getDataStudentToParentAssignments,
+    required this.getDataStudentToParentAssignedTask,
     required this.getDataStudentToParentPermission,
     required this.addPermissionToStudentUsecase,
   }) : super(ParentInitial()) {
@@ -36,6 +39,8 @@ class ParentBloc extends Bloc<ParentEvent, ParentState> {
         _getDataStudentToParentMonthlyTestEvent);
     on<GetDataStudentToParentAssignmentsEvent>(
         _getDataStudentToParentAssignmentsEvent);
+    on<GetDataStudentToParentAssignedTaskEvent>(
+        _getDataStudentToParentAssignedTaskEvent);
     on<GetDataStudentToParentPermissionEvent>(
         _getDataStudentToParentPermissionEvent);
     on<AddPermissionToStudentEvent>(
@@ -74,7 +79,7 @@ class ParentBloc extends Bloc<ParentEvent, ParentState> {
       (studentData) {
         // students = studentsData; // تعيين البيانات المسترجعة في `students`
         emit(LoadedStudentDataToParentState(
-            studentAttendanceClass: studentData));
+            studentDataTableClass: studentData));
       },
     );
   }
@@ -93,7 +98,7 @@ class ParentBloc extends Bloc<ParentEvent, ParentState> {
       (studentData) {
         // students = studentsData; // تعيين البيانات المسترجعة في `students`
         emit(LoadedStudentDataToParentMonthlyTestState(
-            studentAttendanceClassMonthly: studentData));
+            StudentDataTableClassMonthly: studentData));
       },
     );
   }
@@ -112,7 +117,7 @@ class ParentBloc extends Bloc<ParentEvent, ParentState> {
       (studentData) {
         // students = studentsData; // تعيين البيانات المسترجعة في `students`
         emit(LoadedStudentDataToParentState(
-            studentAttendanceClass: studentData));
+            studentDataTableClass: studentData));
       },
     );
   }
@@ -166,5 +171,22 @@ class ParentBloc extends Bloc<ParentEvent, ParentState> {
       default:
         return "Unexpected Error , Please try again later .";
     }
+  }
+
+  FutureOr<void> _getDataStudentToParentAssignedTaskEvent(GetDataStudentToParentAssignedTaskEvent event, Emitter<ParentState> emit) async{
+     emit(LoadingStudentDataToParentState());
+
+    final failureOrDoneMessage =
+        await getDataStudentToParentAssignedTask(event.idStuden);
+
+    failureOrDoneMessage.fold(
+      (failure) =>
+          emit(ErrorParentState(message: _mapFailureToMessage(failure))),
+      (studentData) {
+        // students = studentsData; // تعيين البيانات المسترجعة في `students`
+        emit(LoadedStudentDataToParentState(
+            studentDataTableClass: studentData));
+      },
+    );
   }
 }

@@ -10,8 +10,8 @@ import '../../../../base/error/exceptions.dart';
 
 abstract class ParentLocalDataSource {
   Future<Unit> cachedStudentDataToParent(
-      StudentAttendanceModel studentAttendanceModel);
-  Future<StudentAttendanceClass> getCachedStudentDataToParent();
+      StudentDataTableModel studentDataTableModel);
+  Future<StudentDataTableClass> getCachedStudentDataToParent();
   Future<List<PermissionRequesModel>> getCachedStudentDataToParentPermission();
   
 }
@@ -28,10 +28,10 @@ class ParentLocalDataSourceImpl implements ParentLocalDataSource {
 
   @override
   Future<Unit> cachedStudentDataToParent(
-      StudentAttendanceModel studentAttendanceModel) {
+      StudentDataTableModel studentDataTableModel) {
 
 
-          List<Map<String, dynamic>> studentModelsToJson = [studentAttendanceModel.toJson()];
+          List<Map<String, dynamic>> studentModelsToJson = [studentDataTableModel.toJson()];
           print(studentModelsToJson);
     
   sharedPreferences.setString(
@@ -39,20 +39,20 @@ class ParentLocalDataSourceImpl implements ParentLocalDataSource {
     json.encode(studentModelsToJson),
   );
     
-    // final jsonColumn = json.encode(studentAttendanceModel.column);
+    // final jsonColumn = json.encode(StudentDataTableModel.column);
     // print(jsonColumn);
     print("iiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
-    // final jsonstudentAttendanceClass = json.encode(studentAttendanceModel.studentAttendanceClass);
-    // print(jsonstudentAttendanceClass);
+    // final jsonStudentDataTableClass = json.encode(StudentDataTableModel.StudentDataTableClass);
+    // print(jsonStudentDataTableClass);
     // print("iiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
     // sharedPreferences.setString(CACHED_DATA_STUDENTS_TO_PARENT_ONE, jsonColumn);
-    // sharedPreferences.setString(CACHED_DATA_STUDENTS_TO_PARENT_TOW, jsonstudentAttendanceClass);
+    // sharedPreferences.setString(CACHED_DATA_STUDENTS_TO_PARENT_TOW, jsonStudentDataTableClass);
     // print("iiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
     return Future.value(unit);
   }
 
   @override
-  Future<StudentAttendanceModel> getCachedStudentDataToParent() {
+  Future<StudentDataTableModel> getCachedStudentDataToParent() {
     final jsonString = sharedPreferences.getString(CACHED_DATA_STUDENTS_TO_PARENT_ONE);
     if (jsonString != null) {
       print(";;;;;;;;;;;;;;;;ttttttttttttttt;;;;;;;;;;;;;;;");
@@ -60,8 +60,8 @@ class ParentLocalDataSourceImpl implements ParentLocalDataSource {
     print(";;;;;;;;;;;;;;;;;;مممممممممممممممم;;;;;;;;;;;;;;");
  final jsonData = json.decode(jsonString);
  print(jsonData['column']);
- print(jsonData['studentAttendanceClass']);
-        final jsonDataStudentToParent = StudentAttendanceModel.fromJson(jsonData);
+ print(jsonData['StudentDataTableClass']);
+        final jsonDataStudentToParent = StudentDataTableModel.fromJson(jsonData);
 
       
     print(jsonDataStudentToParent);

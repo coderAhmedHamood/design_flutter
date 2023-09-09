@@ -1,9 +1,25 @@
-import '../../../../../constants/my_colors.dart';
  import 'package:flutter/material.dart';
 
+import '../../../../base/constants/my_colors.dart';
 import '../../../domain/entities/post.dart';
 
- 
+
+
+// class HomeScreen extends StatefulWidget {
+//   @override
+//   _HomeScreenState createState() => _HomeScreenState();
+// }
+
+// class _HomeScreenState extends State<StatefulWidget> {
+
+// class PostListWidget extends StatefulWidget {
+  //  @override
+//   _PostListWidgetState createState() => _PostListWidgetState();
+// }
+// class _PostListWidgetState extends State<StatefulWidget> {
+  
+
+// List<Post> posts=[];
 class PostListWidget extends StatelessWidget {
   final List<Post> posts;
   const PostListWidget({
@@ -17,11 +33,7 @@ class PostListWidget extends StatelessWidget {
                   itemCount: posts.length,
                   itemBuilder: (context, index) {
                     Post post = posts[index];
-                    List<bool> conditionMetTrue =
-                        List<bool>.filled(posts.length, true);
-                    List<bool> conditionMetFalse =
-                        List<bool>.filled(posts.length, false);
-
+                  
                     return Card(
                       // color: Color,
                       child: Column(
@@ -40,7 +52,7 @@ class PostListWidget extends StatelessWidget {
                             subtitle: Text(
                               post.time,
                               style: TextStyle(
-                                color: Colors.grey,
+                                color: MyColors.grey,
                               ),
                             ),
                           ),
@@ -66,7 +78,7 @@ class PostListWidget extends StatelessWidget {
                             height: 2,
                             width: double.infinity,
                             child: Divider(
-                              color: Colors.black,
+                              color: MyColors.black,
                               thickness: 0.2,
                               indent: 16,
                               endIndent: 16,
@@ -98,7 +110,7 @@ class PostListWidget extends StatelessWidget {
                                         post.islikes
                                             ? Icons.favorite
                                             : Icons.favorite_border,
-                                        color: post.islikes ? Colors.red : null,
+                                        color: post.islikes ? MyColors.red : null,
                                         // color: conditionMetFalse[index]? Colors.red: null,
                                       ),
                                     ),

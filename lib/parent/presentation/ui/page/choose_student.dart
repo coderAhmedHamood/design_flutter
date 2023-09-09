@@ -11,6 +11,7 @@ class ChooseStudentScreen extends StatelessWidget {
       UserData.parentData!.studentName;
         late TabController _tabController;
 
+      
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +48,7 @@ Widget StudentViewListWidget(){
 
                     return InkWell(
                       onTap: () {
-                        // Navigator.pop(context,studentsClass.id!);
+                        UserData.setStudentName(studentsClass.name);
                         Navigator.push(
                           context,
                           MaterialPageRoute(

@@ -1,5 +1,5 @@
 
-import 'package:flutter_design/base/urls.dart';
+import 'package:flutter_design/base/constants/urls.dart';
 import 'package:flutter_design/student/domain/entities/student.dart';
 import '../../../../base/error/exceptions.dart';
 import '../../domain/entities/student_activity_class.dart';

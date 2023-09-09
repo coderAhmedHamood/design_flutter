@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_design/student/presentation/ui/widgets/student/choose_class.dart';
-
-import '../../../domain/entities/student.dart';
 import '../../../domain/entities/students_class_class.dart';
-import '../../bloc/up_data_student/student_bloc.dart';
-import '../../bloc/up_data_student/student_state.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 
 class ChooseClassScreen extends StatelessWidget {
   List<StudentsClassClass> studentsClass = [];

@@ -21,7 +21,7 @@ class Post  extends Equatable{
  final String postText;
  final String postImage;
   late final int  likes;
- late final bool islikes;
+   bool islikes;
 
    Post({
     required this.id,
