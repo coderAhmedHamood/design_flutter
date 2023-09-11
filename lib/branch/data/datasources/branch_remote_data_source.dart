@@ -86,6 +86,23 @@ final List<DataStudentModel> dataStudent = [
     className: 'الخامس',
     numberOrder: "الاول",
   ),
+    DataStudentModel(
+    id: 2,
+    name: 'محمد عبداللة المنشاوي',
+    descrption: 'هاذا الطالب ممتاز جدا جدا ',
+    image: 'assets/ahmed.jpg',
+    
+    className: 'الخامس',
+    numberOrder: "الثالث مكرر",
+  ),
+  DataStudentModel(
+    id: 2,
+    name: 'نجيب فواز علي',
+    descrption: 'هاذا الطالب ممتاز جدا جدا ',
+    image: 'assets/school/school3.jpg',
+    className: 'الخامس',
+    numberOrder: "الاول",
+  ),
   // Add more posts as needed
 ];
 
@@ -95,8 +112,7 @@ class BranchRemoteDataSourceImpl implements BranchRemoteDataSource {
   BranchRemoteDataSourceImpl({required this.client});
   @override
   Future<List<BranchModel>> getAllBranch() async {
-    print("getAllBranch");
-
+ 
     // final response = await client.get(
     //   Uri.parse(URLs.URL_GetPosts),
     //   // headers: {"Content-Type": "application/json"},
@@ -107,8 +123,7 @@ class BranchRemoteDataSourceImpl implements BranchRemoteDataSource {
       //   final body = json.decode(response.body);
       // final error = body['error'];
       //  final List decodedJson = body['city'] as List;
-      //  print(body['city']);
-      //  print(error.toString());
+   
 
       // final List<BranchModel> branchModels = branch
       // .map<BranchModel>((jsonBranchModel) => BranchModel.fromJson(jsonBranchModel))
@@ -123,7 +138,7 @@ class BranchRemoteDataSourceImpl implements BranchRemoteDataSource {
 
   @override
   Future<List<DataStudentModel>> getAllDataStudent(int idBranch) async {
-    print("getAllBranch");
+    
 
     // final response = await client.get(
     //   Uri.parse(URLs.URL_GetPosts),
@@ -135,8 +150,7 @@ class BranchRemoteDataSourceImpl implements BranchRemoteDataSource {
       //   final body = json.decode(response.body);
       // final error = body['error'];
       //  final List decodedJson = body['city'] as List;
-      //  print(body['city']);
-      //  print(error.toString());
+   
 
       // final List<BranchModel> branchModels = branch
       // .map<BranchModel>((jsonBranchModel) => BranchModel.fromJson(jsonBranchModel))

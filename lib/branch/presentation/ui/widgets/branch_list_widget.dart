@@ -3,6 +3,8 @@ import '../../../../base/constants/my_colors.dart';
 import '../../../domain/entities/branch.dart';
 
 import '../../bloc/branch/branch_bloc.dart';
+import '../branch/characters_screen.dart';
+import '../branch/start.dart';
 import '../branch/view_all_student_screen.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,7 +55,8 @@ class BranchListWidget extends StatelessWidget {
                     bottomLeft: Radius.circular(15),
                     bottomRight: Radius.circular(15),
                   ),
-                  color: const Color.fromARGB(255, 177, 174, 174).withOpacity(.3),
+                  color:
+                      const Color.fromARGB(255, 177, 174, 174).withOpacity(.3),
                 ),
                 height: 120,
                 child: Padding(
@@ -83,19 +86,17 @@ class BranchListWidget extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              print(branch.id);
-
-                              // print("OK   click on   ' أوائل الفرع' ${branch.id!}");
-                              // _showGradeInputDialog(context, index);
                               context.read<BranchBloc>().add(
                                     GetAllDataStudentEvent(
                                         idBranch: branch.id!),
-                                    // idBranch: branch.id!),
                                   );
+                          
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
+                                        // DataStudentsScreen(),
+                                        // PageStartScreen(),
                                         ViewAllDataStudentScreen(),
                                   ));
                             },
@@ -134,8 +135,7 @@ class BranchListWidget extends StatelessWidget {
                             },
                             child: Row(
                               children: [
-                                Icon(Icons.lightbulb,
-                                 color: Colors.red),
+                                Icon(Icons.lightbulb, color: Colors.red),
                                 Text(
                                   ' مميزات الفرع',
                                   style: TextStyle(

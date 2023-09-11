@@ -49,11 +49,7 @@ class CharacterDetailsScreen extends StatelessWidget {
                       SizedBox(
                         height: 20,
                       ),
-                      // BlocBuilder<CharactersCubit, CharactersState>(
-                      //   builder: (context, state) {
-                      //     return checkIfQuotesAreLoaded(state);
-                      //   },
-                      // ),
+                     
                     ],
                   ),
                 ),
@@ -89,10 +85,7 @@ class CharacterDetailsScreen extends StatelessWidget {
             dataStudent.image,
            fit: BoxFit.cover,
            ),
-          // child: Image.network(
-          //   "character.image",
-          //   fit: BoxFit.cover,
-          // ),
+        
         ),
       ),
     );
@@ -135,46 +128,7 @@ class CharacterDetailsScreen extends StatelessWidget {
       ),
     );
   }
-
-  // Widget checkIfQuotesAreLoaded(CharactersState state) {
-  //   if (state is QuotesLoaded) {
-  //     return displayRandomQuoteOrEmptySpace(state);
-  //   } else {
-  //     return showProgressIndicator();
-  //   }
-  // }
-
-  // Widget displayRandomQuoteOrEmptySpace(state) {
-  //   var quotes = (state).quotes;
-  //   if (quotes.length != 0) {
-  //     int randomQuoteIndex = Random().nextInt(quotes.length - 1);
-  //     return Center(
-  //       child: DefaultTextStyle(
-  //         textAlign: TextAlign.center,
-  //         style: TextStyle(
-  //           fontSize: 20,
-  //           color: MyColors.myWhite,
-  //           shadows: [
-  //             Shadow(
-  //               blurRadius: 7,
-  //               color: MyColors.myYellow,
-  //               offset: Offset(0, 0),
-  //             )
-  //           ],
-  //         ),
-  //         child: AnimatedTextKit(
-  //           repeatForever: true,
-  //           animatedTexts: [
-  //             FlickerAnimatedText(quotes[randomQuoteIndex].quote),
-  //           ],
-  //         ),
-  //       ),
-  //     );
-  //   } else {
-  //     return Container();
-  //   }
-  // }
-
+ 
   Widget showProgressIndicator() {
     return Center(
       child: CircularProgressIndicator(

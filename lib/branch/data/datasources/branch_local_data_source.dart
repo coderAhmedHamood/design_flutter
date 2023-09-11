@@ -42,8 +42,7 @@ class BranchLocalDataSourceImpl implements BranchLocalDataSource {
          List<BranchModel> jsonToBranchModels = decodeJsonData
         .map<BranchModel>((jsonBranchModel) => BranchModel.fromJson(jsonBranchModel))
         .toList();
-    print(jsonToBranchModels);
-    print("vvvvvvv   VVVVVVVVVVV   vvvvvvvvvv");
+    
       return Future.value(jsonToBranchModels);
     } else {
       throw EmptyCacheException();
@@ -61,9 +60,7 @@ class BranchLocalDataSourceImpl implements BranchLocalDataSource {
 
 
     //   final encodedBranchModels = sharedPreferences.getString(CACHED_DATA_STUDENT);
-    //     print("=================!!!!!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>>>>>>>");
-    // print(encodedBranchModels);
-    print("=================!!!!!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>>>>>>>");
+ 
 
     return Future.value(unit);
   }
@@ -75,9 +72,7 @@ class BranchLocalDataSourceImpl implements BranchLocalDataSource {
     if (jsonString != null) {
     
       List<dynamic> decodeJsonData = json.decode(jsonString);
-    print("=============000000000000000======>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-    print(decodeJsonData);
-    print("=============000000000000000======>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+    
       // List<BranchModel> jsonToBranchModels = decodeJsonData
       //     .map<BranchModel>((jsonBranchModel) => BranchModel.fromJson(jsonBranchModel))
       //     .toList();
@@ -85,9 +80,7 @@ class BranchLocalDataSourceImpl implements BranchLocalDataSource {
         .map<DataStudentModel>((jsonBranchModel) => DataStudentModel.fromJson(jsonBranchModel))
         .toList();
     
-    print("===================>>>>>>-------------->>>>>>>>>>>>>>>>>>>>>");
-          print(jsonDataStudent);
-    print("===================>>>>>>-------------->>>>>>>>>>>>>>>>>>>>>");
+    
       return Future.value(jsonDataStudent);
     } else {
       throw EmptyCacheException();

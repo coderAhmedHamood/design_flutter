@@ -54,6 +54,11 @@ dependencies:
   shared_preferences: ^2.2.1
   clean_dialog: ^0.0.16
   flutter_secure_storage: ^8.0.0
+  animated_background: ^2.0.0
+  colorful_background: ^0.0.4
+  # flutter_offline: "^3.0.0"
+  flutter_offline: ^2.0.0
+
   
 
 dev_dependencies:
@@ -83,6 +88,7 @@ flutter:
   assets:
     - assets/
     - assets/school/
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
