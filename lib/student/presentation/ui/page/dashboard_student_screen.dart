@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'students/assignment_students2.dart';
 import 'students/behaviour_students.dart';
+import 'students/homework_screen.dart';
 import 'students/month_test_students.dart';
 import 'students/assignment_students.dart';
 import 'students/attendance_students.dart';
@@ -33,7 +35,35 @@ class DashboardStudentScreen extends StatelessWidget {
               );
             },
           ),
+       
           buildDashboardItem(
+            icon: Icons.event, // Change the icon to assignment
+            title: 'الواجب ',
+            subtitle: '...',
+            color: Color.fromARGB(255, 97, 86, 252),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomeOwrkStudentsScreen()),
+              );
+            },
+          ),
+      
+      
+          buildDashboardItem(
+            icon: Icons.event, // Change the icon to assignment
+            title: ' الواجب 2 ',
+            subtitle: 'الواجب',
+            color: Color.fromARGB(255, 97, 86, 252),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomeWorkStudentsScreen2()),
+              );
+            },
+          ),
+       
+         buildDashboardItem(
             icon: Icons.thumb_up, // Change the icon to thumb_up
             title: 'السلوك',
             subtitle: 'رفع درجات سلوك الطلاب',

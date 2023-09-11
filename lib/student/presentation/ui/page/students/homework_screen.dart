@@ -2,24 +2,21 @@ import 'package:flutter/material.dart';
 
 import '../../../../../account/data/model/stor.dart';
 import '../../../../../base/alart.dart';
-import '../../../../domain/entities/student.dart';
 import '../../../../domain/entities/student_activity_class.dart';
 import '../../../bloc/up_data_student/Student_event.dart';
 import '../../../bloc/up_data_student/student_bloc.dart';
 import '../../../bloc/up_data_student/student_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../widgets/WidgetTitleList.dart';
-
 bool chickGetData = false; // تعريف المتغير خارج الصنف
 List<StudentActivityClass> students = [];
 
-class AttendanceStudentsScreen extends StatefulWidget {
+class HomeOwrkStudentsScreen extends StatefulWidget {
   @override
-  State<AttendanceStudentsScreen> createState() => _AttendanceStudentsState();
+  State<HomeOwrkStudentsScreen> createState() => _HomeOwrkStudentsScreenState();
 }
 
-class _AttendanceStudentsState extends State<AttendanceStudentsScreen> {
+class _HomeOwrkStudentsScreenState extends State<HomeOwrkStudentsScreen> {
   bool isAllPresent = false;
 
   @override
@@ -75,7 +72,7 @@ class _AttendanceStudentsState extends State<AttendanceStudentsScreen> {
               SizedBox(
                 height: 5,
               ),
-              WidgetTitleList(page: "attendance"),
+              WidgetTitleList(),
               WidgetList(),
             ],
           ),
@@ -116,22 +113,11 @@ class _AttendanceStudentsState extends State<AttendanceStudentsScreen> {
                 children: [
                   Column(
                     children: [
-                      Row(
-                        children: [
-                          // Text(
-                          //   "م",
-                          //   style: TextStyle(
-                          //       // backgroundColor: Colors.orange,
-                          //       fontSize: 15,
-                          //       fontWeight: FontWeight.bold),
-                          //   textAlign: TextAlign.right,
-                          // ),
-                        ],
-                      ),
+                      
                       Row(
                         children: [
                           Checkbox(
-                            //  checkColor: Colors.white,
+                            
                             value: students[index].isSick,
                             onChanged: (value) {
                               setState(() {
@@ -146,16 +132,7 @@ class _AttendanceStudentsState extends State<AttendanceStudentsScreen> {
                   ),
                   Column(
                     children: [
-                      Row(
-                        children: [
-                          // Text(
-                          //   "ح",
-                          //   style: TextStyle(
-                          //       fontSize: 15, fontWeight: FontWeight.bold),
-                          //   textAlign: TextAlign.right,
-                          // ),
-                        ],
-                      ),
+                    
                       Row(
                         children: [
                           Checkbox(
@@ -188,7 +165,57 @@ class _AttendanceStudentsState extends State<AttendanceStudentsScreen> {
     );
   }
 
- 
+  Widget WidgetTitleList() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.white,
+            offset: Offset(0, 2),
+            blurRadius: 4,
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 12),
+                child: Container(
+                  width: 66,
+                  //  color: Colors.green,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "الحالة",
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.right,
+                      ),
+                   
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Text(
+                  "اسم الطالب",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.right,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 
   Widget titleBody() {
     return Container(
@@ -212,7 +239,7 @@ class _AttendanceStudentsState extends State<AttendanceStudentsScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            'تحضير الصف ${UserData.className} ',
+            'رفع حالة الواجبات ${UserData.className} ',
             style: TextStyle(
               fontSize: 28,
               color: Colors.white,
@@ -253,7 +280,7 @@ class _AttendanceStudentsState extends State<AttendanceStudentsScreen> {
                   child: Row(
                     children: [
                       Text(
-                        isAllPresent ? 'إلغاء' : 'تحديد',
+                        isAllPresent ? 'إلغاء' : 'مسلمين',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,

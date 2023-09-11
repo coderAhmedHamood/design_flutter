@@ -78,7 +78,7 @@ class StudentActivityModel extends StudentActivityClass {
     required String name,
     required bool isPresent,
     required bool isSick,
-    required double degreeHomeWork,
+    required String stateHomeWork,
     required double degreeMonthTest,
          BehaviourStudentsClass? behaviourStudentsClass,
   }) : super(
@@ -86,7 +86,7 @@ class StudentActivityModel extends StudentActivityClass {
           name: name,
           isPresent: isPresent,
           isSick: isSick,
-          degreeHomeWork: degreeHomeWork,
+          stateHomeWork: stateHomeWork,
           degreeMonthTest: degreeMonthTest,
            behaviourStudentsClass: behaviourStudentsClass,
         );
@@ -97,7 +97,7 @@ class StudentActivityModel extends StudentActivityClass {
       name: json['name'],
       isPresent: json['isPresent'],
       isSick: json['isSick'],
-      degreeHomeWork: json['degreeHomeWork'],
+      stateHomeWork: json['stateHomeWork'],
       degreeMonthTest: json['degreeMonthTest'],
  behaviourStudentsClass: json['behaviourStudentsClass'] != null
           ? BehaviourStudentsClass.fromJson(json['behaviourStudentsClass'])
@@ -111,7 +111,7 @@ class StudentActivityModel extends StudentActivityClass {
       'name': name,
       'isPresent': isPresent,
       'isSick': isSick,
-      'degreeHomeWork': degreeHomeWork,
+      'stateHomeWork': stateHomeWork,
       'degreeMonthTest': degreeMonthTest,
 'behaviourStudentsClass': behaviourStudentsClass != null
           ? behaviourStudentsClass!.toJson()

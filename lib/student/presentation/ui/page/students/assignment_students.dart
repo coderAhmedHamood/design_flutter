@@ -3,9 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_design/student/presentation/bloc/up_data_student/Student_event.dart';
 import 'package:flutter_design/student/presentation/ui/widgets/student/title_body.dart';
-import '../../../../../account/data/model/stor.dart';
 import '../../../../../base/alart.dart';
-import '../../../../domain/entities/student.dart';
 import '../../../../domain/entities/student_activity_class.dart';
 import '../../../bloc/up_data_student/student_bloc.dart';
 import '../../../bloc/up_data_student/student_state.dart';
@@ -92,8 +90,8 @@ class _HomeWorkStudentsState extends State<HomeWorkStudentsScreen> {
                         print("accept");
                         print(grade);
                         setState(() {
-                          students[index].degreeHomeWork =
-                              grade; // تحديث درجة الطالب باستخدام الفهرس
+                          students[index].stateHomeWork =
+                              grade.toString(); // تحديث درجة الطالب باستخدام الفهرس
                         });
                         Navigator.of(context).pop(); // إغلاق الـ dialog
                       },
@@ -212,12 +210,11 @@ class _HomeWorkStudentsState extends State<HomeWorkStudentsScreen> {
                                 Row(
                                   children: [
                                     Text(
-                                      students[index].degreeHomeWork.toString(),
+                                      students[index].stateHomeWork.toString(),
                                       style: TextStyle(
-                                            color: students[index].degreeHomeWork > 15
+                                            color: students[index].stateHomeWork.contains("مسلم")
                                             ? Colors.green
-                                            : students[index].degreeHomeWork > 0 &&
-                                                    students[index].degreeHomeWork < 15
+                                            : students[index].stateHomeWork.contains("ناقص")
                                                 ? Colors.orange
                                                 : Colors.red,
                                           fontSize: 18,
@@ -246,11 +243,11 @@ class _HomeWorkStudentsState extends State<HomeWorkStudentsScreen> {
             ],
           ),
           floatingActionButton: 
-              students.any((student) => student.degreeHomeWork != 0.0)?
+              students.any((student) => !student.stateHomeWork.contains("غير مسلم"))?
                 FloatingActionButton(
                   onPressed: () {
                     List<StudentActivityClass> studentsWithDegree = students
-                        .where((student) => student.degreeHomeWork != 0.0)
+                        .where((student) => !student.stateHomeWork.contains("غير مسلم"))
                         .toList();
                     BlocProvider.of<StudentBloc>(context).add(
                         AddStudentAssignmentEvent(

@@ -137,16 +137,16 @@ class StudentRemoteDataSourceImpl implements StudentRemoteDataSource {
 
 
           List<StudentActivityModel> studentDataModel=[
-            StudentActivityModel(name: "احمد",id: 12,isPresent: false,isSick: false,degreeHomeWork:0.0,degreeMonthTest: 0.0),
-            StudentActivityModel(name: "علي",id: 13,isPresent: false,isSick: false,degreeHomeWork:0.0,degreeMonthTest: 0.0),
-            StudentActivityModel(name: "سيف الحداد",id: 14,isPresent: false,isSick: false,degreeHomeWork:0.0,degreeMonthTest: 0.0),
-            StudentActivityModel(name: "قاسم محصنة",id: 16,isPresent: false,isSick: false,degreeHomeWork:0.0,degreeMonthTest: 0.0),
-            StudentActivityModel(name: "عبداللة الرعوي",id: 19,isPresent: false,isSick: false,degreeHomeWork:0.0,degreeMonthTest: 0.0),
-            StudentActivityModel(name: "علي",id: 13,isPresent: false,isSick: false,degreeHomeWork:0.0,degreeMonthTest: 0.0),
-            StudentActivityModel(name: "سيف الحداد",id: 14,isPresent: false,isSick: false,degreeHomeWork:0.0,degreeMonthTest: 0.0),
-            StudentActivityModel(name: "قاسم محصنة",id: 16,isPresent: false,isSick: false,degreeHomeWork:0.0,degreeMonthTest: 0.0),
-            StudentActivityModel(name: "عبداللة الرعوي",id: 19,isPresent: false,isSick: false,degreeHomeWork:0.0,degreeMonthTest: 0.0),
-            StudentActivityModel(name: "سيف قادر",id: 19,isPresent: false,isSick: false,degreeHomeWork:0.0,degreeMonthTest: 0.0),
+            StudentActivityModel(name: "احمد",id: 12,isPresent: false,isSick: false,stateHomeWork:'غير مسلم',degreeMonthTest: 0.0),
+            StudentActivityModel(name: "علي",id: 13,isPresent: false,isSick: false,stateHomeWork:'غير مسلم',degreeMonthTest: 0.0),
+            StudentActivityModel(name: "سيف الحداد",id: 14,isPresent: false,isSick: false,stateHomeWork:'غير مسلم',degreeMonthTest: 0.0),
+            StudentActivityModel(name: "قاسم محصنة",id: 16,isPresent: false,isSick: false,stateHomeWork:'غير مسلم',degreeMonthTest: 0.0),
+            StudentActivityModel(name: "عبداللة الرعوي",id: 19,isPresent: false,isSick: false,stateHomeWork:'غير مسلم',degreeMonthTest: 0.0),
+            StudentActivityModel(name: "علي",id: 13,isPresent: false,isSick: false,stateHomeWork:'غير مسلم',degreeMonthTest: 0.0),
+            StudentActivityModel(name: "سيف الحداد",id: 14,isPresent: false,isSick: false,stateHomeWork:'غير مسلم',degreeMonthTest: 0.0),
+            StudentActivityModel(name: "قاسم محصنة",id: 16,isPresent: false,isSick: false,stateHomeWork:'غير مسلم',degreeMonthTest: 0.0),
+            StudentActivityModel(name: "عبداللة الرعوي",id: 19,isPresent: false,isSick: false,stateHomeWork:'غير مسلم',degreeMonthTest: 0.0),
+            StudentActivityModel(name: "سيف قادر",id: 19,isPresent: false,isSick: false,stateHomeWork:'غير مسلم',degreeMonthTest: 0.0),
           ];
           final List<StudentActivityModel> studentData = studentDataModel.toList();
            

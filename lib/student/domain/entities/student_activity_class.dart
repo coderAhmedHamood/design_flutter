@@ -9,7 +9,7 @@ class StudentActivityClass extends Equatable {
   String name;
   bool isPresent;
   bool isSick;
-  double degreeHomeWork;
+  String stateHomeWork;
   double degreeMonthTest;
   BehaviourStudentsClass? behaviourStudentsClass;
 
@@ -19,10 +19,10 @@ class StudentActivityClass extends Equatable {
     required this.name,
     required this.isPresent,
     required this.isSick,
-    required this.degreeHomeWork,
+    required this.stateHomeWork,
     required this.degreeMonthTest,
       this.behaviourStudentsClass,
   });
   @override
-  List<Object?> get props => [id, name,isPresent,isSick,degreeHomeWork,degreeMonthTest,behaviourStudentsClass];
+  List<Object?> get props => [id, name,isPresent,isSick,stateHomeWork,degreeMonthTest,behaviourStudentsClass];
 }

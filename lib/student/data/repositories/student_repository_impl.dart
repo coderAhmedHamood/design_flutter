@@ -101,7 +101,7 @@ class StudentsRepositoryImpl implements StudentsRepository {
         name: student.name,
         isPresent: student.isPresent,
         isSick: student.isSick,
-        degreeHomeWork: student.degreeHomeWork,
+        stateHomeWork: student.stateHomeWork,
         degreeMonthTest: student.degreeMonthTest,
       
       );
@@ -121,7 +121,7 @@ class StudentsRepositoryImpl implements StudentsRepository {
         name: student.name,
         isPresent: student.isPresent,
         isSick: student.isSick,
-        degreeHomeWork: student.degreeHomeWork,
+        stateHomeWork: student.stateHomeWork,
         degreeMonthTest: student.degreeMonthTest,
       
       );
@@ -141,7 +141,7 @@ class StudentsRepositoryImpl implements StudentsRepository {
         name: student.name,
         isPresent: student.isPresent,
         isSick: student.isSick,
-        degreeHomeWork: student.degreeHomeWork,
+        stateHomeWork: student.stateHomeWork,
         degreeMonthTest: student.degreeMonthTest,
         
       );
@@ -162,7 +162,7 @@ class StudentsRepositoryImpl implements StudentsRepository {
         name: student.name,
         isPresent: student.isPresent,
         isSick: student.isSick,
-        degreeHomeWork: student.degreeHomeWork,
+        stateHomeWork: student.stateHomeWork,
         degreeMonthTest: student.degreeMonthTest,
       );
     }).toList();
