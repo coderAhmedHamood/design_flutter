@@ -4,6 +4,7 @@ import '../../../domain/entities/branch.dart';
 
 import '../../bloc/branch/branch_bloc.dart';
 import '../branch/characters_screen.dart';
+import '../branch/details_branch.dart';
 import '../branch/start.dart';
 import '../branch/view_all_student_screen.dart';
 
@@ -90,7 +91,7 @@ class BranchListWidget extends StatelessWidget {
                                     GetAllDataStudentEvent(
                                         idBranch: branch.id!),
                                   );
-                          
+
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -119,9 +120,6 @@ class BranchListWidget extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              print(branch.id);
-                              print(
-                                  "OK   click on   ' مميزات الفرع'${branch.id!} ");
                               context.read<BranchBloc>().add(
                                     GetAllDataStudentEvent(
                                         idBranch: branch.id!),
@@ -129,8 +127,7 @@ class BranchListWidget extends StatelessWidget {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) =>
-                                        ViewAllDataStudentScreen(),
+                                    builder: (context) => DetailsBranchScreen(),
                                   ));
                             },
                             child: Row(

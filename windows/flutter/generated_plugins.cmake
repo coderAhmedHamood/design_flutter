@@ -4,6 +4,9 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   connectivity_plus_windows
+  firebase_auth
+  firebase_core
+  flutter_localization
   flutter_secure_storage_windows
   network_info_plus_windows
 )

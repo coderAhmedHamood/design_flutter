@@ -179,38 +179,35 @@ class _HomeWorkStudentsState extends State<HomeWorkStudentsScreen2> {
                       isAllPresent = !isAllPresent;
                     });
                   },
-                  child: Directionality(
-                    textDirection: TextDirection.rtl,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        // color: isAllPresent
-                        //     ? Colors.green
-                        //     // : Colors.green,
-                        //     : Color.fromARGB(255, 0, 118, 214),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                      child: Row(
-                        children: [
-                           Icon(
-                            isAllPresent
-                                ? Icons.check_box
-                                : Icons.check_box_outline_blank,
-                            color: Colors.black,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      // color: isAllPresent
+                      //     ? Colors.green
+                      //     // : Colors.green,
+                      //     : Color.fromARGB(255, 0, 118, 214),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                    child: Row(
+                      children: [
+                         Icon(
+                          isAllPresent
+                              ? Icons.check_box
+                              : Icons.check_box_outline_blank,
+                          color: Colors.black,
+                        ),
+                        Text(
+                          isAllPresent ? 'إلغاء' : 'تحديد',
+                          style: TextStyle(
+                            color: Colors.blue,
+                            // backgroundColor: Colors.blue,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
                           ),
-                          Text(
-                            isAllPresent ? 'إلغاء' : 'تحديد',
-                            style: TextStyle(
-                              color: Colors.blue,
-                              // backgroundColor: Colors.blue,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                         
-                          SizedBox(width: 8),
-                        ],
-                      ),
+                        ),
+                       
+                        SizedBox(width: 8),
+                      ],
                     ),
                   ),
                 ),

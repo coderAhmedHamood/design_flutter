@@ -5,6 +5,7 @@ import 'package:flutter_design/account/bloc/account_bloc.dart';
 import '../../../../account/data/model/stor.dart';
 import '../../../../account/ui/screen/login_screen.dart';
 import '../../../../base/constants/my_colors.dart';
+import '../../../../main.dart';
 import '../widgets/menu/FeatureContainer.dart';
 import '../widgets/menu/MenuItem.dart';
 import '../widgets/menu/UserProfile.dart';
@@ -80,6 +81,31 @@ class MenuPage extends StatelessWidget {
               ),
               SizedBox(height: 30),
               TitleInMenu(text: "الإعدادات والخصوصية"),
+              
+          RadioListTile<Locale>(
+            title: Text("English"),
+            value: Locale("en"),
+            groupValue: Localizations.localeOf(context),
+            onChanged: (Locale? value) {
+              if (value != null) {
+              _changeLanguage(value, context);
+
+              }
+            },
+          ),
+          RadioListTile<Locale>(
+            title: Text("Arabic"),
+            value: Locale("ar"),
+            groupValue: Localizations.localeOf(context),
+            onChanged: (Locale? value) {
+              if (value != null) {
+             _changeLanguage(value, context);
+
+              }
+            },
+          ),
+
+          
               Column(
                 children: [
                   MenuItem(
@@ -127,4 +153,12 @@ class MenuPage extends StatelessWidget {
       ),
     );
   }
+
+  void _changeLanguage(Locale locale, BuildContext context) {
+  Navigator.of(context).pushAndRemoveUntil(
+    MaterialPageRoute(builder: (context) => MyApp(locale: locale)),
+    (route) => false,
+  );
+}
+
 }

@@ -45,25 +45,22 @@ class _TabBarViewScreenState extends State<TabBarViewScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
-        appBar: CustomTabBar(tabController: _tabController),
-        
-        body: TabBarView(
-          controller: _tabController,
+    return Scaffold(
+      appBar: CustomTabBar(tabController: _tabController),
+      
+      body: TabBarView(
+        controller: _tabController,
  
-          children: [
-            HomeScreen(),
-            BranchScreen(),
-            ChickDashboardScreen(),
-            NotificationsScreen(),
-            MenuPage(),
-          ],
-        ),
-
-        // drawer: CustomDrawer(),
+        children: [
+          HomeScreen(),
+          BranchScreen(),
+          ChickDashboardScreen(),
+          NotificationsScreen(),
+          MenuPage(),
+        ],
       ),
+
+      // drawer: CustomDrawer(),
     );
   }
 }

@@ -118,14 +118,11 @@ class CharacterDetailsScreen extends StatelessWidget {
   }
 
   Widget buildDivider(double endIndent) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Divider(
-        height: 30,
-        endIndent: endIndent,
-        color: MyColors.myYellow,
-        thickness: 2,
-      ),
+    return Divider(
+      height: 30,
+      endIndent: endIndent,
+      color: MyColors.myYellow,
+      thickness: 2,
     );
   }
  

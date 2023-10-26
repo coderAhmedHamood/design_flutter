@@ -34,47 +34,41 @@ class NotificationsParentScreen extends StatelessWidget {
 
         return
         isUserLoggedIn
-        ? Directionality(
-          textDirection: TextDirection.rtl, // تغيير اتجاه النصوص والعناصر
-          child: Scaffold(
-            appBar: AppBar(),
-            body:  Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Directionality(
-                textDirection: TextDirection.ltr,
-                child: Container(
-                  // color: const Color.fromARGB(255, 234, 231, 231),
-                  child: Padding(
-                    padding: const EdgeInsets.all(13.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(
-                            Icons.search,
-                            size: 30,
-                          ),
-                       Text(
-                          "الاشعارات",
-                          style: TextStyle(
-                              //  backgroundColor: Colors.white,
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold
-                              //  height: .0
+        ? Scaffold(
+          appBar: AppBar(),
+          body:  Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              // color: const Color.fromARGB(255, 234, 231, 231),
+              child: Padding(
+                padding: const EdgeInsets.all(13.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(
+                        Icons.search,
+                        size: 30,
+                      ),
+                   Text(
+                      "الاشعارات",
+                      style: TextStyle(
+                          //  backgroundColor: Colors.white,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold
+                          //  height: .0
 
-                              ),
-                        ),
-                      ],
+                          ),
                     ),
-                  ),
+                  ],
                 ),
               ),
-              NotificationListWidget(notifications: notifications),
-            ],
-          ),
+            ),
+            NotificationListWidget(notifications: notifications),
+          ],
+        ),
       
-          ),
-          )
+        )
         :PageChickLoginScreen();
       },
     );

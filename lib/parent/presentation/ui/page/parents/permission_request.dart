@@ -27,30 +27,27 @@ class _PermissionRequestScreenState
         if (state is LoadedStudentDataToParentPermissionState) {
           permissionrequesclass = state.permissionRequesModel;
         }
-        return Directionality(
-          textDirection: TextDirection.rtl,
-          child: Scaffold(
-            backgroundColor: Color.fromARGB(255, 255, 252, 252),
-            appBar: AppBar(),
-            body: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 3),
-              TitlePageTow(titlePage: 'طلب استئذان لطالب'),  
+        return Scaffold(
+          backgroundColor: Color.fromARGB(255, 255, 252, 252),
+          appBar: AppBar(),
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 3),
+            TitlePageTow(titlePage: 'طلب استئذان لطالب'),  
 
-                 SizedBox(height: 4),
-                WidgetListView(),
-              ],
-            ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                _showAddPermissionDialog();
-              },
-              child: Icon(Icons.add),
-            ),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.startFloat,
+               SizedBox(height: 4),
+              WidgetListView(),
+            ],
           ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              _showAddPermissionDialog();
+            },
+            child: Icon(Icons.add),
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.startFloat,
         );
       },
     );

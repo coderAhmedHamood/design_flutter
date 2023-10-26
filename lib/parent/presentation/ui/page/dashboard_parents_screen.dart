@@ -259,68 +259,65 @@ class DashboardScreen extends StatelessWidget {
   }
 
   Widget buildPersonItem() {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Container(
-        height: 120,
-        margin: EdgeInsets.only(left: 0, right: 0, top: 0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(1),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 5,
-              offset: Offset(0, 3),
-            ),
-          ],
-          gradient: LinearGradient(
-            colors: [
-              Color.fromARGB(255, 136, 177, 194),
-              Color.fromARGB(255, 106, 141, 161),
-              // Color.fromARGB(255, 31, 96, 160),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+    return Container(
+      height: 120,
+      margin: EdgeInsets.only(left: 0, right: 0, top: 0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(1),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 5,
+            offset: Offset(0, 3),
           ),
+        ],
+        gradient: LinearGradient(
+          colors: [
+            Color.fromARGB(255, 136, 177, 194),
+            Color.fromARGB(255, 106, 141, 161),
+            // Color.fromARGB(255, 31, 96, 160),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
         ),
-        child: Padding(
-          padding:
-              const EdgeInsets.only(left: 30, right: 30, top: 15, bottom: 15),
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                CircleAvatar(
-                  radius: 40,
-                  backgroundImage: AssetImage("assets/school/ahmed.jpg"),
-                ),
-                SizedBox(width: 8),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      UserData.studentName.toString(),
-                      // "المقداد ابن عمر",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
+      ),
+      child: Padding(
+        padding:
+            const EdgeInsets.only(left: 30, right: 30, top: 15, bottom: 15),
+        child: Align(
+          alignment: Alignment.centerRight,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              CircleAvatar(
+                radius: 40,
+                backgroundImage: AssetImage("assets/school/ahmed.jpg"),
+              ),
+              SizedBox(width: 8),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    UserData.studentName.toString(),
+                    // "المقداد ابن عمر",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
                     ),
-                    SizedBox(height: 4),
-                    Text(
-                      ' سنه 15',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
-                      ),
+                  ),
+                  SizedBox(height: 4),
+                  Text(
+                    ' سنه 15',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.black,
                     ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),

@@ -6,6 +6,7 @@ import 'students/homework_screen.dart';
 import 'students/month_test_students.dart';
 import 'students/assignment_students.dart';
 import 'students/attendance_students.dart';
+import 'students/mostafa.dart';
 
 class DashboardStudentScreen extends StatelessWidget {
   @override
@@ -23,6 +24,18 @@ class DashboardStudentScreen extends StatelessWidget {
         crossAxisCount: 2,
         padding: EdgeInsets.all(16),
         children: [
+          buildDashboardItem(
+            icon: Icons.event, // Change the icon to assignment
+            title: 'التحضير مصطفى ',
+            subtitle: 'رفع درجات تحضير الطلاب',
+            color: Color.fromARGB(255, 97, 86, 252),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AttendanceStudentsScreenWW()),
+              );
+            },
+          ),
           buildDashboardItem(
             icon: Icons.event, // Change the icon to assignment
             title: 'التحضير ',

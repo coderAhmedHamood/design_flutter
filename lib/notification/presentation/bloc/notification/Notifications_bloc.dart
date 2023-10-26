@@ -6,7 +6,7 @@ import '../../../../../base/error/failures.dart';
 import '../../../../../base/strings/failures.dart';
 import 'package:dartz/dartz.dart';
 
-import '../../../../../screen/tabbar/Notification_class.dart';
+import '../../../data/models/Notification_class.dart';
 import '../../../../account/data/UserStorageHelper.dart';
 import '../../../../account/data/model/UserSecureStorage.dart';
 import '../../../../account/data/model/stor.dart';

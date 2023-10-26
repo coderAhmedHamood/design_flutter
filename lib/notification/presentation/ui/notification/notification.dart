@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_design/account/ui/screen/activate_account.dart';
+import 'package:flutter_design/account/ui/screen/login_screen.dart';
 import 'package:flutter_design/notification/presentation/bloc/notification/Notifications_event.dart';
 import '../../../../account/data/model/stor.dart';
 import '../../../../account/ui/widget/widget_else.dart';
@@ -33,44 +35,39 @@ class NotificationsScreen extends StatelessWidget {
 
         return
         isUserLoggedIn
-        ? Directionality(
-          textDirection: TextDirection.rtl, // تغيير اتجاه النصوص والعناصر
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Directionality(
-                textDirection: TextDirection.ltr,
-                child: Container(
-                  // color: const Color.fromARGB(255, 234, 231, 231),
-                  child: Padding(
-                    padding: const EdgeInsets.all(13.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(
-                            Icons.search,
-                            size: 30,
-                          ),
-                       Text(
-                          "الاشعارات",
-                          style: TextStyle(
-                              //  backgroundColor: Colors.white,
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold
-                              //  height: .0
+        ? Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              // color: const Color.fromARGB(255, 234, 231, 231),
+              child: Padding(
+                padding: const EdgeInsets.all(13.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(
+                        Icons.search,
+                        size: 30,
+                      ),
+                   Text(
+                      "الاشعارات",
+                      style: TextStyle(
+                          //  backgroundColor: Colors.white,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold
+                          //  height: .0
 
-                              ),
-                        ),
-                      ],
+                          ),
                     ),
-                  ),
+                  ],
                 ),
               ),
-              NotificationListWidget(notifications: notifications),
-            ],
-          ),
+            ),
+            NotificationListWidget(notifications: notifications),
+          ],
         )
-        :PageChickLoginScreen();
+        :LoginScreen();
+        // :ActiveAccountScreen();
       },
     );
   }

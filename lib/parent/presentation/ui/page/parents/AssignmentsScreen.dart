@@ -14,20 +14,17 @@ class AssignmentsStudentViewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-        return Directionality(
-          textDirection: TextDirection.rtl,
-          child: Scaffold(
-            appBar: AppBar(
-            ),
-            body: SingleChildScrollView(
-              child: Column(
-                children: [
-                  SizedBox(height: 5),
-                  TitlePage(titlePage:"كشف واجبات الطالب"),
-                  SizedBox(height: 10),
-                  WidgetDataTable(),
-                ],
-              ),
+        return Scaffold(
+          appBar: AppBar(
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: 5),
+                TitlePage(titlePage:"كشف واجبات الطالب"),
+                SizedBox(height: 10),
+                WidgetDataTable(),
+              ],
             ),
           ),
         );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../account/data/model/stor.dart';
+import '../../../../account/ui/screen/Activate_account.dart';
 import '../../../../account/ui/screen/login_screen.dart';
 import '../../../../student/presentation/ui/page/choose_class.dart';
 import '../widgets/student/alert.dart';
@@ -30,11 +31,11 @@ class ChickDashboardScreen extends StatelessWidget {
     bool teacherHaveStudent = false;
     bool teacherPermission = false;
 
-print("logout ,,,,,,,,,,,chick ...xxxxxxxxxxxxxxxxxxx........,");
-print('isUserLoggedIn: $isUserLoggedIn');
-print('permission: $permission');
-print('_lengthArray: $_lengthArray');
-print("logout ,,,,,,,xxxxxxxxxxxxxxxxxxxxxxxxx,,,,chick ...........,");
+// print("logout ,,,,,,,,,,,chick ...xxxxxxxxxxxxxxxxxxx........,");
+// print('isUserLoggedIn: $isUserLoggedIn');
+// print('permission: $permission');
+// print('_lengthArray: $_lengthArray');
+// print("logout ,,,,,,,xxxxxxxxxxxxxxxxxxxxxxxxx,,,,chick ...........,");
 // print(UserData.parentData != null);
 
     if (isUserLoggedIn) {
@@ -71,7 +72,9 @@ print("logout ,,,,,,,xxxxxxxxxxxxxxxxxxxxxxxxx,,,,chick ...........,");
                 :
                  isUserLoggedIn
                     ? DashboardScreen(idStudent)
-                    : LoginScreen();
+                    :LoginScreen();
+                    // : ActiveAccountScreen();
+                    // : LoginScreen();
   }
 
 }

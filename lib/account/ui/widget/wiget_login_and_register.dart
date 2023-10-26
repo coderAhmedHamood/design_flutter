@@ -21,7 +21,7 @@ class WidgetLoginOrRegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AccountBloc, AccountState>(
       builder: (context, state) {
-        if (state is SuccessLoginState) {          
+        if (state is SuccessLoginState) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             // Navigator.pop(context);
             Navigator.pushReplacement(
@@ -33,37 +33,35 @@ class WidgetLoginOrRegisterScreen extends StatelessWidget {
             );
           });
         }
-        
-        
+
         return Scaffold(
-          body: Directionality(
-            textDirection: TextDirection.rtl,
-            child: SingleChildScrollView(
-              child: Container(
-                height: MediaQuery.of(context).size.height,
+          body: SingleChildScrollView(
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              color: Color.fromARGB(255, 240, 247, 247),
+              child: Material(
                 color: Color.fromARGB(255, 240, 247, 247),
-                child: Material(
-                  color: Color.fromARGB(255, 240, 247, 247),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      ClipPath(
-                        clipper: CurveCliper(),
-                        child: Image(
-                          height: MediaQuery.of(context).size.height / 2.5,
-                          fit: BoxFit.cover,
-                          image: AssetImage('assets/school.jpg'),
-                        ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    ClipPath(
+                      clipper: CurveCliper(),
+                      child: Image(
+                        height: MediaQuery.of(context).size.height / 2.5,
+                        fit: BoxFit.cover,
+                        image: AssetImage('assets/school.jpg'),
                       ),
-                      Center(
-                        child: CustomText(
-                          text: 'مدارس العربية السعيدة',
-                          fontSize: 37,
-                          color: Colors.blue,
-                          letterSpacing: 0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    ),
+                    Center(
+                      child: CustomText(
+                        text: 'مدارس العربية السعيدة',
+                        fontSize: 37,
+                        color: Colors.blue,
+                        letterSpacing: 0,
+                        fontWeight: FontWeight.bold,
                       ),
+                    ),
+                    if (pageName == "login")
                       Padding(
                         padding: const EdgeInsets.only(left: 20, right: 20),
                         child: Form(
@@ -78,7 +76,8 @@ class WidgetLoginOrRegisterScreen extends StatelessWidget {
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              prefixIcon: Icon(Icons.email, color: Colors.blue),
+                              prefixIcon:
+                                  Icon(Icons.email, color: Colors.blue),
                             ),
                             validator: (value) {
                               if (value!.isEmpty) {
@@ -89,7 +88,9 @@ class WidgetLoginOrRegisterScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 20),
+                       if(pageName=="login")
+                       SizedBox(height: 20),
+                    if (pageName == "login")
                       Padding(
                         padding: const EdgeInsets.only(left: 20, right: 20),
                         child: Form(
@@ -118,73 +119,101 @@ class WidgetLoginOrRegisterScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 30),
-                      Column(children: [
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 60),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Colors.blue,
-                          ),
-                          child: MaterialButton(
-                            height: 50,
-                            onPressed: () {
-                              if (_formKey.currentState!.validate() &&
-                                  _formKeyPassword.currentState!.validate()) {
-                                print(_emailController.text);
-                                print(_passwordController.text);
-                                context.read<AccountBloc>().add(LoginEvent(
-                                    email: _emailController.text,
-                                    password: _passwordController.text));
-                              }
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.login,
-                                  color: Colors.white,
-                                ),
-                                CustomText(
-                                  text: 'تسجيل الدخول',
-                                  fontSize: 19,
-                                  color: Colors.white,
-                                  letterSpacing: 0,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ],
+                    if (pageName == "active")
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: Form(
+                          key: _formKeyPassword,
+                          child: TextFormField(
+                            controller: _passwordController,
+                            keyboardType: TextInputType.visiblePassword,
+                            // obscureText: true,
+                            decoration: InputDecoration(
+                              filled: true,
+                              labelText: "ادخل رقم الهاتف",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              prefixIcon: Icon(
+                                Icons.lock_rounded,
+                                color: Colors.blue,
+                              ),
                             ),
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'يرجى إدخال رقم الهاتف';
+                              }
+                              return null;
+                            },
                           ),
                         ),
-                        SizedBox(height: 15),
-                        Text(
-                          'ليس لديك حساب؟',
+                      ),
+                    SizedBox(height: 30),
+                    Column(children: [
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 60),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.blue,
+                        ),
+                        child: MaterialButton(
+                          height: 50,
+                          onPressed: () {
+                            if (_formKey.currentState!.validate() &&
+                                _formKeyPassword.currentState!.validate()) {
+                              print(_emailController.text);
+                              print(_passwordController.text);
+                              context.read<AccountBloc>().add(LoginEvent(
+                                  email: _emailController.text,
+                                  password: _passwordController.text));
+                            }
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.login,
+                                color: Colors.white,
+                              ),
+                              CustomText(
+                                text:   pageName == "login"?'تسجيل الدخول':'تفعيل الحساب',
+                                fontSize: 19,
+                                color: Colors.white,
+                                letterSpacing: 0,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 15),
+                      Text(
+                          pageName == "login"?'ليس لديك حساب؟':'',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 17,
+                        ),
+                      ),
+                      MaterialButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => RegisterScreen(),
+                              ));
+                        },
+                        child: Text(
+                          pageName == "login"?'انشأ حساب':'',
                           style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.blue,
                             fontWeight: FontWeight.w600,
                             fontSize: 17,
                           ),
                         ),
-                        MaterialButton(
-                          onPressed: () {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => RegisterScreen(),
-                                ));
-                          },
-                          child: Text(
-                            'انشأ حساب',
-                            style: TextStyle(
-                              color: Colors.blue,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 17,
-                            ),
-                          ),
-                        ),
-                      ]),
-                    ],
-                  ),
+                      ),
+                    ]),
+                  ],
                 ),
               ),
             ),

@@ -1,47 +1,53 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../base/constants/my_colors.dart';
 import '../../../../notification/presentation/bloc/notification/Notifications_bloc.dart';
 import '../../../../notification/presentation/bloc/notification/Notifications_event.dart';
+import '../../../../notification/presentation/ui/widgets/notification_top.dart';
 import '../../../domain/entities/post.dart';
 import '../../bloc/posts/posts_bloc.dart';
 // import '../widgets/post_list_widget.dart';
 
-  List<Post> posts = [];
-  bool stateDataToPosts=false;
+List<Post> posts = [];
+bool stateDataToPosts = false;
+
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<StatefulWidget> {
-
 // class HomeScreen extends StatelessWidget {
+// final FirebaseMessaging _fcm = FirebaseMessaging();
 
+void initState(){
+  super.initState();
+  
+}
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Container(
-        color: const Color.fromARGB(255, 135, 135, 135),
-        child: BlocBuilder<PostsBloc, PostsState>(
-          builder: (context, state) {
-            if (state is LoadedPostsState) {
-              if (!stateDataToPosts) {
+    return Container(
+      color: const Color.fromARGB(255, 135, 135, 135),
+      child: BlocBuilder<PostsBloc, PostsState>(
+        builder: (context, state) {
+          if (state is LoadedPostsState) {
+            if (!stateDataToPosts) {
               posts = state.posts;
               stateDataToPosts = true;
-              }
             }
-            return RefreshIndicator(
-              onRefresh: () async {
-                BlocProvider.of<PostsBloc>(context).add(GetAllPostsEvent());
-                BlocProvider.of<NotificationsBloc>(context)
-                    .add(GetValueNotificationBarEvent());
-              },
-              child: PostListWidget(),
-            );
-          },
-        ),
+          }
+          return RefreshIndicator(
+            onRefresh: () async {
+              BlocProvider.of<PostsBloc>(context).add(GetAllPostsEvent());
+              BlocProvider.of<NotificationsBloc>(context)
+                  .add(GetValueNotificationBarEvent());
+            },
+            child: PostListWidget(),
+          );
+        },
       ),
     );
   }
@@ -109,6 +115,32 @@ class _HomeScreenState extends State<StatefulWidget> {
                   children: [
                     Row(
                       children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            AwesomeNotifications()
+                                .requestPermissionToSendNotifications()
+                                .then((isGranted) {
+                              print(isGranted);
+                              print("isGranted");
+                              print(isGranted);
+                            });
+                          },
+                          child: Text("request"),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            createNotification(1, "channelKey", "title", "body",
+                                "asset://assets/school/ahmed.jpg");
+                          },
+                          child: Text("create"),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            createNotification(2, "channelKey", "title", "body",
+                                "asset://assets/no_internet.png");
+                          },
+                          child: Text("duration"),
+                        ),
                         IconButton(
                           onPressed: () {
                             if (posts[index].islikes) {
@@ -116,6 +148,7 @@ class _HomeScreenState extends State<StatefulWidget> {
                                 print("4");
                                 print(posts[index].id);
                                 print(posts[index].islikes);
+
                                 posts[index].islikes = false;
                               });
                             } else {
